@@ -12,21 +12,15 @@ function Navbar() {
       <Link to="/">
         <button>Home</button>
       </Link>
-
-      {isLoggedIn
-        ? (<>
-            <Link to="/projects">
-              <button>Projects</button>
-            </Link>
-            <button onClick={logOutUser}>Logout</button>
-            <span>{user.name}</span>
-          </>)
-        : 
-        (<>
-          <Link to="/signup"> <button>Signup</button> </Link>
-          <Link to="/login"> <button>Login</button> </Link>
-        </>)
-      }
+      <Link to="/login">
+        <button>Add</button>
+      </Link>
+      <Link to="/signup">
+        <button>Notifications</button>
+      </Link>
+      <Link to="/">
+        <button>Profile</button>
+      </Link>
     </nav>
   );
 }
