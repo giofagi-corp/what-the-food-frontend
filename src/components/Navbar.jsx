@@ -12,7 +12,7 @@ function Navbar() {
       <Link to="/">
         <button>Home</button>
       </Link>
--
+
       {isLoggedIn
         ? (<>
             <Link to="/projects">
