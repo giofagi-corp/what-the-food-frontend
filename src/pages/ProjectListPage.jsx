@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import AddProject from "./../components/AddProject";
-import ProjectCard from "./../components/ProjectCard";
+import AddProject from "../components/AddProject";
+import ProjectCard from "../components/ProjectCard";
 
 const API_URI = process.env.REACT_APP_API_URI;
 
