@@ -8,6 +8,7 @@ function Navbar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   return (
+    /*
     <nav>
       <Link to="/">
         <button>Home</button>
@@ -27,6 +28,21 @@ function Navbar() {
           <Link to="/login"> <button>Login</button> </Link>
         </>)
       }
+    </nav>
+    */
+    <nav>
+      <Link to="/">
+        <button>Home</button>
+      </Link>
+      <Link to="/login">
+        <button>Add</button>
+      </Link>
+      <Link to="/signup">
+        <button>Notifications</button>
+      </Link>
+      <Link to="/">
+        <button>Profile</button>
+      </Link>
     </nav>
   );
 }
