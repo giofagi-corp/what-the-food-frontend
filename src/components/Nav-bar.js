@@ -9,11 +9,7 @@ function Navbar() {
 
   return (
     <nav>
-    <Link to="/"><button>Home</button></Link>
-    <Link to="/add-recipe"><button>Add</button></Link>
-    <Link to="/notifications"><button>Notification</button></Link>
-    <Link to="/profile"><button>Profile</button></Link>
-      {/* <Link to="/">
+      <Link to="/">
         <button>Home</button>
       </Link>
 -
@@ -30,7 +26,7 @@ function Navbar() {
           <Link to="/signup"> <button>Signup</button> </Link>
           <Link to="/login"> <button>Login</button> </Link>
         </>)
-      } */}
+      }
     </nav>
   );
 }
