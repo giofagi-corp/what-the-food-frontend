@@ -3,10 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.7.0",
+    "@emotion/styled": "^11.6.0",
+    "@mui/material": "^5.2.3",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+<<<<<<< HEAD
     "axios": "^0.21.4",
+=======
+    "axios": "^0.21.1",
+>>>>>>> 27f531885545b5394761fe566cc3e771e05bfd1a
     "bootstrap": "^5",
     "dotenv-webpack": "^7",
     "react": "^17.0.2",
