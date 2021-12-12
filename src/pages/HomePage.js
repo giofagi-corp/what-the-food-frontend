@@ -1,12 +1,12 @@
 import React from "react"
 import axios from "axios";
 import RecipesList from "../components/RecipesList"
+import Header from "../components/Header"
 
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 
-function HomePage() {
+export default function HomePage() {
   const [recipes, setRecipes] = useState([]);
 
   const getAllProjects = () => {
@@ -23,6 +23,7 @@ function HomePage() {
   return (
     <div>
       <h1>Home Page</h1>
+      <Header/>
       <RecipesList recipes={recipes}/>
     </div>
   );
