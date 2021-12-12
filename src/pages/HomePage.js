@@ -1,31 +1,29 @@
 import React from "react"
 import axios from "axios";
 import RecipesList from "../components/RecipesList"
-import Header from "../components/Header";
-import { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 
-export default function HomePage() {
+function HomePage() {
+  const [recipes, setRecipes] = useState([]);
 
-  const [recipes, setRecipes] = useState([])
-
-  const getAllRecipes = () =>{
+  const getAllProjects = () => {
     axios
-    .get(`http://localhost:5000/api/recipe/listAllRecipes`)
-    .then((response) => setRecipes(response.data))
-    .catch((error) => console.log(error));
-  }
+      .get(`http://localhost:5000/api/recipe/listAllRecipes`)
+      .then((response) => setRecipes(response.data))
+      .catch((error) => console.log(error));
+  };
 
-  useEffect(()=>{
-    getAllRecipes()
+  useEffect(() => {
+    getAllProjects();
   }, []);
 
   return (
     <div>
       <h1>Home Page</h1>
-      <Header/>
-      <RecipesList recipes={recipes} />
+      <RecipesList recipes={recipes}/>
     </div>
   );
 }
