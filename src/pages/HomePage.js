@@ -1,4 +1,5 @@
 import React from "react"
+import axios from "axios";
 import RecipesList from "../components/RecipesList"
 
 import { useState, useEffect } from "react";
@@ -26,5 +27,3 @@ function HomePage() {
     </div>
   );
 }
-
-export default HomePage;
