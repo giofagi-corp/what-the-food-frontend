@@ -9,14 +9,15 @@ function Navbar() {
 
   return (
     <nav>
-
-
-      <Link to="/"><button>Home</button></Link>
-      <Link to="/add-recipe"><button>Add</button></Link>
-      <Link to="/notifications"><button>Notifications</button></Link>
-      <Link to="/profile"><button>Profile</button></Link>
-
-      {/* {isLoggedIn
+    <Link to="/"><button>Home</button></Link>
+    <Link to="/add-recipe"><button>Add</button></Link>
+    <Link to="/notifications"><button>Notification</button></Link>
+    <Link to="/profile"><button>Profile</button></Link>
+      {/* <Link to="/">
+        <button>Home</button>
+      </Link>
+-
+      {isLoggedIn
         ? (<>
             <Link to="/projects">
               <button>Projects</button>
