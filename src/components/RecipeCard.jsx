@@ -1,9 +1,7 @@
 import React from "react";
 
 export default function RecipeCard(props) {
-    const { imageUrl, name } = props;
-
-    console.log("props ----> ", props);
+    const { imageUrl, name } = props
 
     return (
         <div>

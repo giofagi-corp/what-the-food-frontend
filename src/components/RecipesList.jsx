@@ -2,11 +2,9 @@ import React from 'react'
 
 import { useState, useEffect } from "react";
 import axios from "axios";
-import AddProject from "./../components/AddProject";
-import ProjectCard from "./../components/ProjectCard";
 import RecipeCard from "../components/RecipeCard"
-
-const API_URI = process.env.REACT_APP_API_URI;
+/* import AddProject from "./../components/AddProject";
+const API_URI = process.env.REACT_APP_API_URI; */
 
 export default function RecipesList() {
   const [recipes, setRecipes] = useState([]);
@@ -37,7 +35,6 @@ export default function RecipesList() {
 
   return (
     <div>
-      {/* <RecipeCard refreshProjects={getAllProjects} /> */}
 
       {recipes.map((recipe) => (
         <RecipeCard key={recipe._id} {...recipe} />
