@@ -5,7 +5,7 @@ import RecipesList from "../components/RecipesList"
 import { useState, useEffect } from "react";
 
 
-function HomePage() {
+export default function HomePage() {
   const [recipes, setRecipes] = useState([]);
 
   const getAllProjects = () => {
