@@ -1,24 +1,30 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React from 'react'
+
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from 'react-router-dom';
-// import AddProject from "./../components/AddProject";
-// import ProjectCard from "./../components/ProjectCard";
+import AddProject from "./../components/AddProject";
+import ProjectCard from "./../components/ProjectCard";
+import RecipeCard from "../components/RecipeCard"
 
 const API_URI = process.env.REACT_APP_API_URI;
 
-function RecipesList() {
+export default function RecipesList() {
   const [recipes, setRecipes] = useState([]);
 
   const getAllProjects = () => {
     // Get the token from the localStorage
-    const storedToken = localStorage.getItem("authToken");
+    //const storedToken = localStorage.getItem("authToken");
 
     // Send the token through the request "Authorization" Headers
+    // axios
+    //   .get(`${API_URI}/api/projects`, {
+    //     headers: { Authorization: `Bearer ${storedToken}` },
+    //   })
+    //   .then((response) => setProjects(response.data))
+    //   .catch((error) => console.log(error));
+
     axios
-      .get(`${API_URI}/api/projects`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
+      .get(`http://localhost:5000/api/recipe/listAllRecipes`)
       .then((response) => setRecipes(response.data))
       .catch((error) => console.log(error));
   };
@@ -30,14 +36,13 @@ function RecipesList() {
   }, []);
 
   return (
-    <div className="ProjectListPage">
-      <AddProject refreshProjects={getAllProjects} />
+    <div>
+      {/* <RecipeCard refreshProjects={getAllProjects} /> */}
 
-      {recipes.map((project) => (
-        <ProjectCard key={project._id} {...project} />
+      {recipes.map((recipe) => (
+        <RecipeCard key={recipe._id} {...recipe} />
       ))}
     </div>
   );
 }
 
-export default RecipesList;
