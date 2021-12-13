@@ -19,6 +19,7 @@ import NotificationsPage from "./pages/NotificationsPage";
 
 
 
+
 function App() {
   return (
     <div className="App">
@@ -30,7 +31,7 @@ function App() {
         <Route exact path="/top-cuisine" component={TopCuisinePage} />
         <Route exact path="/top-ingredients" component={TopIngredientsPage} />
         <Route exact path="/notifications" component={NotificationsPage} />
-
+        
 
 
 

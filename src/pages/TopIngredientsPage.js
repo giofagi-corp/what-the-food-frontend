@@ -16,7 +16,7 @@ export default function TopIngredientsPage() {
 
   const getAllRecipes = () => {
     axios
-      .get(`http://localhost:5000/api/top-recipies`)
+      .get(`http://localhost:5000/api/top-ingredients`)
       .then((response) => setRecipes(response.data))
       .catch((error) => console.log(error));
   };
