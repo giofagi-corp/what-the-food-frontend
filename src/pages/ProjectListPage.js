@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import AddProject from "./../components/AddProject";
-import ProjectCard from "./../components/ProjectCard";
+//import ProjectCard from "./../components/ProjectCard";
 
 const API_URI = process.env.REACT_APP_API_URI;
 
@@ -31,9 +31,9 @@ function ProjectListPage() {
     <div className="ProjectListPage">
       <AddProject refreshProjects={getAllProjects} />
 
-      {projects.map((project) => (
+      {/* {projects.map((project) => (
         <ProjectCard key={project._id} {...project} />
-      ))}
+      ))} */}
     </div>
   );
 }

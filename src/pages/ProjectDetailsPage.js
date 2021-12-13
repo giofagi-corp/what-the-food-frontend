@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import AddTask from "../components/AddTask";
 
-import TaskCard from "../components/TaskCard";
+//import TaskCard from "../components/TaskCard";
 
 const API_URI = process.env.REACT_APP_API_URI;
 
@@ -33,7 +33,7 @@ function ProjectDetailsPage(props) {
 
   return (
     <div className="ProjectDetails">
-      {project && (
+     {/*  {project && (
         <>
           <h1>{project.title}</h1>
           <p>{project.description}</p>
@@ -51,7 +51,7 @@ function ProjectDetailsPage(props) {
 
       <Link to={`/projects/edit/${projectId}`}>
         <button>Edit Project</button>
-      </Link>
+      </Link> */}
     </div>
   );
 }
