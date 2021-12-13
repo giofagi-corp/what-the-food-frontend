@@ -4,6 +4,7 @@ import RecipeCard from "./RecipeCard";
 import PodiumNumber from "./PodiumNumber";
 
 export default function TopList(props) {
+  console.log("PROPS----->",props)
   const { recipes } = props;
 
   return (

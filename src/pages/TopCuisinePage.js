@@ -12,7 +12,7 @@ export default function TopCuisinePage() {
 
   const getAllRecipes = () => {
     axios
-      .get(`http://localhost:5000/api/top-recipies`)
+      .get(`http://localhost:5000/api/recipe/topCuisine`)
       .then((response) => setRecipes(response.data))
       .catch((error) => console.log(error));
   };
