@@ -11,7 +11,7 @@ export default function HomePage() {
 
   const getAllProjects = () => {
     axios
-      .get(`http://localhost:5000/api/recipe/listAllRecipes`)
+      .get(`http://localhost:5000/api/recipe/topCuisine`)
       .then((response) => setRecipes(response.data))
       .catch((error) => console.log(error));
   };
