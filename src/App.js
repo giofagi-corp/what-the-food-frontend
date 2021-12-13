@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import ProjectListPage from "./pages/ProjectListPage";
 import ProjectDetailsPage from "./pages/ProjectDetailsPage";
 import EditProjectPage from "./pages/EditProjectPage";
+import ProfilePage from "./pages/ProfilePage";
 
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";

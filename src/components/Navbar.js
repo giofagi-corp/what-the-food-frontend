@@ -13,6 +13,7 @@ function Navbar() {
     <Link to="/add-recipe"><button>Add</button></Link>
     <Link to="/notifications"><button>Notification</button></Link>
     <Link to="/profile"><button>Profile</button></Link>
+
       {/* <Link to="/">
         <button>Home</button>
       </Link>
