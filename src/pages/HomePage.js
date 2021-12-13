@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 export default function HomePage() {
   const [recipes, setRecipes] = useState([]);
 
-  const getAllProjects = () => {
+  const getAllRecipes = () => {
     axios
       .get(`http://localhost:5000/api/recipe/listAllRecipes`)
       .then((response) => setRecipes(response.data))
@@ -17,7 +17,7 @@ export default function HomePage() {
   };
 
   useEffect(() => {
-    getAllProjects();
+    getAllRecipes();
   }, []);
 
   return (

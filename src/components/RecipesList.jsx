@@ -1,18 +1,15 @@
-import React from 'react'
+import React from "react";
 
-import RecipeCard from "../components/RecipeCard"
-
+import RecipeCard from "../components/RecipeCard";
 
 export default function RecipesList(props) {
-    const {recipes} = props
+  const { recipes } = props;
 
   return (
     <div>
-
-     {recipes.map((recipe) => (
+      {recipes.map((recipe) => (
         <RecipeCard key={recipe._id} {...recipe} />
-      ))} 
+      ))}
     </div>
   );
 }
-
