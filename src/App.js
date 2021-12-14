@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import ProjectListPage from "./pages/ProjectListPage";
 import ProjectDetailsPage from "./pages/ProjectDetailsPage";
 import EditProjectPage from "./pages/EditProjectPage";
+import ProfilePage from "./pages/ProfilePage";
 
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
@@ -15,6 +16,7 @@ import TopRecipesPage from "./pages/TopRecipesPage";
 import TopCuisinePage from "./pages/TopCuisinePage";
 import TopIngredientsPage from "./pages/TopIngredientsPage";
 import NotificationsPage from "./pages/NotificationsPage";
+import AddRecipe from "./pages/AddRecipe";
 
 
 
@@ -31,9 +33,10 @@ function App() {
         <Route exact path="/top-cuisine" component={TopCuisinePage} />
         <Route exact path="/top-ingredients" component={TopIngredientsPage} />
         <Route exact path="/notifications" component={NotificationsPage} />
+        <Route exact path="/profile" component={ProfilePage} />
+        <Route exact path="/add-recipe" component={AddRecipe} />
+
         
-
-
 
         {/* 👇 UPDATE THE EXISTING ROUTES 👇  */}
         <PrivateRoute exact path="/projects" component={ProjectListPage} />

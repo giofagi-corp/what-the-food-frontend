@@ -1,6 +1,5 @@
 import React from "react"
 import axios from "axios";
-import RecipesList from "../components/RecipesList"
 import Header from "../components/Header"
 
 import { useState, useEffect } from "react";
