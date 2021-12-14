@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function FormSearchIngredient(props) {
-  const { ingredient, updateIngredient } = props;
+  const { ingredient, updateIngredient,onSubmit } = props;
 
   return (
     <div>
@@ -13,8 +13,9 @@ export default function FormSearchIngredient(props) {
           onChange={updateIngredient}
           placeholder="Add Ingredient"
         ></input>
-        <button type="submit">Add</button>
       </form>
+      <button onClick={onSubmit} type="submit">Add</button><br></br>
+
     </div>
   );
 }

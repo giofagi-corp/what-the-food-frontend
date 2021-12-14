@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 import BackButton from "../components/BackButton";
@@ -21,8 +21,6 @@ export default function AddRecipe(props) {
   const handleIngredientInput = (e) => setIngredient(e.target.value);
 
   const handleSubmit = (e) => {
-    
-    
     e.preventDefault();
     const newRecipe = { name, duration, cuisine };
 
@@ -40,14 +38,20 @@ export default function AddRecipe(props) {
 //     getAllRecipes();
 //   }, []);
 
-
-  
   const handleAdd = (e) => {
+   
+      axios
+    .post(`http://localhost:5000/api/search-ingredient`,{
+      ingredient
+    })
+    .then((response)=>{
+      setIngredient(response.data)
+      console.log("line47------>",response.data)
+    })
+    .catch((error)=> console.log(error))
     
     e.preventDefault();
-    const newIngredient = { ingredient };
-
-    console.log("Submitted: ", newIngredient);
+    
   };
 
   return (
@@ -69,10 +73,10 @@ export default function AddRecipe(props) {
       <FormSearchIngredient
         ingredient={ingredient}
         updateIngredient={handleIngredientInput}
+        onSubmit = {handleAdd}
       />
-      <button onSubmit={handleAdd} type="submit">Add</button>
 
-      <button onSubmit={handleSubmit} type="submit">
+      <button onClick={handleSubmit} type="submit">
         SUBMIT
       </button>
     </div>
