@@ -19,11 +19,6 @@ import TopIngredientsPage from "./pages/TopIngredientsPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import AddRecipe from "./pages/AddRecipe";
 
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-/>;
-
 function App() {
   return (
     <div className="App">
