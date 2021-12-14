@@ -1,7 +1,11 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
 import TopList from "../components/TopList";
 import GenericPageTitle from "../components/GenericPageTitle";
+import BackButton from "../components/BackButton";
+
 
 //import needed components
 
@@ -12,7 +16,7 @@ export default function TopIngredientsPage() {
 
   const getAllRecipes = () => {
     axios
-      .get(`http://localhost:5000/api/top-recipies`)
+      .get(`http://localhost:5000/api/top-ingredients`)
       .then((response) => setRecipes(response.data))
       .catch((error) => console.log(error));
   };
@@ -23,6 +27,7 @@ export default function TopIngredientsPage() {
 
   return (
     <div>
+      <Link to="/"><BackButton/></Link>
       <GenericPageTitle text="TOP INGREDIENTS" />
       <TopList recipes={recipes} />
     </div>
