@@ -1,12 +1,13 @@
 import React from "react"
 import axios from "axios";
-import RecipesList from "../components/RecipesList"
 import Header from "../components/Header"
+import ProfileFeed from "../components/ProfileFeed";
 
 import { useState, useEffect } from "react";
 
 
 export default function HomePage() {
+<<<<<<< HEAD
   const [recipes, setRecipes] = useState([]);
 
   const getAllProjects = () => {
@@ -20,11 +21,12 @@ export default function HomePage() {
     getAllProjects();
   }, []);
 
+=======
+>>>>>>> main
   return (
     <div>
-      <h1>Home Page</h1>
       <Header/>
-      <RecipesList recipes={recipes}/>
+      <ProfileFeed/>
     </div>
   );
 }
