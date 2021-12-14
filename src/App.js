@@ -6,11 +6,12 @@ import ProjectListPage from "./pages/ProjectListPage";
 import ProjectDetailsPage from "./pages/ProjectDetailsPage";
 import EditProjectPage from "./pages/EditProjectPage";
 import ProfilePage from "./pages/ProfilePage";
+import RecipePage from "./pages/RecipePage";
 
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
-import PrivateRoute from "./components/PrivateRoute";    // <== IMPORT
-import AnonRoute from "./components/AnonRoute";        // <== IMPORT
+import PrivateRoute from "./components/PrivateRoute"; // <== IMPORT
+import AnonRoute from "./components/AnonRoute"; // <== IMPORT
 
 import TopRecipesPage from "./pages/TopRecipesPage";
 import TopCuisinePage from "./pages/TopCuisinePage";
@@ -18,16 +19,17 @@ import TopIngredientsPage from "./pages/TopIngredientsPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import AddRecipe from "./pages/AddRecipe";
 
-
-
-
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+/>;
 
 function App() {
   return (
     <div className="App">
       <Navbar />
 
-      <Switch>      
+      <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/top-recipes" component={TopRecipesPage} />
         <Route exact path="/top-cuisine" component={TopCuisinePage} />
@@ -36,17 +38,23 @@ function App() {
         <Route exact path="/profile" component={ProfilePage} />
         <Route exact path="/add-recipe" component={AddRecipe} />
 
-        
+        <Route exact path="/recipe" component={RecipePage} />
 
         {/* 👇 UPDATE THE EXISTING ROUTES 👇  */}
         <PrivateRoute exact path="/projects" component={ProjectListPage} />
-        <PrivateRoute exact path="/projects/:id" component={ProjectDetailsPage} />
-        <PrivateRoute exact path="/projects/edit/:id" component={EditProjectPage} />
-        
-        
+        <PrivateRoute
+          exact
+          path="/projects/:id"
+          component={ProjectDetailsPage}
+        />
+        <PrivateRoute
+          exact
+          path="/projects/edit/:id"
+          component={EditProjectPage}
+        />
+
         <AnonRoute exact path="/signup" component={SignupPage} />
         <AnonRoute exact path="/login" component={LoginPage} />
-
       </Switch>
     </div>
   );

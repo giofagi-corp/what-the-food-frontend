@@ -1,3 +1,7 @@
+.root {
+  padding-top: 30px;
+}
+
 body {
   margin: 0;
 }
@@ -34,7 +38,6 @@ nav {
   padding: 0px 20px;
   box-shadow: 0px 1px 2px gray;
   width: 100%;
-  margin-bottom: 15px;
   padding: 5px;
 }
 
@@ -106,4 +109,17 @@ nav li {
 
 .TaskCard {
   background-color: #dfeef9;
+}
+
+.Hero {
+  background-image: url("https://more.ctv.ca/food/recipes/potato-and-gochujang-braised-eggs/_jcr_content/root/responsivegrid_1778395324/responsivegrid_182136378/featuredmedia.coreimg.jpeg/1605192371688/81438-potato-and-gochujang-braised-eggs-.jpeg");
+  height: 300px;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+}
+
+.RecipeBody {
+  text-align: left;
+  padding: 0 20px 40px 20px;
 }
