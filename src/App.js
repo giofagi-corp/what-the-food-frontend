@@ -19,7 +19,6 @@ import TopIngredientsPage from "./pages/TopIngredientsPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import AddRecipe from "./pages/AddRecipe";
 
-
 function App() {
   return (
     <div className="App">

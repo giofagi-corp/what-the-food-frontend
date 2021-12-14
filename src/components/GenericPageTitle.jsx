@@ -3,8 +3,8 @@ import React from "react";
 export default function GenericPageTitle(props) {
     const {text} = props
     return (
-        <div>
-            <h1>{text}</h1>
+        <div className="GenericPageTitle">
+            <h2>{text}</h2>
         </div>
     )
 }

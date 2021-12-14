@@ -1,9 +1,11 @@
 #root {
-  margin-bottom: 80px;
+  margin-bottom: 100px;
 }
 
 body {
   margin: 0;
+  font-family: "Roboto", sans-serif;
+  color: #666666;
 }
 
 a {
@@ -26,7 +28,6 @@ label {
 
 input,
 textarea {
-  width: 200px;
   padding: 10px;
   display: inline-block;
   margin: 10px;
@@ -117,9 +118,97 @@ nav li {
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
+  position: relative;
+  padding: 0 20px 0 20px;
+}
+
+.BottomNavigation {
+  border-top: 1px solid #cecece;
+}
+
+.HeroHeader {
+  height: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.HeroHeaderContent {
+  display: flex;
+  justify-content: space-between;
+  color: #ffffff;
+  align-items: center;
+  bottom: 20px;
+  /* position: absolute; */
+}
+
+.GenericCard {
+  width: "100%";
+  margin: 30px 0 30px 0;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 0%), 0px 1px 1px 0px rgb(0 0 0 / 43%),
+    0px 1px 3px 0px rgb(0 0 0 / 12%);
 }
 
 .RecipeBody {
   text-align: left;
-  padding: 0 20px 40px 20px;
+  padding: 10px 20px 0 20px;
+}
+
+.RecipeName {
+  float: left;
+  text-align: left;
+}
+
+.RecipeFavSave {
+  float: right;
+  text-align: right;
+}
+
+.BackButton {
+  padding-top: 30px;
+  display: flex;
+  color: #666666;
+}
+
+.NotificationsPage {
+  padding: 0 20px 0 20px;
+}
+
+.GenericPageTitle {
+  text-align: left;
+}
+
+.Notifications {
+  padding-bottom: 50px;
+}
+
+.ProfileHeader {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+}
+
+.ProfileHeaderPic {
+  width: 35%;
+  text-align: center;
+  padding: 0 20px 0 20px;
+}
+
+.ProfileHeaderInfo {
+  width: 65%;
+  text-align: left;
+}
+
+.favIngredientsChips {
+  margin-left: -5px;
+}
+
+.IngredientChip {
+  margin-left: 6px;
+  margin-bottom: 8px;
+}
+
+.avatar {
+  border-radius: 100%;
+  max-width: 150px;
 }

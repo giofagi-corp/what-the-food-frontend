@@ -20,7 +20,7 @@ export default function Navbar() {
   // const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   return (
     <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}>
-      <BottomNavigation showLabels value={value} onChange={(event, newValue) => {setValue(newValue);}}>
+      <BottomNavigation className='BottomNavigation' showLabels value={value} onChange={(event, newValue) => {setValue(newValue);}}>
         <BottomNavigationAction
           component={Link}
           to="/"
