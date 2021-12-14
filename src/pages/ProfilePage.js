@@ -1,14 +1,14 @@
 import React from 'react'
 import axios from 'axios';
 import ProfileHeader from '../components/ProfileHeader';
-import ProfileFeed from '../components/ProfileFeed';
+import ProfileTabs from '../components/ProfileTabs';
 
 
 export default function ProfilePage() {
     return (
         <>
             <ProfileHeader/>
-            <ProfileFeed/>
+            <ProfileTabs/>
         </>
     )
 }
