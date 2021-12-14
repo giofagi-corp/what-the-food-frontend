@@ -21,10 +21,6 @@ export default function Header(props) {
         .catch((error) => console.log(error));
     };
 
-    /* useEffect(() => {
-        getRecipesByIngredients();
-    }, []); */
-
     const handleSearchInput = e => setInputSearch(e.target.value);
 
     const handleSubmit = (e) => {
