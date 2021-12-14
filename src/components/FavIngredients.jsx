@@ -6,9 +6,9 @@ export default function FavIngredients() {
         <div>
             <h4>FAV INGREDIENTS</h4>
             <div className='favIngredientsChips'>
-                <Chip label="Clickable Link" component="a" href="#basic-chip" clickable />
-                <Chip label="Clickable Link" component="a" href="#basic-chip" clickable />
-                <Chip label="Clickable Link" component="a" href="#basic-chip" clickable />
+                <Chip label="Clickable Link" component="a"/>
+                <Chip label="Clickable Link" component="a"/>
+                <Chip label="Clickable Link" component="a"/>
             </div>
         </div>
     )
