@@ -6,6 +6,7 @@ import ProjectListPage from "./pages/ProjectListPage";
 import ProjectDetailsPage from "./pages/ProjectDetailsPage";
 import EditProjectPage from "./pages/EditProjectPage";
 import ProfilePage from "./pages/ProfilePage";
+import RecipePage from "./pages/RecipePage";
 
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
@@ -17,8 +18,10 @@ import TopCuisinePage from "./pages/TopCuisinePage";
 import TopIngredientsPage from "./pages/TopIngredientsPage";
 import NotificationsPage from "./pages/NotificationsPage";
 
-
-
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+/>
 
 function App() {
   return (
@@ -32,7 +35,10 @@ function App() {
         <Route exact path="/top-ingredients" component={TopIngredientsPage} />
         <Route exact path="/notifications" component={NotificationsPage} />
         <Route exact path="/profile" component={ProfilePage} />
-        
+        <Route exact path="/recipe" component={RecipePage} />
+
+
+
 
         {/* 👇 UPDATE THE EXISTING ROUTES 👇  */}
         <PrivateRoute exact path="/projects" component={ProjectListPage} />
