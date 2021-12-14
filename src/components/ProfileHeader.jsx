@@ -9,11 +9,11 @@ import { useState, useEffect } from "react";
 export default function ProfileHeader() {
 
     return (
-        <div>
-            <div>
+        <div className='ProfileHeader'>
+            <div className='ProfileHeaderPic'>
                 <ProfilePicUpdate/>
             </div>
-            <div>
+            <div className='ProfileHeaderInfo'>
                 <h3>Username</h3>
                 <p>test@gmail.com</p>
                 <FavIngredients/>

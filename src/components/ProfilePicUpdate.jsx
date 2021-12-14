@@ -21,14 +21,14 @@ export default function ProfilePicUpdate() {
 
     return (
         <div>
-            <Image cloudName="dtu7oski7" publicId="https://res.cloudinary.com/dtu7oski7/image/upload/v1639396190/vqfyu9xh3vrzwakvsnrr.png"/>
+            <Image className='avatar' cloudName="dtu7oski7" publicId="https://res.cloudinary.com/dtu7oski7/image/upload/v1639411188/k7n7zdidxq4wslkbyxqj.png"/>
             <input 
                 type="file" 
                 onChange={(event)=> {
                 setImageSelected(event.target.files[0]);
                 }}
             />
-            <button onClick={uploadImage}>Update</button>
+            {/* <button onClick={uploadImage}>Update</button> */}
         </div>
     )
 }

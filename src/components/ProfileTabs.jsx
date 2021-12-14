@@ -45,17 +45,15 @@ export default function LabTabs() {
         <Box sx={{ width: '100%', typography: 'body1' }}>
         <TabContext value={value}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <TabList onChange={handleChange} aria-label="lab API tabs example">
-                <Tab label="My Recipes" value="1" />
-                <Tab label="Saved" value="2" />
+            <TabList centered onChange={handleChange}>
+                <Tab sx={{ width: '50%'}} label="My Recipes" value="1" />
+                <Tab sx={{ width: '50%'}} label="Saved" value="2" />
             </TabList>
             </Box>
             <TabPanel value="1">
-                <p>My Recipes</p>
                 <RecipesList recipes={myRecipes}/>
             </TabPanel>
             <TabPanel value="2">
-                <p>Saved</p>
                 <RecipesList recipes={savedRecipes}/>
             </TabPanel>
         </TabContext>
