@@ -1,33 +1,20 @@
 import React from "react";
-import { useState } from "react";
 
 export default function FormInput(props) {
-  const [name, setName] = useState("");
-  const [duration, setDuration] = useState();
-  const [cuisine, setCuisine] = useState("");
+  const { name, updateName } = props;
+  const { duration, updateDuration } = props;
+  const { cuisine, updateCuisine } = props;
 
-  const handleNameInput = (e) => setName(e.target.value);
 
-  const handleDurationInput = (e) => setDuration(e.target.value);
-
-  const handleCuisineInput = (e) => setCuisine(e.target.value);
-
-  const handleSubmit = (e) => {
-    // <==  ADD
-    e.preventDefault();
-    const newRecipe = { name, duration, cuisine };
-
-    console.log("Submitted: ", newRecipe);
-  };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <input
           type="text"
           name="search"
           value={name}
-          onChange={handleNameInput}
+          onChange={updateName}
           placeholder="Name"
         ></input>
         <br />
@@ -35,7 +22,7 @@ export default function FormInput(props) {
           type="number"
           name="search"
           value={duration}
-          onChange={handleDurationInput}
+          onChange={updateDuration}
           placeholder="Duration"
         ></input>
         <br />
@@ -43,7 +30,7 @@ export default function FormInput(props) {
           type="text"
           name="search"
           value={cuisine}
-          onChange={handleCuisineInput}
+          onChange={updateCuisine}
           placeholder="Cuisine"
         ></input>
         <br />
