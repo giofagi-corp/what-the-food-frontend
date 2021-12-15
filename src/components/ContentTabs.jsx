@@ -8,7 +8,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import RecipesList from './RecipesList';
 import { useState, useEffect } from "react";
 
-export default function LabTabs() {
+export default function ContentTabs() {
 
     const [myRecipes, setMyRecipes] = useState([]);
 
@@ -27,7 +27,7 @@ export default function LabTabs() {
         axios
         .get(`http://localhost:5000/api/recipe/listAllRecipes`)
         .then((response) => {
-            console.log(response)
+            console.log("RESPONSE ---------->".response)
             setSavedRecipes(response.data)})
         .catch((error) => console.log(error));
     };
