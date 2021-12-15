@@ -4,7 +4,7 @@ export default function GenericPagesSubtitle(props) {
     const {text} = props
     return (
         <div>
-            <h1>{text}</h1>
+            <h4>{text}</h4>
         </div>
     )
 }

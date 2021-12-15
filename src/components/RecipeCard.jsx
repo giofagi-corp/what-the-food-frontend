@@ -8,18 +8,18 @@ export default function RecipeCard(props) {
     const { imageUrl, name } = props
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
-        <CardMedia
-            component="img"
-            height="140"
-            image={imageUrl}
-            alt="green iguana"
-        />
-        <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-            {name}
-            </Typography>
-        </CardContent>
+        <Card className="GenericCard">
+            <CardMedia
+                component="img"
+                height="250"
+                image={imageUrl}
+                alt="recipe-thumbnail"
+            />
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                    {name}
+                </Typography>
+            </CardContent>
         </Card>
     );
 }

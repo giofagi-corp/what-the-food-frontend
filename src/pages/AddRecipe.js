@@ -8,6 +8,7 @@ import GenericPageTitle from "../components/GenericPageTitle";
 import GenericPageSubtitle from "../components/GenericPageSubtitle";
 import FormInput from "../components/FormInput";
 import FormSearchIngredient from "../components/FormSearchIngredient";
+import Button from '@mui/material/Button';
 
 export default function AddRecipe(props) {
   const [name, setName] = useState("");
@@ -45,7 +46,7 @@ export default function AddRecipe(props) {
   };
 
   return (
-    <div>
+    <div className="NotificationsPage">
       <Link to="/">
         <BackButton />
       </Link>
@@ -72,6 +73,9 @@ export default function AddRecipe(props) {
       <button onClick={handleSubmit} type="submit">
         SUBMIT
       </button>
+      <FormInput />
+      {/* <button type="submit">SUBMIT</button> */}
+      <Button  sx={{ width: '100%', height: '56px' }} type="submit" variant="contained">SUBMIT</Button>
     </div>
   );
 }
