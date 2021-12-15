@@ -4,8 +4,7 @@ import Box from '@mui/material/Box';
 import RecipeCard from "../components/RecipeCard";
 
 export default function RecipesList(props) {
-  console.log("props ---------->", props);
-  const { recipes} = props;
+  const { recipes } = props;
 
   return (
     <Box sx={{p: '0 24px' }}> 

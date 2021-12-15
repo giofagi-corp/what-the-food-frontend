@@ -11,6 +11,8 @@ import FormSelectIngredients from "../components/FormSelectIngredients";
 import FormCreateIngredient from "../components/FormCreateIngredient";
 import Button from '@mui/material/Button';
 
+const REACT_APP_API_URI = process.env.REACT_APP_API_URI
+
 export default function AddRecipe(props) {
   const [name, setName] = useState("");
   const [duration, setDuration] = useState();
@@ -36,7 +38,7 @@ export default function AddRecipe(props) {
 
   useEffect(() => {
     axios
-    .get("http://localhost:5000/api/ingredients")
+    .get(`${REACT_APP_API_URI}/api/search-ingredient`)
     .then(res => {
       //setAvailableIngredients(res.data);
       console.log("AvailableIngredients", res.data);
@@ -68,7 +70,7 @@ export default function AddRecipe(props) {
   const handleCreateIngredient = (e) => {
     e.preventDefault();
     axios
-      .post(`http://localhost:5000/api/search-ingredient`, {
+      .post(`${REACT_APP_API_URI}/api/ingredients`, {
         newIngredient
       })
       .then((response) => {

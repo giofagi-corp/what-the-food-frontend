@@ -6,17 +6,20 @@ import TopList from "../components/TopList";
 import GenericPageTitle from "../components/GenericPageTitle";
 import BackButton from "../components/BackButton";
 
+import { useState, useEffect } from "react";
+
+const REACT_APP_API_URI = process.env.REACT_APP_API_URI
+
 
 //import needed components
 
-import { useState, useEffect } from "react";
 
 export default function TopCuisinePage() {
   const [recipes, setRecipes] = useState([]);
 
   const getAllRecipes = () => {
     axios
-      .get(`http://localhost:5000/api/recipe/topCuisine`)
+      .get(`${REACT_APP_API_URI}/api/recipe/topCuisine`)
       .then((response) => setRecipes(response.data))
       .catch((error) => console.log(error));
   };
