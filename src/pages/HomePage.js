@@ -8,6 +8,8 @@ import NotFound from "../components/NotFound";
 import Chip from '@mui/material/Chip';
 import ChipsList from "../components/ChipsList"
 
+const REACT_APP_API_URI = process.env.REACT_APP_API_URI
+
 export default function HomePage() {
     const feedTops = [
         {
@@ -42,13 +44,13 @@ export default function HomePage() {
     const getRecipesByIngredients = (name) => {
         
         axios
-            .post(`http://localhost:5000/api/search/${name}`)
+            .post(`${REACT_APP_API_URI}/api/search/${name}`)
             .then((response) => {
                 if (response.data[0]) {
                     const id = response.data[0]._id;
                     axios
                         .get(
-                            `http://localhost:5000/api/recipes?ingredients=${id}`
+                            `${REACT_APP_API_URI}/api/recipes?ingredients=${id}`
                         )
                         .then((response) => {
                             setIsFound(true);
