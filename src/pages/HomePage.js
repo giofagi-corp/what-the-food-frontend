@@ -29,6 +29,7 @@ export default function HomePage() {
     const [isFound, setIsFound] = useState(true);
 
     const getRecipesByIngredients = (name) => {
+
         axios
             .post(`http://localhost:5000/api/search/${name}`)
             .then((response) => {
@@ -39,6 +40,7 @@ export default function HomePage() {
                             `http://localhost:5000/api/recipes?ingredients=${id}`
                         )
                         .then((response) => {
+                            setIsFound(true);
                             console.log("RESPONSE =======>", response.data);
                             setRecipes(response.data);
                         });
@@ -66,8 +68,6 @@ export default function HomePage() {
                 handleSubmit={handleSubmit}
                 inputSearch={inputSearch}
             />
-            {/* {isFound === true && <HomeContent recipes={recipes} />}
-            {isFound === false && <NotFound />} */}
             {isFound === true ? <HomeContent recipes={recipes} /> : <NotFound />}
         </div>
     );
