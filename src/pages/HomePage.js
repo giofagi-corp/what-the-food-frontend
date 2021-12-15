@@ -85,7 +85,12 @@ export default function HomePage() {
 
     return (
         <div>
-            <Header
+            {/* <Header
+                handleSearchInput={handleSearchInput}
+                handleSubmit={handleSubmit}
+                inputSearch={inputSearch}
+            /> */}
+            <HomeSearchbar
                 handleSearchInput={handleSearchInput}
                 handleSubmit={handleSubmit}
                 inputSearch={inputSearch}
