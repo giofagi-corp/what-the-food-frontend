@@ -66,8 +66,9 @@ export default function HomePage() {
                 handleSubmit={handleSubmit}
                 inputSearch={inputSearch}
             />
-            {isFound === true && <HomeContent recipes={recipes} />}
-            {isFound === false && <NotFound />}
+            {/* {isFound === true && <HomeContent recipes={recipes} />}
+            {isFound === false && <NotFound />} */}
+            {isFound === true ? <HomeContent recipes={recipes} /> : <NotFound />}
         </div>
     );
 }
