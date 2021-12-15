@@ -1,9 +1,10 @@
 import React from 'react'
 
-export default function NotFound() {
+export default function NotFound(props) {
+
     return (
         <div>
-            <h1>No recipes with those ingredients</h1>
+            <h2>There are no recipes with those ingredients</h2>
         </div>
     )
 }
