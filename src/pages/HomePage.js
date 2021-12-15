@@ -1,7 +1,8 @@
-import React from "react"
+import React from "react";
 import axios from "axios";
-import Header from "../components/Header"
-import HomeContent from "../components/HomeContent"
+import Header from "../components/Header";
+import HomeContent from "../components/HomeContent";
+import HomeSearchbar from "../components/HomeSearchbar";
 import { useState, useEffect } from "react";
 
 
@@ -43,7 +44,8 @@ export default function HomePage() {
 
   return (
     <div>
-      <Header handleSearchInput={handleSearchInput} handleSubmit={handleSubmit} inputSearch={inputSearch}/>
+      <HomeSearchbar handleSearchInput={handleSearchInput} handleSubmit={handleSubmit} inputSearch={inputSearch}/>
+      {/* <Header handleSearchInput={handleSearchInput} handleSubmit={handleSubmit} inputSearch={inputSearch}/> */}
       <HomeContent recipes = {recipes} />
     </div>
   );
