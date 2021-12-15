@@ -27,7 +27,7 @@ export default function CustomizedInputBase(props) {
             onChange={handleSearchInput}
         />
         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-        <IconButton color="primary" sx={{ p: '10px' }} aria-label="directions">
+        <IconButton type="submit" color="primary" sx={{ p: '10px' }} aria-label="directions">
             <AddIcon />
         </IconButton>
         </Paper>

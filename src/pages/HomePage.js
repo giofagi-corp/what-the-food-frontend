@@ -98,7 +98,7 @@ export default function HomePage() {
                 handleSubmit={handleSubmit}
                 inputSearch={inputSearch}
             />
-            <ChipsList recipes={listIngredients}/>
+            {/* <ChipsList recipes={listIngredients}/> */}
             {isFound === true ? <HomeContent recipes={recipes} /> : <NotFound />}
         </div>
     );
