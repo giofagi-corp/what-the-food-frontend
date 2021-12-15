@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState} from "react";
+import { useState } from "react";
 import axios from "axios";
 
 import BackButton from "../components/BackButton";
@@ -8,7 +8,7 @@ import GenericPageTitle from "../components/GenericPageTitle";
 import GenericPageSubtitle from "../components/GenericPageSubtitle";
 import FormInput from "../components/FormInput";
 import FormSearchIngredient from "../components/FormSearchIngredient";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 
 export default function AddRecipe(props) {
   const [name, setName] = useState("");
@@ -25,29 +25,22 @@ export default function AddRecipe(props) {
   const handleAdd = (e) => {
     axios
       .post(`http://localhost:5000/api/search-ingredient`, {
-        ingredient
+        ingredient,
       })
       .then((response) => {
         setIngredient(response.data);
         // ingredientArr.push(response.data)
-
       })
       .catch((error) => console.log(error));
     e.preventDefault();
-  } ;
-  
-  console.log("///////////////////")
-  console.log("NAME------->",name)
-  console.log("DURATION------->",duration)
-  console.log("CUISINE------->",cuisine)
-  console.log("INGR------->",ingredient)
+  };
+
+  console.log("///////////////////");
+  console.log("NAME------->", name);
+  console.log("DURATION------->", duration);
+  console.log("CUISINE------->", cuisine);
+  console.log("INGR------->", ingredient);
   // console.log("INGREDIENT ARR------->",ingredientArr)
-
-  
-
-  
- 
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -79,14 +72,19 @@ export default function AddRecipe(props) {
         updateIngredient={handleIngredientInput}
         onSubmit={handleAdd}
       />
-     
 
       <button onClick={handleSubmit} type="submit">
         SUBMIT
       </button>
       <FormInput />
       {/* <button type="submit">SUBMIT</button> */}
-      <Button  sx={{ width: '100%', height: '56px' }} type="submit" variant="contained">SUBMIT</Button>
+      <Button
+        sx={{ width: "100%", height: "56px" }}
+        type="submit"
+        variant="contained"
+      >
+        SUBMIT
+      </Button>
     </div>
   );
 }
