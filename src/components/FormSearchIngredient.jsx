@@ -1,30 +1,21 @@
 import React from "react";
-import { useState } from "react";
 
 export default function FormSearchIngredient(props) {
-  const [ingredient, setIngredient] = useState([]);
-
-  const handleIngredientInput = (e) => setIngredient(e.target.value);
-
-  const handleSubmit = (e) => {
-    
-    e.preventDefault();
-    const newIngredient = { ingredient };
-
-    console.log("Submitted: ", newIngredient);
-  };
+  const { ingredient, updateIngredient,onSubmit } = props;
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <input
           type="text"
           name="search"
           value={ingredient}
-          onChange={handleIngredientInput}
-          placeholder="Name"
+          onChange={updateIngredient}
+          placeholder="Add Ingredient"
         ></input>
       </form>
+      <button onClick={onSubmit} type="submit">Add</button><br></br>
+
     </div>
   );
 }

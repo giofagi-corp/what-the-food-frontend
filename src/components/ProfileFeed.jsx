@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import ProfileTabs from './ProfileTabs'
+import ProfileTabs from './ContentTabs'
 import RecipesList from './RecipesList';
 import { useState, useEffect } from "react";
 
