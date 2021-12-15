@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TabMenu from '../components/TabMenu'
-import SearchBar from '../components/SearchBar'
-import RecipeDuration from '../components/RecipeDuration'
-import TopButtons from '../components/TopButtons'
 
 
-export default function Header() {
+export default function Header(props) {
+
+    const {handleSubmit} = props
+    const {handleSearchInput} = props
+    const {inputSearch} = props
+
     return (
         <div>
             <TabMenu/>
-            <SearchBar/>
-            <RecipeDuration/>
-            <TopButtons/>
+            <form onSubmit={handleSubmit}>
+                <input type="text" name="search" value={inputSearch} onChange={handleSearchInput} />
+                <button type='submit'>+</button>
+            </form>
+            {/* <SearchBar handleSubmit={handleSubmit} /> */}
+            {/* <RecipeDuration/> */}
         </div>
     )
 }
