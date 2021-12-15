@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import ProfileHeader from '../components/ProfileHeader';
-import ProfileTabs from '../components/ProfileTabs';
+import ProfileTabs from '../components/ContentTabs';
 
 
 export default function ProfilePage() {
