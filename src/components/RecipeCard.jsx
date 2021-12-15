@@ -16,7 +16,7 @@ export default function RecipeCard(props) {
                 alt="recipe-thumbnail"
             />
             <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography className="CardTitle" gutterBottom variant="h5" component="text">
                     {name}
                 </Typography>
             </CardContent>

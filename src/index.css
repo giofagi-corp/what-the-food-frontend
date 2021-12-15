@@ -229,3 +229,7 @@ nav li {
   border-radius: 100%;
   max-width: 140px;
 }
+
+.CardTitle {
+  text-decoration: none !important;
+}
