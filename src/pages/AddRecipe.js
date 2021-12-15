@@ -20,38 +20,28 @@ export default function AddRecipe(props) {
   const handleCuisineInput = (e) => setCuisine(e.target.value);
   const handleIngredientInput = (e) => setIngredient(e.target.value);
 
+  const handleAdd = (e) => {
+    axios
+      .post(`http://localhost:5000/api/search-ingredient`, {
+        ingredient
+      })
+      .then((response) => {
+        setIngredient(response.data);
+        // console.log("line47------>", response.data);
+    
+
+      })
+      .catch((error) => console.log(error));
+    e.preventDefault();
+  } ;
+  console.log("INGR------->",ingredient)
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newRecipe = { name, duration, cuisine };
 
     console.log("Submitted: ", newRecipe);
-  };
-
-//   const getAllRecipes = () => {
-//     axios
-//       .get(`http://localhost:5000/api/recipe/topCuisine`)
-//       .then((response) => setRecipes(response.data))
-//       .catch((error) => console.log(error));
-//   };
-
-//   useEffect(() => {
-//     getAllRecipes();
-//   }, []);
-
-  const handleAdd = (e) => {
-   
-      axios
-    .post(`http://localhost:5000/api/search-ingredient`,{
-      ingredient
-    })
-    .then((response)=>{
-      setIngredient(response.data)
-      console.log("line47------>",response.data)
-    })
-    .catch((error)=> console.log(error))
-    
-    e.preventDefault();
-    
   };
 
   return (
@@ -70,11 +60,14 @@ export default function AddRecipe(props) {
         updateCuisine={handleCuisineInput}
       />
       <GenericPageSubtitle text="Recipe ingredients" />
+
+      <h1> {ingredient.name}</h1>
       <FormSearchIngredient
         ingredient={ingredient}
         updateIngredient={handleIngredientInput}
-        onSubmit = {handleAdd}
+        onSubmit={handleAdd}
       />
+     
 
       <button onClick={handleSubmit} type="submit">
         SUBMIT
