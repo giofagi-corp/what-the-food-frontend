@@ -31,12 +31,16 @@ export default function HomePage() {
     const [recipes, setRecipes] = useState(feedTops);
     const [isFound, setIsFound] = useState(true);
     //const [chipIngredient, setChipIngredient] = useState("")
-    //const [listIngredients, setListIngredients] = useState([])
+    const [listIngredients, setListIngredients] = useState([])
     //let listIngredients = ["tomato", "cheese"]
-    let listIngredients = []
+    let arrListIngredients = []
+
+    const addIngArr = (newIng) => {
+      arrListIngredients.push(newIng)
+    }
 
     const getRecipesByIngredients = (name) => {
-
+        
         axios
             .post(`http://localhost:5000/api/search/${name}`)
             .then((response) => {
@@ -48,7 +52,6 @@ export default function HomePage() {
                         )
                         .then((response) => {
                             setIsFound(true);
-                            //console.log("RESPONSE ------>", response.data);
                             setRecipes(response.data);
                         });
                 } else {
@@ -63,11 +66,19 @@ export default function HomePage() {
     const handleSubmit = (e) => {
         e.preventDefault();
         //const newSearch = inputSearch;
-        listIngredients.push(inputSearch)
-        console.log("Submitted -----> ", inputSearch);
-        console.log("listIngredients----->", listIngredients);
+        //arrListIngredients.push(inputSearch)
+        //console.log("arrListIngredients----->", arrListIngredients);
+        console.log("Input Submitted -----> ", inputSearch);
+
+        //arrListIngredients.push(inputSearch)
+        addIngArr(inputSearch)
+        // console.log("State listIngredients----->", listIngredients);
+        
         getRecipesByIngredients(inputSearch);
-        setInputSearch("");
+        setListIngredients(arrListIngredients)
+        console.log("State listIngredients----->", listIngredients);
+        console.log("arrListIngredients----->", arrListIngredients);
+        //setInputSearch("");
     };
 
     return (
