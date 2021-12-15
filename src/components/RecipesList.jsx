@@ -1,6 +1,6 @@
 import React from "react";
-
 import RecipeCard from "../components/RecipeCard";
+import { Link } from "react-router-dom";
 
 export default function RecipesList(props) {
   const { recipes } = props;
@@ -8,7 +8,7 @@ export default function RecipesList(props) {
   return (
     <div>
       {recipes.map((recipe) => (
-        <RecipeCard key={recipe._id} {...recipe} />
+        <Link to="" ><RecipeCard key={recipe._id} {...recipe} /></Link>
       ))}
     </div>
   );
