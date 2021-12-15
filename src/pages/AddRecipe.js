@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -7,44 +7,73 @@ import BackButton from "../components/BackButton";
 import GenericPageTitle from "../components/GenericPageTitle";
 import GenericPageSubtitle from "../components/GenericPageSubtitle";
 import FormInput from "../components/FormInput";
-import FormSearchIngredient from "../components/FormSearchIngredient";
-import Button from "@mui/material/Button";
+import FormSelectIngredient from "../components/FormSelectIngredient";
+import FormCreateIngredient from "../components/FormCreateIngredient";
+import Button from '@mui/material/Button';
 
 export default function AddRecipe(props) {
   const [name, setName] = useState("");
   const [duration, setDuration] = useState();
   const [cuisine, setCuisine] = useState("");
-  const [ingredient, setIngredient] = useState({});
-  // const [ingredientArr,setIngredientArr] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
+  const [newIngredient, setNewIngredient] = useState("");
+  const [availableIngredients, setAvailableIngredients] = useState([
+    {
+      id:"61b38c3f6c4723633cbc4749",
+      img:"https://static5.depositphotos.https://cdn.shopify.com/s/files/1/1061/1...",
+      type: "vegetable",
+      rating: 15,
+      name: "egg"
+      },
+      {
+      id: "61b38c566c4723633cbc474b",
+  img:"https://static5.depositphotos.https://cdn.shopify.com/s/files/1/1061/1...",
+  type: "vegetable",
+  rating: 10,
+  name: "pepper"
+  }
+      ]);
+
+  useEffect(() => {
+    axios
+    .get("http://localhost:5000/api/search-ingredient")
+    .then(res => {
+      //setAvailableIngredients(res.data);
+      console.log("AvailableIngredients", res.data);
+    })
+    });
 
   const handleNameInput = (e) => setName(e.target.value);
   const handleDurationInput = (e) => setDuration(e.target.value);
   const handleCuisineInput = (e) => setCuisine(e.target.value);
-  const handleIngredientInput = (e) => setIngredient(e.target.value);
-
-  const handleAdd = (e) => {
-    axios
-      .post(`http://localhost:5000/api/search-ingredient`, {
-        ingredient,
-      })
-      .then((response) => {
-        setIngredient(response.data);
-        // ingredientArr.push(response.data)
-      })
-      .catch((error) => console.log(error));
-    e.preventDefault();
+  const handleNewIngredientInput = (e) => setNewIngredient(e.target.value);
+  const handleIngredientsInput = (e) => {
+    setIngredients(Array.from(e.target.selectedOptions, option => option.value))
   };
 
-  console.log("///////////////////");
-  console.log("NAME------->", name);
-  console.log("DURATION------->", duration);
-  console.log("CUISINE------->", cuisine);
-  console.log("INGR------->", ingredient);
+  const handleCreateIngredient = (e) => {
+    e.preventDefault();
+    axios
+      .post(`http://localhost:5000/api/search-ingredient`, {
+        newIngredient
+      })
+      .then((response) => {
+        setIngredients([...ingredients, response.data]);
+        setNewIngredient("");
+      })
+      .catch((error) => console.log(error));
+  } ;
+  
+  console.log("///////////////////")
+  console.log("NAME------->",name)
+  console.log("DURATION------->",duration)
+  console.log("CUISINE------->",cuisine)
+  console.log("INGR------->",ingredient)
   // console.log("INGREDIENT ARR------->",ingredientArr)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newRecipe = { name, duration, cuisine };
+    const newRecipe = { name, duration, cuisine, ingredients };
 
     console.log("Submitted: ", newRecipe);
   };
@@ -66,11 +95,18 @@ export default function AddRecipe(props) {
       />
       <GenericPageSubtitle text="Recipe ingredients" />
 
-      <h1> {ingredient.name}</h1>
-      <FormSearchIngredient
-        ingredient={ingredient}
-        updateIngredient={handleIngredientInput}
-        onSubmit={handleAdd}
+      <h1> {ingredients.map(el=>name)}</h1>
+      <br/>
+
+      <FormCreateIngredient
+        value={newIngredient}
+        onChange={handleNewIngredientInput}
+        onSubmit={handleCreateIngredient}
+      />
+
+      <FormSelectIngredient
+        ingredients={availableIngredients}
+        onSelect={handleIngredientsInput}
       />
 
       <button onClick={handleSubmit} type="submit">
