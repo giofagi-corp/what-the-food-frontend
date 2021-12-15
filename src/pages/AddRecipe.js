@@ -127,13 +127,8 @@ export default function AddRecipe(props) {
         onSelect={handleIngredientsInput}
       />
      
-
-      <button onClick={handleSubmit} type="submit">
-        REAL SUBMIT
-      </button>
-      <FormInput />
       {/* <button type="submit">SUBMIT</button> */}
-      <Button  sx={{ width: '100%', height: '56px' }} type="submit" variant="contained">FAKE SUBMIT</Button>
+      <Button  sx={{ width: '100%', height: '56px' }} onClick={handleSubmit} type="submit" variant="contained">SUBMIT</Button>
     </div>
   );
 }
