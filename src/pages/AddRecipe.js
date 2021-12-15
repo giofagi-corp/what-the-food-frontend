@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import axios from "axios";
 
 import BackButton from "../components/BackButton";
@@ -14,7 +14,8 @@ export default function AddRecipe(props) {
   const [name, setName] = useState("");
   const [duration, setDuration] = useState();
   const [cuisine, setCuisine] = useState("");
-  const [ingredient, setIngredient] = useState([]);
+  const [ingredient, setIngredient] = useState({});
+  // const [ingredientArr,setIngredientArr] = useState([]);
 
   const handleNameInput = (e) => setName(e.target.value);
   const handleDurationInput = (e) => setDuration(e.target.value);
@@ -28,14 +29,24 @@ export default function AddRecipe(props) {
       })
       .then((response) => {
         setIngredient(response.data);
-        // console.log("line47------>", response.data);
-    
+        // ingredientArr.push(response.data)
 
       })
       .catch((error) => console.log(error));
     e.preventDefault();
   } ;
+  
+  console.log("///////////////////")
+  console.log("NAME------->",name)
+  console.log("DURATION------->",duration)
+  console.log("CUISINE------->",cuisine)
   console.log("INGR------->",ingredient)
+  // console.log("INGREDIENT ARR------->",ingredientArr)
+
+  
+
+  
+ 
 
 
   const handleSubmit = (e) => {
