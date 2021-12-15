@@ -68,7 +68,7 @@ export default function AddRecipe(props) {
   console.log("NAME------->",name)
   console.log("DURATION------->",duration)
   console.log("CUISINE------->",cuisine)
-  console.log("INGR------->",ingredient)
+  //console.log("INGR------->",ingredient)
   // console.log("INGREDIENT ARR------->",ingredientArr)
 
   const handleSubmit = (e) => {
