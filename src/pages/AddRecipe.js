@@ -36,7 +36,7 @@ export default function AddRecipe(props) {
 
   useEffect(() => {
     axios
-    .get("http://localhost:5000/api/search-ingredient")
+    .get("http://localhost:5000/api/ingredients")
     .then(res => {
       //setAvailableIngredients(res.data);
       console.log("AvailableIngredients", res.data);
@@ -68,7 +68,7 @@ export default function AddRecipe(props) {
   const handleCreateIngredient = (e) => {
     e.preventDefault();
     axios
-      .post(`http://localhost:5000/api/ingredients`, {
+      .post(`http://localhost:5000/api/search-ingredient`, {
         newIngredient
       })
       .then((response) => {

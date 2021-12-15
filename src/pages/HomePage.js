@@ -9,9 +9,9 @@ import { useState, useEffect } from "react";
 export default function HomePage() {
 
   const feedTops = [
-    {name: "Top Recipes", imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/fs/36b45454981539.59714c1191971.png"},
-    {name: "Top Ingredients", imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/fs/3a13e454981539.59714c1191e21.png"},
-    {name: "Top Cuisine", imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/fs/f712fd54981539.59714c1193342.png"}
+    {name: "Top Recipes", link:"/top-recipes", imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/fs/36b45454981539.59714c1191971.png"},
+    {name: "Top Ingredients",link:"/top-ingredients", imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/fs/3a13e454981539.59714c1191e21.png"},
+    {name: "Top Cuisine", link:"/top-cuisine", imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/fs/f712fd54981539.59714c1193342.png"}
   ]
 
   const [inputSearch, setInputSearch] = useState("")
