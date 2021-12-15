@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Header from "../components/Header";
 import HomeContent from "../components/HomeContent";
+import HomeSearchbar from "../components/HomeSearchbar";
 import { useState, useEffect } from "react";
 import NotFound from "../components/NotFound";
 import Chip from '@mui/material/Chip';
