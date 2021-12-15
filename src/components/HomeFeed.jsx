@@ -4,12 +4,14 @@ import Box from '@mui/material/Box';
 import RecipesList from './RecipesList';
 import { useState, useEffect } from "react";
 
+const REACT_APP_API_URI = process.env.REACT_APP_API_URI
+
 export default function ProfileFeed() {
     const [recipes, setRecipes] = useState([]);
 
     const getAllRecipes = () => {
         axios
-        .get(`http://localhost:5000/api/recipe/listAllRecipes`)
+        .get(`${REACT_APP_API_URI}/api/recipe/listAllRecipes`)
         .then((response) => setRecipes(response.data))
         .catch((error) => console.log(error));
     };

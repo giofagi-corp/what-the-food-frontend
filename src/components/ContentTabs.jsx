@@ -8,6 +8,8 @@ import TabPanel from '@mui/lab/TabPanel';
 import RecipesList from './RecipesList';
 import { useState, useEffect } from "react";
 
+const REACT_APP_API_URI = process.env.REACT_APP_API_URI
+
 export default function ContentTabs() {
 
     const [myRecipes, setMyRecipes] = useState([]);
@@ -18,14 +20,14 @@ export default function ContentTabs() {
 
     const getMyRecipes = () => {
         axios
-        .get(`http://localhost:5000/api/recipe/listAllRecipes`)
+        .get(`${REACT_APP_API_URI}/api/recipe/listAllRecipes`)
         .then((response) => setMyRecipes(response.data))
         .catch((error) => console.log(error));
     };
 
     const getSavedRecipes = () => {
         axios
-        .get(`http://localhost:5000/api/recipe/listAllRecipes`)
+        .get(`${REACT_APP_API_URI}/api/recipe/listAllRecipes`)
         .then((response) => {
             console.log("RESPONSE ---------->".response)
             setSavedRecipes(response.data)})
