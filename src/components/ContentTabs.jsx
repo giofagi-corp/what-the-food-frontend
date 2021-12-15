@@ -50,10 +50,10 @@ export default function LabTabs() {
                 <Tab sx={{ width: '50%'}} label="Saved" value="2" />
             </TabList>
             </Box>
-            <TabPanel value="1">
+            <TabPanel sx={{ p: '0 24px' }} value="1">
                 <RecipesList recipes={myRecipes}/>
             </TabPanel>
-            <TabPanel value="2">
+            <TabPanel sx={{ p: '0 24px' }} value="2">
                 <RecipesList recipes={savedRecipes}/>
             </TabPanel>
         </TabContext>
