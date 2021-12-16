@@ -10,9 +10,7 @@ import { useState, useEffect } from "react";
 
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
-
 //import needed components
-
 
 export default function TopCuisinePage() {
   const [recipes, setRecipes] = useState([]);

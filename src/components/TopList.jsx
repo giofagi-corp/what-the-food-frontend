@@ -5,9 +5,7 @@ import RecipeCard from "./RecipeCard";
 import PodiumNumber from "./PodiumNumber";
 
 export default function TopList(props) {
-  console.log("TOP LIST PROPS----->",props)
   const { recipes } = props;
-
   return (
     <div>
       {recipes.map((recipe, index) => (

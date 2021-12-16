@@ -1,14 +1,9 @@
 import React from "react";
 import axios from "axios";
-import Header from "../components/Header";
 import HomeContent from "../components/HomeContent";
 import HomeSearchbar from "../components/HomeSearchbar";
 import { useState, useEffect } from "react";
 import NotFound from "../components/NotFound";
-import Chip from '@mui/material/Chip';
-import ChipsList from "../components/ChipsList"
-import { Link } from "react-router-dom";
-import BackButton from "../components/BackButton";
 
 
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
@@ -38,12 +33,6 @@ export default function HomePage() {
     const [inputSearch, setInputSearch] = useState("");
     const [recipes, setRecipes] = useState(feedTops);
     const [isFound, setIsFound] = useState(true);
-    const [listIngredients, setListIngredients] = useState([])
-    let arrListIngredients = []
-
-    const addIngArr = (newIng) => {
-      arrListIngredients.push(newIng)
-    }
 
     const getRecipesByIngredients = (name) => {
         
@@ -71,10 +60,7 @@ export default function HomePage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addIngArr(inputSearch)
         getRecipesByIngredients(inputSearch);
-        setListIngredients(arrListIngredients)
-
         setInputSearch("");
     };
 
@@ -85,7 +71,6 @@ export default function HomePage() {
                 handleSubmit={handleSubmit}
                 inputSearch={inputSearch}
             />
-            {/* <ChipsList recipes={listIngredients}/> */}
             {isFound === true ? <HomeContent recipes={recipes} /> : <NotFound />}
             
         </div>

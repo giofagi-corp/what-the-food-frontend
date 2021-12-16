@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField';
 
 export default function TextArea(props) {
     const { description, updateDescription } = props;
-
     return (
         <div>
             <TextField

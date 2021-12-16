@@ -7,9 +7,6 @@ import TopList from "../components/TopList";
 import GenericPageTitle from "../components/GenericPageTitle";
 import BackButton from "../components/BackButton";
 
-
-
-
 //import needed components
 
 import { useState, useEffect } from "react";

@@ -1,9 +1,7 @@
 import React from 'react'
 
 export default function SearchBar(props) {
-
     const { value, onChange, handleSubmit  } = props
-
     return (
         <div>
             <form>

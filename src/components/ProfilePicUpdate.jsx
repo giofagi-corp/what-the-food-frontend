@@ -31,12 +31,6 @@ export default function ProfilePicUpdate() {
             <div>
                 <Image className='avatar' cloudName="dtu7oski7" publicId="https://res.cloudinary.com/dtu7oski7/image/upload/v1639411188/k7n7zdidxq4wslkbyxqj.png"/>
             </div>
-            {/* <input 
-                type="file" 
-                onChange={(event)=> {
-                setImageSelected(event.target.files[0]);
-                }}
-            /> */}
             <div>
                 <Input accept="image/*" id="icon-button-file" type="file" />
                 <IconButton color="primary" aria-label="upload picture" component="span">

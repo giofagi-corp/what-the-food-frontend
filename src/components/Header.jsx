@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import TabMenu from '../components/TabMenu'
 
-
 export default function Header(props) {
-
     const {handleSubmit} = props
     const {handleSearchInput} = props
     const {inputSearch} = props
