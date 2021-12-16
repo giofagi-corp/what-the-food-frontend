@@ -29,7 +29,7 @@ export default function ProfilePicUpdate() {
     return (
         <div>
             <div>
-                <Image className='avatar' cloudName="dtu7oski7" publicId="https://res.cloudinary.com/dtu7oski7/image/upload/v1639411188/k7n7zdidxq4wslkbyxqj.png"/>
+                <Image className='avatar' cloudName="dtu7oski7" publicId="https://res.cloudinary.com/dtu7oski7/image/upload/v1639653273/avatar_xzu7es.png"/>
             </div>
             {/* <input 
                 type="file" 
