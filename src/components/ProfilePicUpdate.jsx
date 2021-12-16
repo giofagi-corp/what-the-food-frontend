@@ -5,6 +5,9 @@ import { Image } from "cloudinary-react";
 import { useState, useEffect } from "react";
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import { Button } from '@mui/material';
+import { useContext } from 'react';
+import { AuthContext } from './../context/auth.context'
 
 const Input = styled('input')({
     display: 'none',
@@ -12,6 +15,8 @@ const Input = styled('input')({
 
 export default function ProfilePicUpdate() {
     const [imageSelected, setImageSelected] = useState('');
+
+    const {logOutUser} = useContext(AuthContext)
 
     const uploadImage = () => {
         const formData = new FormData()
@@ -30,21 +35,8 @@ export default function ProfilePicUpdate() {
         <div>
             <div>
                 <Image className='avatar' cloudName="dtu7oski7" publicId="https://res.cloudinary.com/dtu7oski7/image/upload/v1639653273/avatar_xzu7es.png"/>
+                <Button onClick={logOutUser} sx={{ width: '100%', height: '36px' }} type="submit" variant="contained">Log Out</Button>
             </div>
-            {/* <input 
-                type="file" 
-                onChange={(event)=> {
-                setImageSelected(event.target.files[0]);
-                }}
-            /> */}
-            {/* <div>
-            <div>
-                <Input accept="image/*" id="icon-button-file" type="file" />
-                <IconButton color="primary" aria-label="upload picture" component="span">
-                <PhotoCamera />
-                </IconButton>
-            </div> */}
-            {/* <button onClick={uploadImage}>Update</button> */}
         </div>
     )
 }

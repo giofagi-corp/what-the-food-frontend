@@ -157,6 +157,20 @@ nav li {
   padding: 10px 20px 0 20px;
 }
 
+.RecipeBody ul li {
+  text-transform: capitalize;
+  line-height: 2;
+}
+.RecipeBody ol {
+  padding-left: 35px;
+}
+
+.RecipeBody ol li {
+  line-height: 1.4;
+  margin-bottom: 20px;
+  padding-right: 20px;
+}
+
 .RecipeName {
   float: left;
   text-align: left;
@@ -282,5 +296,3 @@ select {
   border-color: rgba(0, 0, 0, 0.23) !important;
   font-family: "Roboto", sans-serif !important;
 }
-
-margin-bottom: 40px;
