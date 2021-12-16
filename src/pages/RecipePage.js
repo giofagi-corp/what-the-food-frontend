@@ -3,13 +3,11 @@ import { useParams } from 'react-router-dom';
 import Hero from "../components/Hero"
 import RecipeBody from "../components/RecipeBody"
 import axios from 'axios';
-import RecipesList from '../components/HomeTopList';
 
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
 export default function RecipePage() {
 
-    
     const {id} = useParams()
     console.log(id);
     const [recipe, setRecipe] = useState([])
@@ -24,7 +22,6 @@ export default function RecipePage() {
           console.log(err)  
         });  
       }  
-
 
     useEffect(() => {
         getRecipe()

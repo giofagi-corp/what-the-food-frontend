@@ -5,8 +5,6 @@ import { AuthContext } from "../context/auth.context";  // <== IMPORT
 import Box from '@mui/material/Box';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-
-
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
@@ -50,28 +48,6 @@ export default function Navbar() {
           value="profile"
           icon={<AccountCircleOutlinedIcon />}
       />
-        {/* <Link to="/"><HomeOutlinedIcon/></Link>
-        <Link to="/add-recipe"><NotificationsNoneOutlinedIcon/></Link>
-        <Link to="/notifications"><AddCircleOutlineOutlinedIcon/></Link>
-        <Link to="/profile"><AccountCircleOutlinedIcon/></Link> */}
-          {/* <Link to="/">
-            <button>Home</button>
-          </Link>
-    -
-          {isLoggedIn
-            ? (<>
-                <Link to="/projects">
-                  <button>Projects</button>
-                </Link>
-                <button onClick={logOutUser}>Logout</button>
-                <span>{user.name}</span>
-              </>)
-            : 
-            (<>
-              <Link to="/signup"> <button>Signup</button> </Link>
-              <Link to="/login"> <button>Login</button> </Link>
-            </>)
-          } */}
       </BottomNavigation>
     </Box>
   );

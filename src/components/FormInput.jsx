@@ -6,12 +6,8 @@ export default function FormInput(props) {
   const { name, updateName } = props;
   const { time, updateTime } = props;
   const { cuisine, updateCuisine } = props;
-
-
-
   return (
     <div>
-    
         <Box component="form" sx={{ '& > :not(style)': { mb: 2, width: '100%' },}} noValidate autoComplete="off">
           <TextField type="text"
             name="search"
