@@ -7,13 +7,17 @@ import axios from 'axios';
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
 export default function RecipePage() {
+    const storedToken = localStorage.getItem("authToken");
+
 
     const {id} = useParams()
     console.log(id);
     const [recipe, setRecipe] = useState([])
 
     const getRecipe = async () => {  
-        await axios.get(`${REACT_APP_API_URI}/api/recipe/${id}`)  
+        await axios.get(`${REACT_APP_API_URI}/api/recipe/${id}`, {
+            headers: { Authorization: `Bearer ${storedToken}` }
+          })  
         .then((response) => {
             console.log("RESPONSE ------> ",response.data);
             setRecipe(response.data)

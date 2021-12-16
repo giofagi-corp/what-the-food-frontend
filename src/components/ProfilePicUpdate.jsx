@@ -15,6 +15,7 @@ const Input = styled('input')({
 
 export default function ProfilePicUpdate() {
     const [imageSelected, setImageSelected] = useState('');
+    const storedToken = localStorage.getItem("authToken");
 
     const {logOutUser} = useContext(AuthContext)
 
@@ -23,9 +24,9 @@ export default function ProfilePicUpdate() {
         formData.append("file", imageSelected)
         formData.append("upload_preset", "rejs52lv")
 
-        axios.post(
-            "https://api.cloudinary.com/v1_1/dtu7oski7/image/upload",
-            formData
+        axios.post("https://api.cloudinary.com/v1_1/dtu7oski7/image/upload",formData, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      }
         ).then((response)=>{
             console.log(response);
         });

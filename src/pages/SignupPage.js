@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 const API_URI = process.env.REACT_APP_API_URI;
 
 function SignupPage(props) {
+  const storedToken = localStorage.getItem("authToken");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -28,7 +29,9 @@ function SignupPage(props) {
     // If POST request is successful redirect to login page
     // If the request resolves with an error, set the error message in the state
     axios
-      .post(`${API_URI}/auth/signup`, requestBody)
+      .post(`${API_URI}/auth/signup`, requestBody , {
+        headers: { Authorization: `Bearer ${storedToken}` }
+    })
       .then((response) => props.history.push("/login"))
       .catch((error) => {
         const errorDescription = error.response.data.message;
@@ -60,6 +63,7 @@ function SignupPage(props) {
 
       <GenericPageTitle text="Sign Up" />
       <Box component="form" sx={{ '& > :not(style)': { mb: 2, width: '100%' },}} noValidate autoComplete="off">
+      
           <TextField type="text" 
             name="email"
             value={email}
@@ -80,7 +84,7 @@ function SignupPage(props) {
             id="outlined-basic" label="Name" variant="outlined" />
       </Box>
 
-      <Button  sx={{ width: '100%', height: '56px' }} type="submit" variant="contained">Sign Up</Button>
+      <Button onClick={handleSignupSubmit} sx={{ width: '100%', height: '56px' }} type="submit" variant="contained">Sign Up</Button>
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       
