@@ -33,7 +33,7 @@ function App() {
         <PrivateRoute exact path="/profile" component={ProfilePage} />
         <PrivateRoute exact path="/add-recipe" component={AddRecipe} />
         <PrivateRoute exact path="/search" component={HomePage} />
-        <PrivateRoute exact path="/recipe/:id" component={RecipePage} />
+        <PrivateRoute exact path="/recipe/:id" component={RecipePage} /> 
 
         {/* 👇 UPDATE THE EXISTING ROUTES 👇  */}
         <PrivateRoute exact path="/projects" component={ProjectListPage} />
