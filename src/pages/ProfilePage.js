@@ -10,7 +10,6 @@ export default function ProfilePage() {
     return (
         <>
             <ProfileHeader/>
-            <button onClick={logOutUser}>Log out</button>
             <ContentTabs/>
         </>
     )
