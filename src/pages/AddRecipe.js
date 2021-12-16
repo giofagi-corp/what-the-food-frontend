@@ -76,7 +76,8 @@ export default function AddRecipe(props) {
       .post(`${REACT_APP_API_URI}/api/search-ingredient/${newIngredient}`)
       .then((response) => {
         setIngredients([...ingredients, response.data]);
-        setAvailableIngredients(response.data);//<--------------------------- Si se activa No se renderizacomponente hijo
+        setAvailableIngredients([response.data, ...availableIngredients]);//<--------------------------- Si se activa No se renderizacomponente hijo
+        console.log("AvailableIngredients", response.data);
 
         setNewIngredient("");
       })
@@ -95,7 +96,7 @@ export default function AddRecipe(props) {
     const newRecipe = { name, time, cuisine, ingredients, description };
     console.log("Submitted: ", newRecipe);
     axios
-      .post(`${REACT_APP_API_URI}/api/recipe/create/`)
+      .post(`${REACT_APP_API_URI}/api/recipe/create/`, newRecipe)
       .then((response) => {
         console.log("response --------->", response);
       })
