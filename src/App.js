@@ -32,8 +32,8 @@ function App() {
         <Route exact path="/notifications" component={NotificationsPage} />
         <Route exact path="/profile" component={ProfilePage} />
         <Route exact path="/add-recipe" component={AddRecipe} />
-
-        <Route exact path="/recipe" component={RecipePage} />
+        <Route exact path="/search" component={HomePage} />
+        <Route exact path="/recipe/:id" component={RecipePage} />
 
         {/* 👇 UPDATE THE EXISTING ROUTES 👇  */}
         <PrivateRoute exact path="/projects" component={ProjectListPage} />

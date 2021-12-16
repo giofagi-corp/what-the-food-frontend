@@ -10,13 +10,15 @@ import FormInput from "../components/FormInput";
 import FormSelectIngredients from "../components/FormSelectIngredients";
 import FormCreateIngredient from "../components/FormCreateIngredient";
 import Button from '@mui/material/Button';
+import TextArea from "../components/TextArea"
 
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
 export default function AddRecipe(props) {
   const [name, setName] = useState("");
-  const [duration, setDuration] = useState();
+  const [time, setTime] = useState();
   const [cuisine, setCuisine] = useState("");
+  const [description, setDescription] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
   const [availableIngredients, setAvailableIngredients] = useState([
@@ -38,26 +40,27 @@ export default function AddRecipe(props) {
 
   useEffect(() => {
     axios
-    .get(`${REACT_APP_API_URI}/api/search-ingredient`)
+    .get(`${REACT_APP_API_URI}/api/search-all-ing`)
     .then(res => {
-      //setAvailableIngredients(res.data);
-      console.log("AvailableIngredients", res.data);
+      setAvailableIngredients(res.data);
+      //console.log("AvailableIngredients", res.data);
     })
     }, []);
 
   const handleNameInput = (e) => setName(e.target.value);
-  const handleDurationInput = (e) => setDuration(e.target.value);
+  const handleTimeInput = (e) => setTime(e.target.value);
   const handleCuisineInput = (e) => setCuisine(e.target.value);
   const handleNewIngredientInput = (e) => setNewIngredient(e.target.value);
+  const handleDescriptionInput = (e) => setDescription(e.target.value);
   const handleIngredientsInput = (e) => {
     console.log("onSelect ->", e.target)
     setIngredients(Array.from(e.target.selectedOptions, option => option.value))
   };
 
-  const handleAvailableIngredientsQuery = (e) => {
+ /*  const handleAvailableIngredientsQuery = (e) => {
     e.preventDefault();
     axios
-    .get("http://localhost:5000/api/ingredients", {
+    .get("http://localhost:5000/api/ingredient", {
       params: {
         q: e.target.value
       }
@@ -65,16 +68,16 @@ export default function AddRecipe(props) {
     .then(res => {
       setAvailableIngredients(res.data);
     })
-  }
+  } */
 
   const handleCreateIngredient = (e) => {
     e.preventDefault();
     axios
-      .post(`${REACT_APP_API_URI}/api/ingredients`, {
-        newIngredient
-      })
+      .post(`${REACT_APP_API_URI}/api/search-ingredient/${newIngredient}`)
       .then((response) => {
         setIngredients([...ingredients, response.data]);
+        setAvailableIngredients(response.data);//<--------------------------- Si se activa No se renderizacomponente hijo
+
         setNewIngredient("");
       })
       .catch((error) => console.log(error));
@@ -82,37 +85,41 @@ export default function AddRecipe(props) {
   
   console.log("///////////////////")
   console.log("NAME------->",name)
-  console.log("DURATION------->",duration)
+  console.log("DURATION------->",time)
   console.log("CUISINE------->",cuisine)
   console.log("INGR------->",ingredients)
   // console.log("INGREDIENT ARR------->",ingredientArr)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newRecipe = { name, duration, cuisine, ingredients };
-
+    const newRecipe = { name, time, cuisine, ingredients, description };
     console.log("Submitted: ", newRecipe);
+    axios
+      .post(`${REACT_APP_API_URI}/api/recipe/create/`)
+      .then((response) => {
+        console.log("response --------->", response);
+      })
+      .catch((error) => console.log(error));
+
   };
 
   return (
     <div className="NotificationsPage">
-      <Link to="/">
-        <BackButton />
-      </Link>
+      <Link to="/"><BackButton /></Link>
       <GenericPageTitle text="Add a new recipe" />
       <GenericPageSubtitle text="Recipe description" />
       <FormInput
         name={name}
         updateName={handleNameInput}
-        duration={duration}
-        updateDuration={handleDurationInput}
+        time={time}
+        updateTime={handleTimeInput}
         cuisine={cuisine}
         updateCuisine={handleCuisineInput}
       />
       <GenericPageSubtitle text="Recipe ingredients" />
 
-      <h1> {ingredients.map(el=>name)}</h1>
-      <br/>
+      {/* <h1> {ingredients.map(el=>name)}</h1> 
+      <br/>*/}
 
       <FormCreateIngredient
         value={newIngredient}
@@ -120,11 +127,18 @@ export default function AddRecipe(props) {
         onSubmit={handleCreateIngredient}
       />
 
-      <input type="text" name="query" onChange={handleAvailableIngredientsQuery} />
+      {/* <input type="text" name="query" onChange={handleAvailableIngredientsQuery} /> */}
 
       <FormSelectIngredients
         ingredients={availableIngredients}
         onSelect={handleIngredientsInput}
+      />
+
+      <GenericPageSubtitle text="Recipe description" />
+
+      <TextArea 
+        description={description}
+        updateDescription={handleDescriptionInput}
       />
      
       {/* <button type="submit">SUBMIT</button> */}

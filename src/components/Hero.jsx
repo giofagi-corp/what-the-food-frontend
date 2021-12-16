@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import HeroHeader from "./HeroHeader";
 import BackButton from '../components/BackButton';
 
-export default function Hero () {
-  
+export default function Hero (props) {
+  const {recipe} = props
   return (
-    <div className="Hero">
+    <div className="Hero" style={{backgroundImage: `url(${recipe.imageUrl})`}} >
         <BackButton/>
-        <HeroHeader/>
+        <HeroHeader recipe={recipe}/>
     </div>
   );
 }
