@@ -9,7 +9,8 @@ import NotFound from "../components/NotFound";
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
 export default function HomePage() {
-  
+  const storedToken = localStorage.getItem("authToken");
+
     const feedTops = [
         {
             name: "Top Recipes",
@@ -38,13 +39,18 @@ export default function HomePage() {
     const getRecipesByIngredients = (name) => {
         
         axios
-            .post(`${REACT_APP_API_URI}/api/search/${name}`)
+            .post(`${REACT_APP_API_URI}/api/search/${name}`, {},
+            {
+              headers: { Authorization: `Bearer ${storedToken}` }, 
+            })
             .then((response) => {
                 if (response.data[0]) {
                     const id = response.data[0]._id;
                     axios
                         .get(
-                            `${REACT_APP_API_URI}/api/recipes?ingredients=${id}`
+                            `${REACT_APP_API_URI}/api/recipes?ingredients=${id}`, {
+                              headers: { Authorization: `Bearer ${storedToken}` },
+                            }
                         )
                         .then((response) => {
                             setIsFound(true);
@@ -64,7 +70,7 @@ export default function HomePage() {
         getRecipesByIngredients(inputSearch);
         setInputSearch("");
     };
-
+    
     return (
         <div>
             <HomeSearchbar

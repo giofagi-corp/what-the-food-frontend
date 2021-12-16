@@ -17,7 +17,7 @@ function AddProject(props) {
     // Send the token through the request "Authorization" Headers
     axios
       .post(`${API_URI}/api/projects`, requestBody, {
-        headers: { Authorization: `Bearer ${storedToken}` },
+        headers: { Authorization: `Bearer ${storedToken}` }
       })
       .then((response) => {
         // Reset the state

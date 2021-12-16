@@ -7,6 +7,7 @@ const API_URI = process.env.REACT_APP_API_URI;
 
 export default function RecipeList() {
   const [projects, setProjects] = useState([]);
+  const storedToken = localStorage.getItem("authToken");
 
   const getAllProjects = () => {
     const storedToken = localStorage.getItem("authToken");
