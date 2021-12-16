@@ -8,10 +8,13 @@ const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
 export default function ProfileFeed() {
     const [recipes, setRecipes] = useState([]);
+    const storedToken = localStorage.getItem("authToken");
 
     const getAllRecipes = () => {
         axios
-        .get(`${REACT_APP_API_URI}/api/recipe/listAllRecipes`)
+        .get(`${REACT_APP_API_URI}/api/recipe/listAllRecipes` , {
+        headers: { Authorization: `Bearer ${storedToken}` }
+    })
         .then((response) => setRecipes(response.data))
         .catch((error) => console.log(error));
     }

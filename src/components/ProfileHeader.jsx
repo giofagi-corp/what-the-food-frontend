@@ -14,8 +14,8 @@ export default function ProfileHeader() {
                 <ProfilePicUpdate/>
             </div>
             <div className='ProfileHeaderInfo'>
-                <h3>Username</h3>
-                <p>test@gmail.com</p>
+                <h3>Harold</h3>
+                <p>haroldmeme@gmail.com</p>
                 <FavIngredients/>
             </div>
         </div>

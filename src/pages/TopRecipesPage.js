@@ -14,11 +14,14 @@ import { useState, useEffect } from "react";
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
 export default function TopRecipesPage() {
+  const storedToken = localStorage.getItem("authToken");
   const [recipes, setRecipes] = useState([]);
 
   const getAllRecipes = () => {
     axios
-      .get(`${REACT_APP_API_URI}/api/top-recipies`)
+      .get(`${REACT_APP_API_URI}/api/top-recipies`, {
+        headers: { Authorization: `Bearer ${storedToken}` }
+      })
       .then((response) => setRecipes(response.data))
       .catch((error) => console.log(error));
   };

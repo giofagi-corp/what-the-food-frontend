@@ -13,11 +13,14 @@ const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 //import needed components
 
 export default function TopIngredientsPage() {
+  const storedToken = localStorage.getItem("authToken");
   const [recipes, setRecipes] = useState([]);
 
   const getAllRecipes = () => {
     axios
-      .get(`${REACT_APP_API_URI}/api/top-ingredients`)
+      .get(`${REACT_APP_API_URI}/api/top-ingredients`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((response) => setRecipes(response.data))
       .catch((error) => console.log(error));
   };
