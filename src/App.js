@@ -25,15 +25,15 @@ function App() {
       <Navbar />
 
       <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/top-recipes" component={TopRecipesPage} />
-        <Route exact path="/top-cuisine" component={TopCuisinePage} />
-        <Route exact path="/top-ingredients" component={TopIngredientsPage} />
-        <Route exact path="/notifications" component={NotificationsPage} />
-        <Route exact path="/profile" component={ProfilePage} />
-        <Route exact path="/add-recipe" component={AddRecipe} />
-        <Route exact path="/search" component={HomePage} />
-        <Route exact path="/recipe/:id" component={RecipePage} />
+        <PrivateRoute exact path="/" component={HomePage} />
+        <PrivateRoute exact path="/top-recipes" component={TopRecipesPage} />
+        <PrivateRoute exact path="/top-cuisine" component={TopCuisinePage} />
+        <PrivateRoute exact path="/top-ingredients" component={TopIngredientsPage} />
+        <PrivateRoute exact path="/notifications" component={NotificationsPage} />
+        <PrivateRoute exact path="/profile" component={ProfilePage} />
+        <PrivateRoute exact path="/add-recipe" component={AddRecipe} />
+        <PrivateRoute exact path="/search" component={HomePage} />
+        <PrivateRoute exact path="/recipe/:id" component={RecipePage} />
 
         {/* 👇 UPDATE THE EXISTING ROUTES 👇  */}
         <PrivateRoute exact path="/projects" component={ProjectListPage} />
