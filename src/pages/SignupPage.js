@@ -60,6 +60,7 @@ function SignupPage(props) {
 
       <GenericPageTitle text="Sign Up" />
       <Box component="form" sx={{ '& > :not(style)': { mb: 2, width: '100%' },}} noValidate autoComplete="off">
+      
           <TextField type="text" 
             name="email"
             value={email}
@@ -80,7 +81,7 @@ function SignupPage(props) {
             id="outlined-basic" label="Name" variant="outlined" />
       </Box>
 
-      <Button  sx={{ width: '100%', height: '56px' }} type="submit" variant="contained">Sign Up</Button>
+      <Button onClick={handleSignupSubmit} sx={{ width: '100%', height: '56px' }} type="submit" variant="contained">Sign Up</Button>
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       

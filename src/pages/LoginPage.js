@@ -71,7 +71,7 @@ function LoginPage(props) {
             id="outlined-basic" label="Password" variant="outlined" />
       </Box>
 
-      <Button  sx={{ width: '100%', height: '56px' }} type="submit" variant="contained">Login</Button>
+      <Button onClick={handleLoginSubmit}  sx={{ width: '100%', height: '56px' }} type="submit" variant="contained">Login</Button>
 
       <div className="TagLine">
         <p>Don't have an account yet? <Link to={"/signup"}> Sign Up</Link></p>
