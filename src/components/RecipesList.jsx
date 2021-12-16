@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 export default function RecipesList(props) {
   const { recipes } = props;
-
   return (
     <div>
       {recipes.map((recipe) => (

@@ -14,12 +14,10 @@ export default function ProfileFeed() {
         .get(`${REACT_APP_API_URI}/api/recipe/listAllRecipes`)
         .then((response) => setRecipes(response.data))
         .catch((error) => console.log(error));
-    };
-
+    }
     useEffect(() => {
         getAllRecipes();
     }, []);
-
     return (
         <Box>
             <RecipesList sx={{ p: '0 24px' }} recipes={recipes}/>

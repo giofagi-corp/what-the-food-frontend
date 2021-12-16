@@ -5,7 +5,6 @@ import RecipeCard from "../components/RecipeCard";
 
 export default function RecipesList(props) {
   const { recipes } = props;
-
   return (
     <Box sx={{p: '0 24px' }}> 
       {recipes.map((recipe) => (

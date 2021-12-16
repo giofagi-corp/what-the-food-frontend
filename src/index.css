@@ -256,15 +256,16 @@ nav li {
   height: 30px !important;
   width: 30px;
   border-radius: 100px !important;
-  bottom: -8px !important;
-  right: -11px !important;
-  background-color: #1976d2 !important;
+  bottom: 9px !important;
+  right: 2px !important;
+  color: #1976d2 !important;
+  background-color: #fff !important;
 }
 
 .TopCard {
   margin-top: -70px;
 }
 
-.TopCard img {
+img {
   filter: brightness(70%);
 }

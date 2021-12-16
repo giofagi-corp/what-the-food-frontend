@@ -9,10 +9,7 @@ export default function RecipeList() {
   const [projects, setProjects] = useState([]);
 
   const getAllProjects = () => {
-    // Get the token from the localStorage
     const storedToken = localStorage.getItem("authToken");
-
-    // Send the token through the request "Authorization" Headers
     axios
       .get(`${API_URI}/api/projects`, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -20,9 +17,6 @@ export default function RecipeList() {
       .then((response) => setProjects(response.data))
       .catch((error) => console.log(error));
   };
-
-  // We set this effect will run only once, after the initial render
-  // by setting the empty dependency array - []
   useEffect(() => {
     getAllProjects();
   }, []);
@@ -30,7 +24,6 @@ export default function RecipeList() {
   return (
     <div className="ProjectListPage">
       <AddProject refreshProjects={getAllProjects} />
-
       {projects.map((project) => (
         <ProjectCard key={project._id} {...project} />
       ))}

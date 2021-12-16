@@ -4,7 +4,7 @@ import FavIngredients from './FavIngredients';
 import { Image } from "cloudinary-react";
 import EditButton from './EditButton';
 import ProfilePicUpdate from './ProfilePicUpdate'
-import { useState, useEffect } from "react";
+
 
 export default function ProfileHeader() {
 

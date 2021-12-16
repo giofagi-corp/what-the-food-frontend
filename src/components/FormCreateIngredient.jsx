@@ -2,7 +2,6 @@ import React from "react";
 
 export default function FormSearchIngredient(props) {
   const { value, onChange, onSubmit } = props;
-
   return (
     <div>
       <form onSubmit={onSubmit} >

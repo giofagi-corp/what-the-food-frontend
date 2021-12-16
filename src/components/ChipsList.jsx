@@ -8,7 +8,6 @@ export default function ChipsList(props) {
             {recipes.map((recipe) => (
                 <Chip className='IngredientChip' label={recipe} />
             ))}
-
         </div>
     )
 }
