@@ -7,6 +7,9 @@ import { useState, useEffect } from "react";
 import NotFound from "../components/NotFound";
 import Chip from '@mui/material/Chip';
 import ChipsList from "../components/ChipsList"
+import { Link } from "react-router-dom";
+import BackButton from "../components/BackButton";
+
 
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
@@ -35,9 +38,7 @@ export default function HomePage() {
     const [inputSearch, setInputSearch] = useState("");
     const [recipes, setRecipes] = useState(feedTops);
     const [isFound, setIsFound] = useState(true);
-    //const [chipIngredient, setChipIngredient] = useState("")
     const [listIngredients, setListIngredients] = useState([])
-    //let listIngredients = ["tomato", "cheese"]
     let arrListIngredients = []
 
     const addIngArr = (newIng) => {
@@ -70,29 +71,15 @@ export default function HomePage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        //const newSearch = inputSearch;
-        //arrListIngredients.push(inputSearch)
-        //console.log("arrListIngredients----->", arrListIngredients);
-        console.log("Input Submitted -----> ", inputSearch);
-
-        //arrListIngredients.push(inputSearch)
         addIngArr(inputSearch)
-        // console.log("State listIngredients----->", listIngredients);
-        
         getRecipesByIngredients(inputSearch);
         setListIngredients(arrListIngredients)
-        console.log("State listIngredients----->", listIngredients);
-        console.log("arrListIngredients----->", arrListIngredients);
-        //setInputSearch("");
+
+        setInputSearch("");
     };
 
     return (
         <div>
-            {/* <Header
-                handleSearchInput={handleSearchInput}
-                handleSubmit={handleSubmit}
-                inputSearch={inputSearch}
-            /> */}
             <HomeSearchbar
                 handleSearchInput={handleSearchInput}
                 handleSubmit={handleSubmit}
@@ -100,6 +87,7 @@ export default function HomePage() {
             />
             {/* <ChipsList recipes={listIngredients}/> */}
             {isFound === true ? <HomeContent recipes={recipes} /> : <NotFound />}
+            
         </div>
     );
 }
