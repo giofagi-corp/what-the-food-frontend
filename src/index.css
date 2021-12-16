@@ -5,12 +5,13 @@
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
-  color: #666666;
+  color: #4d4d4d;
 }
 
 a {
   list-style: none;
   color: black;
+  text-decoration: none !important;
 }
 
 button,
@@ -34,7 +35,6 @@ textarea {
 }
 
 nav {
-  background: #515f7d;
   color: white;
   padding: 0px 20px;
   box-shadow: 0px 1px 2px gray;
@@ -145,8 +145,11 @@ nav li {
 .GenericCard {
   width: "100%";
   margin: 30px 0 30px 0;
-  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 0%), 0px 1px 1px 0px rgb(0 0 0 / 43%),
-    0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+
+.css-bhp9pd-MuiPaper-root-MuiCard-root {
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 6%), 0px 1px 1px 0px rgb(0 0 0 / 6%),
+    0px 1px 3px 0px rgb(0 0 0 / 11%) !important;
 }
 
 .RecipeBody {
@@ -230,6 +233,39 @@ nav li {
   max-width: 140px;
 }
 
-.CardTitle {
-  text-decoration: none !important;
+.MuiTypography-h5 {
+  text-transform: capitalize !important;
+  text-decoration: none;
+  color: #4d4d4d;
+}
+
+.TagLine {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.PodiumNumber {
+  display: flex;
+  align-items: center;
+  z-index: 1000 !important;
+  color: #ffffff !important;
+}
+
+.MuiBadge-badge {
+  font-size: 1rem !important;
+  height: 30px !important;
+  width: 30px;
+  border-radius: 100px !important;
+  bottom: 9px !important;
+  right: 2px !important;
+  color: #1976d2 !important;
+  background-color: #fff !important;
+}
+
+.TopCard {
+  margin-top: -70px;
+}
+
+img {
+  filter: brightness(70%);
 }

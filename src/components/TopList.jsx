@@ -12,7 +12,9 @@ export default function TopList(props) {
         <Link to={`/recipe/${recipe._id}`} >
         <div key={recipe._id}>
           <PodiumNumber number={index + 1} />
-          <RecipeCard {...recipe} />
+          <div className="TopCard">
+          <RecipeCard {...recipe}/>
+          </div>
         </div>
         </Link>
       ))}

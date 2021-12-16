@@ -28,9 +28,9 @@ export default function TopRecipesPage() {
   }, []);
 
   return (
-    <div>
+    <div className="NotificationsPage">
       <Link to="/"><BackButton/></Link>
-      <GenericPageTitle text="TOP RECIPES" />
+      <GenericPageTitle text="Top recipes" />
       <TopList recipes={recipes} />
     </div>
   );

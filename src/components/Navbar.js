@@ -17,7 +17,7 @@ export default function Navbar() {
   const [value, setValue] = React.useState(0);
   // const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   return (
-    <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}>
+    <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1000 }}>
       <BottomNavigation className='BottomNavigation' showLabels value={value} onChange={(event, newValue) => {setValue(newValue);}}>
         <BottomNavigationAction
           component={Link}

@@ -2,6 +2,11 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { AuthContext } from "./../context/auth.context";
+import GenericPageTitle from "../components/GenericPageTitle";
+import GenericPageSubtitle from "../components/GenericPageSubtitle";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 const API_URI = process.env.REACT_APP_API_URI;
 
@@ -35,10 +40,8 @@ function LoginPage(props) {
   };
 
   return (
-    <div className="LoginPage">
-      <h1>Login</h1>
-
-      <form onSubmit={handleLoginSubmit}>
+    <div className="NotificationsPage">
+      {/* <form onSubmit={handleLoginSubmit}>
         <label>Email:</label>
         <input type="text" name="email" value={email} onChange={handleEmail} />
 
@@ -51,11 +54,30 @@ function LoginPage(props) {
         />
 
         <button type="submit">Login</button>
-      </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      </form> */}
+      <GenericPageTitle text="Login" />
+      <Box component="form" sx={{ '& > :not(style)': { mb: 2, width: '100%' },}} noValidate autoComplete="off">
+          <TextField type="text" 
+            name="email"
+            value={email}
+            onChange={handleEmail}
+            placeholder="Email"
+            id="outlined-basic" label="Email" variant="outlined" />
+          <TextField type="password"
+            name="password"
+            value={password}
+            onChange={handlePassword}
+            placeholder="Password"
+            id="outlined-basic" label="Password" variant="outlined" />
+      </Box>
 
-      <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
+      <Button  sx={{ width: '100%', height: '56px' }} type="submit" variant="contained">Login</Button>
+
+      <div className="TagLine">
+        <p>Don't have an account yet? <Link to={"/signup"}> Sign Up</Link></p>
+      </div>      
+
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
   );
 }
