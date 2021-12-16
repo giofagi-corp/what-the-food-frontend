@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 const API_URI = process.env.REACT_APP_API_URI;
 
 function SignupPage(props) {
+  const storedToken = localStorage.getItem("authToken");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -28,7 +29,9 @@ function SignupPage(props) {
     // If POST request is successful redirect to login page
     // If the request resolves with an error, set the error message in the state
     axios
-      .post(`${API_URI}/auth/signup`, requestBody)
+      .post(`${API_URI}/auth/signup`, requestBody , {
+        headers: { Authorization: `Bearer ${storedToken}` }
+    })
       .then((response) => props.history.push("/login"))
       .catch((error) => {
         const errorDescription = error.response.data.message;

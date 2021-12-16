@@ -11,19 +11,24 @@ import { useState, useEffect } from "react";
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
 export default function ContentTabs() {
+    const storedToken = localStorage.getItem("authToken");
 
     const [myRecipes, setMyRecipes] = useState([]);
     const [savedRecipes, setSavedRecipes] = useState([]);
     const [value, setValue] = useState('1');
     const getMyRecipes = () => {
         axios
-        .get(`${REACT_APP_API_URI}/api/recipe/listAllRecipes`)
+        .get(`${REACT_APP_API_URI}/api/recipe/listAllRecipes` , {
+        headers: { Authorization: `Bearer ${storedToken}` }
+    })
         .then((response) => setMyRecipes(response.data))
         .catch((error) => console.log(error));
     };
     const getSavedRecipes = () => {
         axios
-        .get(`${REACT_APP_API_URI}/api/recipe/listAllRecipes`)
+        .get(`${REACT_APP_API_URI}/api/recipe/listAllRecipes` , {
+        headers: { Authorization: `Bearer ${storedToken}` }
+    })
         .then((response) => {
             console.log("RESPONSE ---------->".response)
             setSavedRecipes(response.data)})

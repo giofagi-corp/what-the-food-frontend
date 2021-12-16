@@ -20,7 +20,7 @@ export default function TopRecipesPage() {
   const getAllRecipes = () => {
     axios
       .get(`${REACT_APP_API_URI}/api/top-recipies`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
+        headers: { Authorization: `Bearer ${storedToken}` }
       })
       .then((response) => setRecipes(response.data))
       .catch((error) => console.log(error));

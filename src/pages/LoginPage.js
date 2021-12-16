@@ -23,9 +23,12 @@ function LoginPage(props) {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     const requestBody = { email, password };
+    const storedToken = localStorage.getItem("authToken");
 
     axios
-      .post(`${API_URI}/auth/login`, requestBody)
+      .post(`${API_URI}/auth/login`, requestBody , {
+        headers: { Authorization: `Bearer ${storedToken}` }
+    })
       .then((response) => {
         console.log("JWT token", response.data.authToken);
 
