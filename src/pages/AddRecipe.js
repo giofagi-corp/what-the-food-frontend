@@ -96,29 +96,23 @@ export default function AddRecipe(props) {
         cuisine={cuisine}
         updateCuisine={handleCuisineInput}
       />
-      <GenericPageSubtitle text="Recipe ingredients" />
+      <GenericPageSubtitle text="Recipe Ingredients" />
+      <FormSelectIngredients
+        ingredients={availableIngredients}
+        onSelect={handleIngredientsInput}
+      />
       <FormCreateIngredient
         value={newIngredient}
         onChange={handleNewIngredientInput}
         onSubmit={handleCreateIngredient}
       />
-      <FormSelectIngredients
-        ingredients={availableIngredients}
-        onSelect={handleIngredientsInput}
-      />
-      <GenericPageSubtitle text="Recipe description" />
+      <GenericPageSubtitle text="Recipe Steps" />
       <TextArea
         description={description}
         updateDescription={handleDescriptionInput}
       />
-      <Button
-        sx={{ width: "100%", height: "56px" }}
-        onClick={handleSubmit}
-        type="submit"
-        variant="contained"
-      >
-        SUBMIT
-      </Button>
+      
+      <Button  sx={{ width: '100%', height: '56px' }} onClick={handleSubmit} type="submit" variant="contained">SUBMIT</Button>
     </div>
   );
 }

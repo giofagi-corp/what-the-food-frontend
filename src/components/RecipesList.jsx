@@ -7,7 +7,7 @@ export default function RecipesList(props) {
   return (
     <div>
       {recipes.map((recipe) => (
-        <Link to="" ><RecipeCard key={recipe._id} {...recipe} /></Link>
+        <Link to={`/recipe/${recipe._id}`} ><RecipeCard key={recipe._id} {...recipe} /></Link>
       ))}
     </div>
   );
