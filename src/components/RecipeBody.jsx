@@ -10,18 +10,18 @@ export default function RecipeBody(props) {
     return (
         <div className='RecipeBody'>
             <h3>Ingredients</h3>
-            {/* <ul>              //  <--------------- Si se activan nose renderiza el contenido
-                {ingredients.map((el) => (
-                    <li>{el}</li>
+            <ul>              
+                {ingredients && ingredients.map((el) => (
+                    <li>{el.name}</li>
                 ))}
-            </ul> */}
+            </ul>
 
             <h3>Steps</h3>
-            {/* <ol>
-                {description.map((el) => (
+            <ol>
+                {description && description.map((el) => (
                     <li>{el}</li>
                 ))}
-            </ol> */}
+            </ol>
         </div>
     )
 }
