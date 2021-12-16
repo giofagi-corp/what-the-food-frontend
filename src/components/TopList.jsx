@@ -12,7 +12,9 @@ export default function TopList(props) {
       {recipes.map((recipe, index) => (
         <div key={recipe._id}>
           <PodiumNumber number={index + 1} />
-          <RecipeCard {...recipe} />
+          <div className="TopCard">
+          <RecipeCard {...recipe}/>
+          </div>
         </div>
       ))}
     </div>

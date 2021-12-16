@@ -37,12 +37,12 @@ export default function ProfilePicUpdate() {
                 setImageSelected(event.target.files[0]);
                 }}
             /> */}
-            <div>
+            {/* <div>
                 <Input accept="image/*" id="icon-button-file" type="file" />
                 <IconButton color="primary" aria-label="upload picture" component="span">
                 <PhotoCamera />
                 </IconButton>
-            </div>
+            </div> */}
             {/* <button onClick={uploadImage}>Update</button> */}
         </div>
     )

@@ -30,9 +30,9 @@ export default function TopIngredientsPage() {
   }, []);
 
   return (
-    <div>
+    <div className="NotificationsPage">
       <Link to="/"><BackButton/></Link>
-      <GenericPageTitle text="TOP INGREDIENTS" />
+      <GenericPageTitle text="Top Ingredients" />
       <TopList recipes={recipes} />
     </div>
   );
