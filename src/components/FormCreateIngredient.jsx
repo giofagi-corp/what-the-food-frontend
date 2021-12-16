@@ -16,7 +16,7 @@ export default function FormSearchIngredient(props) {
             placeholder="Add Ingredient"
             id="outlined-basic" label="Add Ingredient" variant="outlined" />
       </Box>
-      <Button onSubmit={onSubmit} type="submit" variant="outlined" sx={{ width: '100%', height: '56px', marginBottom: '20px' }}>Add</Button>
+      <Button onClick={onSubmit} type="submit" variant="outlined" sx={{ width: '100%', height: '56px', marginBottom: '20px' }}>Add</Button>
     </div>
   );
 }

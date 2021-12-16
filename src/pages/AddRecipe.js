@@ -60,6 +60,7 @@ export default function AddRecipe(props) {
         }
       )
       .then((response) => {
+        console.log(response.data);
         setIngredients([...ingredients, response.data]);
         setAvailableIngredients([response.data, ...availableIngredients]);
         setNewIngredient("");
