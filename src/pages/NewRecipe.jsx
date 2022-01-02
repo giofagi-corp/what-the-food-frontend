@@ -24,7 +24,7 @@ export default function NewRecipe(props) {
      const [value, setValue] = useState(null);
      const [chipIng, setChipIng] = React.useState([])
 
-     const [availabeIngredients, setAvailableIngredients] = useState([])
+     const [availableIngredients, setAvailableIngredients] = useState([])
      const storedToken = localStorage.getItem('authToken')
 
      const seeArr = () => {
@@ -36,14 +36,15 @@ export default function NewRecipe(props) {
      }
 
      const handleAdd = () => {
-          setChipIng([...chipIng, value.title])
+          setChipIng([...chipIng, value.name])
      }
 
      const chips = chipIng.map((e) => (
-          <Chip label={e} variant="outlined" onDelete={handleDelete(e)} />
+          <div>
+               <Chip label={e} variant="outlined"  onDelete={handleDelete(e)} />
+          </div>
+          
      ))
-
-     //const testingChipMultiline = "In a large bowl, sift together the flour, baking powder, salt and sugar. "
 
      const addImageClass = {
           color: 'white',
@@ -52,23 +53,23 @@ export default function NewRecipe(props) {
           width: '100vw',
      }
 
-     /*      useEffect(() => {
+          useEffect(() => {
           axios.get(`${REACT_APP_API_URI}/api/search-all-ing`, {
                headers: { Authorization: `Bearer ${storedToken}` },
           }).then((res) => {
                setAvailableIngredients(res.data)
           })
-     }, []) */
+     }, [])
 
-     useEffect(() => {
-          ;(async () => {
+     /* useEffect(() => {
+          (async () => {
                const res = await axios.get(
                     `${REACT_APP_API_URI}/api/search-all-ing`,
                     { headers: { Authorization: `Bearer ${storedToken}` } }
                )
                setAvailableIngredients(res.data)
           })()
-     }, [])
+     }, []) */
 
      const handleNameInput = (e) => setName(e.target.value)
      const handleTimeInput = (e) => setTime(e.target.value)
@@ -96,29 +97,15 @@ export default function NewRecipe(props) {
                     </Button>
                </Link>
 
-               {/* <Autocomplete
-                    freeSolo
-                    disablePortal
-                    clearOnBlur
-                    handleHomeEndKeys
-                    id="combo-box-demo"
-                    options={availabeIngredients}
-                    getOptionLabel={(option) => option.name}
-                    sx={{ width: '100%' }}
-                    renderInput={(params) => (
-                         <TextField {...params} label="Ingredient" />
-                    )}
-                    onChange={handleAddIngredient}
-               /> */}
                <Autocomplete
                     value={value}
                     onChange={(event, newValue) => {
                          if (typeof newValue === 'string') {
-                              setValue({ title: newValue })
+                              setValue({ name: newValue })
                          } else if (newValue && newValue.inputValue) {
                               // Create a new value from the user input
                               setValue({
-                                   title: newValue.inputValue,
+                                   name: newValue.inputValue,
                               })
                          } else {
                               setValue(newValue)
@@ -130,12 +117,12 @@ export default function NewRecipe(props) {
                          const { inputValue } = params
                          // Suggest the creation of a new value
                          const isExisting = options.some(
-                              (option) => inputValue === option.title
+                              (option) => inputValue === option.name
                          )
                          if (inputValue !== '' && !isExisting) {
                               filtered.push({
                                    inputValue,
-                                   title: `Add "${inputValue}"`,
+                                   name: `Add "${inputValue}"`,
                               })
                          }
 
@@ -145,7 +132,7 @@ export default function NewRecipe(props) {
                     clearOnBlur
                     handleHomeEndKeys
                     id="free-solo-with-text-demo"
-                    options={availabeIngredients}
+                    options={availableIngredients}
                     getOptionLabel={(option) => {
                          // Value selected with enter, right from the input
                          if (typeof option === 'string') {
@@ -156,17 +143,17 @@ export default function NewRecipe(props) {
                               return option.inputValue
                          }
                          // Regular option
-                         return option.title
+                         return option.name
                     }}
                     renderOption={(props, option) => (
-                         <li {...props}>{option.title}</li>
+                         <li {...props}>{option.name}</li>
                     )}
                     sx={{ width: 300 }}
                     freeSolo
                     renderInput={(params) => (
                          <TextField
                               {...params}
-                              label="Free solo with text demo"
+                              label="Select ingredient"
                          />
                     )}
                />
@@ -176,7 +163,7 @@ export default function NewRecipe(props) {
                <button type="button" onClick={seeArr}>
                     See array
                </button>
-               <Stack direction="row" spacing={1}>
+               <Stack direction="row" spacing={3} sx={{ width: 500 }}>
                     {chips}
                </Stack>
           </div>
