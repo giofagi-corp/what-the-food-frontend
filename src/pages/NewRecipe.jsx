@@ -7,32 +7,41 @@ import axios from 'axios'
 import FormInput from '../components/FormInput'
 
 import TextField from '@mui/material/TextField'
-import Autocomplete from '@mui/material/Autocomplete'
+import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import Button from '@mui/material/Button'
 
-import Chip from '@mui/material/Chip'
+import { Chip } from '@mui/material'
 import Stack from '@mui/material/Stack'
 
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
+
+const filter = createFilterOptions();
 
 export default function NewRecipe(props) {
      const [name, setName] = useState('')
      const [time, setTime] = useState()
      const [cuisine, setCuisine] = useState('')
-     let [chipIng, setChipIng] = useState('ingredient')
+     const [value, setValue] = useState(null);
+     const [chipIng, setChipIng] = React.useState([])
 
      const [availabeIngredients, setAvailableIngredients] = useState([])
      const storedToken = localStorage.getItem('authToken')
 
-     const handleDelete = () => {
-          console.info('You clicked the delete icon.')
-          
+     const seeArr = () => {
+          console.log('array of chips ----->', chipIng)
      }
 
-     const handleAddIngredient = (ing) =>{
-          console.info(`You clicked add the ingredient ${ing}`)
-          
+     const handleDelete = (e) => () => {
+          setChipIng((chip) => chipIng.filter((c) => c !== e))
      }
+
+     const handleAdd = () => {
+          setChipIng([...chipIng, value.title])
+     }
+
+     const chips = chipIng.map((e) => (
+          <Chip label={e} variant="outlined" onDelete={handleDelete(e)} />
+     ))
 
      //const testingChipMultiline = "In a large bowl, sift together the flour, baking powder, salt and sugar. "
 
@@ -87,28 +96,88 @@ export default function NewRecipe(props) {
                     </Button>
                </Link>
 
-               <Autocomplete
+               {/* <Autocomplete
                     freeSolo
                     disablePortal
                     clearOnBlur
                     handleHomeEndKeys
                     id="combo-box-demo"
                     options={availabeIngredients}
-                    getOptionLabel={(option) => option.name }
+                    getOptionLabel={(option) => option.name}
                     sx={{ width: '100%' }}
                     renderInput={(params) => (
                          <TextField {...params} label="Ingredient" />
                     )}
                     onChange={handleAddIngredient}
-               />
+               /> */}
+               <Autocomplete
+                    value={value}
+                    onChange={(event, newValue) => {
+                         if (typeof newValue === 'string') {
+                              setValue({ title: newValue })
+                         } else if (newValue && newValue.inputValue) {
+                              // Create a new value from the user input
+                              setValue({
+                                   title: newValue.inputValue,
+                              })
+                         } else {
+                              setValue(newValue)
+                         }
+                    }}
+                    filterOptions={(options, params) => {
+                         const filtered = filter(options, params)
 
+                         const { inputValue } = params
+                         // Suggest the creation of a new value
+                         const isExisting = options.some(
+                              (option) => inputValue === option.title
+                         )
+                         if (inputValue !== '' && !isExisting) {
+                              filtered.push({
+                                   inputValue,
+                                   title: `Add "${inputValue}"`,
+                              })
+                         }
+
+                         return filtered
+                    }}
+                    selectOnFocus
+                    clearOnBlur
+                    handleHomeEndKeys
+                    id="free-solo-with-text-demo"
+                    options={availabeIngredients}
+                    getOptionLabel={(option) => {
+                         // Value selected with enter, right from the input
+                         if (typeof option === 'string') {
+                              return option
+                         }
+                         // Add "xxx" option created dynamically
+                         if (option.inputValue) {
+                              return option.inputValue
+                         }
+                         // Regular option
+                         return option.title
+                    }}
+                    renderOption={(props, option) => (
+                         <li {...props}>{option.title}</li>
+                    )}
+                    sx={{ width: 300 }}
+                    freeSolo
+                    renderInput={(params) => (
+                         <TextField
+                              {...params}
+                              label="Free solo with text demo"
+                         />
+                    )}
+               />
+               <button type="button" onClick={handleAdd}>
+                    Add
+               </button>
+               <button type="button" onClick={seeArr}>
+                    See array
+               </button>
                <Stack direction="row" spacing={1}>
-                    {/* <Chip label={testingChipMultiline} onDelete={handleDelete} /> */}
-                    <Chip
-                         label={chipIng}
-                         variant="outlined"
-                         onDelete={handleDelete}
-                    />
+                    {chips}
                </Stack>
           </div>
      )
