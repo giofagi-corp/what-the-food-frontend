@@ -8,7 +8,14 @@ export default function FormInput(props) {
   const { cuisine, updateCuisine } = props;
   return (
     <div>
-        <Box component="form" sx={{ '& > :not(style)': { mb: 2, width: '94%' },}} noValidate autoComplete="off">
+        <Box component="form" sx={{ 
+          '& > :not(style)': { mb: 2, width: '94%' }, 
+          display: 'flex',
+          flexDirection: "column",
+          alignItems: 'center',
+          width: '94%',
+
+         }} noValidate autoComplete="off">
           <TextField type="text"
             name="search"
             value={name}

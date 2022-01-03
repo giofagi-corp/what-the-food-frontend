@@ -297,6 +297,24 @@ select {
   font-family: "Roboto", sans-serif !important;
 }
 
+.RecipeInputs {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.RecipePicUpload {
+  display: flex;
+  color: white;
+  border: 1px solid rgb(25, 118, 210);
+  height: 100px;
+  width: 93.5%;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 4px;
+}
+
 .RecipeStepBubble {
   background-color: #D8F3FF;
   width: 87%;
@@ -325,3 +343,5 @@ select {
   border-radius: 50%;
   text-align: center;
 }
+
+
