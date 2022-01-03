@@ -296,3 +296,32 @@ select {
   border-color: rgba(0, 0, 0, 0.23) !important;
   font-family: "Roboto", sans-serif !important;
 }
+
+.RecipeStepBubble {
+  background-color: #D8F3FF;
+  width: 87%;
+  padding: 4px 14px;
+  margin-top: 20px;
+  border-radius: 14px;  
+}
+
+.RecipeStepHeader {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0px 6px;
+  height: 20px;
+}
+
+.RecipeStepNumber {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: bold;
+  margin: 0px;
+  background: #1976d2;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+}

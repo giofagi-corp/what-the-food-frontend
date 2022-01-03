@@ -14,6 +14,9 @@ import Stack from '@mui/material/Stack'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import CloseIcon from '@mui/icons-material/Close'
 
+import "../index.css";
+
+
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
 export default function NewRecipe(props) {
@@ -37,6 +40,10 @@ export default function NewRecipe(props) {
           width: '100vw',
      }
 
+     const deleteStep = () =>{
+          console.log("deleting Step");
+     }
+
      const seeArr = () => {
           console.log('array of steps ----->', step)
      }
@@ -51,19 +58,11 @@ export default function NewRecipe(props) {
      }
 
      const steps = step.map((currentStep, index) => (
-          <div
-               style={{
-                    backgroundColor: '#D8F3FF',
-                    width: '87%',
-                    padding: '4px 14px',
-                    marginTop: '10px',
-                    borderRadius: '14px',
-               }}
-          >
-               <div>
-                    <h5>Step {index + 1}</h5>
+          <div className="RecipeStepBubble">
+               <div className="RecipeStepHeader">
+                    <p className="RecipeStepNumber"> {index + 1}</p>
                     <IconButton aria-label="delete">
-                         <CloseIcon />
+                         <CloseIcon onClick={deleteStep}/>
                     </IconButton>
                </div>
                <p>{currentStep}</p>
