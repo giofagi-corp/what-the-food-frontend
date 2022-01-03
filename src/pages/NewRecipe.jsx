@@ -8,9 +8,11 @@ import FormInput from '../components/FormInput'
 import TextField from '@mui/material/TextField'
 import Autocomplete from '@mui/material/Autocomplete'
 import Button from '@mui/material/Button'
-import { Chip } from '@mui/material'
+import { Chip, IconButton } from '@mui/material'
 import Stack from '@mui/material/Stack'
+//import { AddCircleOutlineIcon, CloseIcon  } from '@mui/icons-material'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
+import CloseIcon from '@mui/icons-material/Close'
 
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
@@ -21,7 +23,7 @@ export default function NewRecipe(props) {
      const [value, setValue] = useState(null)
      const [step, setStep] = useState([])
      const [availableIngredients, setAvailableIngredients] = useState([])
-     
+
      const storedToken = localStorage.getItem('authToken')
 
      const handleNameInput = (e) => setName(e.target.value)
@@ -45,11 +47,27 @@ export default function NewRecipe(props) {
 
      const addStep = () => {
           setStep([...step, value])
-          setValue("")
+          setValue('')
      }
 
-     const steps = step.map((e) => (
-          <li>{e}</li>
+     const steps = step.map((currentStep, index) => (
+          <div
+               style={{
+                    backgroundColor: '#D8F3FF',
+                    width: '87%',
+                    padding: '4px 14px',
+                    marginTop: '10px',
+                    borderRadius: '14px',
+               }}
+          >
+               <div>
+                    <h5>Step {index + 1}</h5>
+                    <IconButton aria-label="delete">
+                         <CloseIcon />
+                    </IconButton>
+               </div>
+               <p>{currentStep}</p>
+          </div>
      ))
 
      useEffect(() => {
@@ -123,7 +141,7 @@ export default function NewRecipe(props) {
                {/* <Stack direction="row" spacing={1}>
                     {steps}
                </Stack> */}
-               <ol>{steps}</ol>
+               <div>{steps}</div>
                <TextField
                     sx={{ width: '94%' }}
                     id="outlined-textarea"
