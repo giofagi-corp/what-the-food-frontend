@@ -6,7 +6,7 @@ import GenericPagesSubtitle from '../components/GenericPageSubtitle'
 import axios from 'axios'
 import FormInput from '../components/FormInput'
 import TextField from '@mui/material/TextField'
-import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete'
+import Autocomplete from '@mui/material/Autocomplete'
 import Button from '@mui/material/Button'
 import { Chip } from '@mui/material'
 import Stack from '@mui/material/Stack'
@@ -20,8 +20,8 @@ export default function NewRecipe(props) {
      const [cuisine, setCuisine] = useState('')
      const [value, setValue] = useState(null)
      const [step, setStep] = useState([])
-
      const [availableIngredients, setAvailableIngredients] = useState([])
+     
      const storedToken = localStorage.getItem('authToken')
 
      const handleNameInput = (e) => setName(e.target.value)
