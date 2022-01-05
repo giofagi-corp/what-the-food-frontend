@@ -13,7 +13,6 @@ export default function FormInput(props) {
           display: 'flex',
           flexDirection: "column",
           alignItems: 'center',
-          width: '94%',
 
          }} noValidate autoComplete="off">
           <TextField type="text"

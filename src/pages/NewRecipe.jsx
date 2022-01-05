@@ -14,18 +14,18 @@ import Stack from '@mui/material/Stack'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import CloseIcon from '@mui/icons-material/Close'
 //import IconButton from '@mui/material/IconButton';
-import PhotoCamera from '@mui/icons-material/PhotoCamera';
-import { styled } from '@mui/material/styles';
-
-import "../index.css";
-import { flexbox } from '@mui/system'
-
+import PhotoCamera from '@mui/icons-material/PhotoCamera'
+import { styled } from '@mui/material/styles'
+import NewRecipeStep3 from '../components/NewRecipeStep3'
+import NewRecipeStep2 from '../components/NewRecipeStep2'
+import NewRecipeStep1 from '../components/NewRecipeStep1'
+import '../index.css'
 
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
 const Input = styled('input')({
      display: 'none',
-   });
+})
 
 export default function NewRecipe(props) {
      const [name, setName] = useState('')
@@ -40,29 +40,25 @@ export default function NewRecipe(props) {
      const handleNameInput = (e) => setName(e.target.value)
      const handleTimeInput = (e) => setTime(e.target.value)
      const handleCuisineInput = (e) => setCuisine(e.target.value)
+     const handleChange = (e) => setValue(e.target.value)
 
-     const addImageClass = {
-          display: "flex",
-          color: 'white',
-          border: "solid 1px #1976d2",
-          height: '100px',
-          width: '94%',
+
+     const nextStep = () => {
+          console.log("hola")
      }
 
-     const deleteStep = () =>{
-          console.log("deleting Step");
+     const deleteStep = () => {
+          console.log('deleting Step')
      }
 
      const seeArr = () => {
           console.log('array of steps ----->', step)
      }
 
-     const handleChange = (event) => {
-          setValue(event.target.value)
-     }
-
      const addStep = () => {
+          console.log('value ------>', value)
           setStep([...step, value])
+          //console.log('array of steps on add steps ----->', step)
           setValue('')
      }
 
@@ -70,12 +66,12 @@ export default function NewRecipe(props) {
           <div className="RecipeInputs">
                <div className="RecipeStepBubble">
                     <div className="RecipeStepHeader">
-                         <p className="RecipeStepNumber"> {index + 1}</p>
+                         <h3 className="RecipeStepNumber"> {index + 1}</h3>
                          <IconButton aria-label="delete">
-                              <CloseIcon onClick={deleteStep}/>
+                              <CloseIcon onClick={deleteStep} />
                          </IconButton>
                     </div>
-                    <p>{currentStep}</p>
+                    <p className="RecipeStepParagraph">{currentStep}</p>
                </div>
           </div>
      ))
@@ -88,47 +84,59 @@ export default function NewRecipe(props) {
           })
      }, [])
 
-     return (
-          <div >
-               <Link to="/">
-                    <BackButton />
-               </Link>
-               <GenericPageTitle text="Add a new recipe" />
-
-               {/* RECIPE DESCRIPTION */}
-               <GenericPagesSubtitle text="Recipe description" />
-               {/* <div style={addImageClass}>
-                    add image
-
-               </div> */}
-               <div className='RecipeInputs'>
-                    <label htmlFor="icon-button-file" className='RecipePicUpload'>
-                         <Input accept="image/*" id="icon-button-file" type="file" />
-                         <IconButton color="primary" aria-label="upload picture" component="span">
+     const recipeDescription = () => (
+          <div>
+               <div className="AddRecipeText">
+                    <GenericPagesSubtitle text="Recipe description" />
+               </div>
+               <div className="RecipeInputs">
+                    <label
+                         htmlFor="icon-button-file"
+                         className="RecipePicUpload"
+                    >
+                         <Input
+                              accept="image/*"
+                              id="icon-button-file"
+                              type="file"
+                         />
+                         <IconButton
+                              color="primary"
+                              aria-label="upload picture"
+                              component="span"
+                         >
                               <PhotoCamera />
                          </IconButton>
                     </label>
-                    
-                    <FormInput 
-                         name={name}
-                         updateName={handleNameInput}
-                         time={time}
-                         updateTime={handleTimeInput}
-                         cuisine={cuisine}
-                         updateCuisine={handleCuisineInput}
-                    />
-
+               </div>
+               <FormInput
+                    name={name}
+                    updateName={handleNameInput}
+                    time={time}
+                    updateTime={handleTimeInput}
+                    cuisine={cuisine}
+                    updateCuisine={handleCuisineInput}
+               />
+               <div className="RecipeInputs">
                     <Link>
-                         <Button variant="contained" size="large" disableElevation>
+                         <Button
+                              variant="contained"
+                              size="large"
+                              disableElevation
+                         >
                               Next
                          </Button>
                     </Link>
                </div>
+          </div>
+     )
 
-               {/* ADD INGREDIENT */}
-               <GenericPagesSubtitle text="Recipe ingredients" />
+     const recipeIngredients = () => (
+          <div>
+               <div className="AddRecipeText">
+                    <GenericPagesSubtitle text="Recipe ingredients" />
+               </div>
                <div className="RecipeInputs">
-                    <Stack spacing={3} sx={{ width: '94%' }}>
+                    <Stack spacing={3} sx={{ width: '94%', mb: 2 }}>
                          <Autocomplete
                               multiple
                               id="tags-filled"
@@ -155,25 +163,32 @@ export default function NewRecipe(props) {
                               )}
                          />
                     </Stack>
-               
-               <Button variant="contained" size="large" disableElevation>
-                    Next
-               </Button>
+
+                    <Button variant="contained" size="large" disableElevation>
+                         Next
+                    </Button>
                </div>
-               {/* ADD STEPS */}
-               <GenericPagesSubtitle text="Recipe steps" />
+          </div>
+     )
+
+     const recipeSteps = () => (
+          <div>
+               <div className="AddRecipeText">
+                    <GenericPagesSubtitle text="Recipe steps" />
+               </div>
                <div>{steps}</div>
                <div className="RecipeInputs">
                     <TextField
-                         sx={{ width: '94%' }}
+                         sx={{ width: '94%', mb: 2 }}
                          id="outlined-textarea"
                          label="Steps"
                          placeholder="Next step"
                          multiline
-                         value={value}
                          onChange={handleChange}
+                         value={value}
                     />
                     <Button
+                         sx={{ mb: 2 }}
                          variant="text"
                          startIcon={<AddCircleOutlineIcon />}
                          onClick={addStep}
@@ -181,14 +196,35 @@ export default function NewRecipe(props) {
                          Add new step
                     </Button>
 
-                    <Button variant="contained" size="large" disableElevation>
+                    <Button
+                         sx={{ mb: 2 }}
+                         variant="contained"
+                         size="large"
+                         disableElevation
+                    >
                          Submit
                     </Button>
 
-                    <Button sx={{ marginTop: '10px' }} type="button" variant="outlined" onClick={seeArr}>
+                    <Button type="button" variant="outlined" onClick={seeArr}>
                          See array
                     </Button>
                </div>
+          </div>
+     )
+
+     const [formStep, setformStep] = useState('')
+
+     return (
+          <div>
+               <div className="AddRecipeText">
+                    <GenericPageTitle text="Add a new recipe" />
+               </div>
+               {/* RECIPE DESCRIPTION */}
+               <NewRecipeStep1
+                    nexStep={nextStep}
+               />
+               {/* RECIPE INGREDIENTS */}
+               {/* RECIPE STEPS */}
           </div>
      )
 }

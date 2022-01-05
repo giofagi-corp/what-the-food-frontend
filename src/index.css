@@ -297,6 +297,10 @@ select {
   font-family: "Roboto", sans-serif !important;
 }
 
+.AddRecipeText {
+  margin: 0 3% 0 ;
+}
+
 .RecipeInputs {
   display: flex;
   flex-direction: column;
@@ -307,19 +311,21 @@ select {
 .RecipePicUpload {
   display: flex;
   color: white;
-  border: 1px solid rgb(25, 118, 210);
+  margin-bottom: 15px;
+  border-radius: 4px;
+  background-color: #ececec;
   height: 100px;
   width: 93.5%;
   flex-direction: column;
   justify-content: flex-end;
-  border-radius: 4px;
+  
 }
 
 .RecipeStepBubble {
   background-color: #D8F3FF;
-  width: 87%;
+  /* width: 86%; */
   padding: 4px 14px;
-  margin-top: 20px;
+  margin: 20px 3% 0px;
   border-radius: 14px;  
 }
 
@@ -328,6 +334,7 @@ select {
   justify-content: space-between;
   margin: 20px 0px 6px;
   height: 20px;
+  padding-left: 14px;
 }
 
 .RecipeStepNumber {
@@ -343,5 +350,10 @@ select {
   border-radius: 50%;
   text-align: center;
 }
+
+.RecipeStepParagraph{
+  padding: 0 14px;
+}
+
 
 
