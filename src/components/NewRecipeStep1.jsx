@@ -12,7 +12,7 @@ const Input = styled('input')({
      display: 'none',
 })
 
-export default function NewRecipeStep1({nextStep}) {
+export default function NewRecipeStep1(props) {
      const [name, setName] = useState('')
      const [time, setTime] = useState()
      const [cuisine, setCuisine] = useState('')
@@ -59,7 +59,7 @@ export default function NewRecipeStep1({nextStep}) {
                               variant="contained"
                               size="large"
                               disableElevation
-                              onClick={nextStep}
+                              onClick={props.func(name, time, cuisine)}
                          >
                               Next
                          </Button>

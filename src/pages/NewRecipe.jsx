@@ -43,8 +43,8 @@ export default function NewRecipe(props) {
      const handleChange = (e) => setValue(e.target.value)
 
 
-     const nextStep = () => {
-          console.log("hola")
+     const nextStep = (name, duration, cuisine) => {
+          console.log(`hola -----> `, name, duration, cuisine)
      }
 
      const deleteStep = () => {
@@ -221,7 +221,7 @@ export default function NewRecipe(props) {
                </div>
                {/* RECIPE DESCRIPTION */}
                <NewRecipeStep1
-                    nexStep={nextStep}
+                    func={nextStep}
                />
                {/* RECIPE INGREDIENTS */}
                {/* RECIPE STEPS */}
