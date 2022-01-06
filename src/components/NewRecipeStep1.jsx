@@ -13,8 +13,7 @@ const Input = styled('input')({
 })
 
 export default function NewRecipeStep1(props) {
-
-     console.log("props----->",props);
+     console.log('props----->', props)
      //const [name, setName] = useState('')
      // const [time, setTime] = useState()
      // const [cuisine, setCuisine] = useState('')
@@ -28,7 +27,7 @@ export default function NewRecipeStep1(props) {
                <div className="AddRecipeText">
                     <GenericPagesSubtitle text="Recipe description" />
                </div>
-               
+
                <div className="RecipeInputs">
                     <label
                          htmlFor="icon-button-file"
@@ -39,13 +38,19 @@ export default function NewRecipeStep1(props) {
                               id="icon-button-file"
                               type="file"
                          />
-                         <IconButton
-                              color="primary"
-                              aria-label="upload picture"
-                              component="span"
-                         >
-                              <PhotoCamera />
-                         </IconButton>
+                         <div className='RecipePicUploadButtons'>
+                              <IconButton
+                                   sx={{ p: 0 }}
+                                   color="primary"
+                                   aria-label="upload picture"
+                                   component="span"
+                              >
+                                   <PhotoCamera />
+                              </IconButton>
+                              <Button sx={{ p: 0 }} variant="text">
+                                   Upload Image
+                              </Button>
+                         </div>
                     </label>
                </div>
                <FormInput
@@ -56,7 +61,7 @@ export default function NewRecipeStep1(props) {
                     cuisine={props.cuisine}
                     updateCuisine={handleCuisineInput}
                />
-               
+
                {/* <div className="RecipeInputs">
                     <Link>
                          <Button

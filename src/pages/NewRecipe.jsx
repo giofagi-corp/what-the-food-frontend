@@ -45,11 +45,7 @@ export default function NewRecipe() {
 
      const nextFormStep = () => {
           setFormStep((formStep > 0 || formStep < 4) && formStep + 1)
-          console.log('name----->', name)
-          console.log('time----->', time)
-          console.log('cuisine----->', cuisine)
-          console.log('ingredients----->', ingredients)
-          console.log('steps----->', step)
+          
           setNewRecipe({
                name: {name},
                time: {time},
@@ -61,6 +57,16 @@ export default function NewRecipe() {
 
      const prevFormStep = () => {
           setFormStep((formStep > 1 || formStep < 4) && formStep - 1)
+     }
+
+     const submit = () => {
+          console.log('name----->', name)
+          console.log('time----->', time)
+          console.log('cuisine----->', cuisine)
+          console.log('ingredients----->', ingredients)
+          console.log('steps----->', step)
+
+          console.log(newRecipe);
      }
 
      /* useEffect(() => {
@@ -133,6 +139,7 @@ export default function NewRecipe() {
                                    variant="contained"
                                    size="large"
                                    disableElevation
+                                   onClick={submit}
                               >
                                    Submit
                               </Button>
