@@ -314,7 +314,7 @@ select {
   margin-bottom: 15px;
   border-radius: 4px;
   background-color: #ececec;
-  height: 100px;
+  height: 200px;
   width: 93.5%;
   flex-direction: column;
   justify-content: flex-end;
@@ -325,7 +325,7 @@ select {
   background-color: #D8F3FF;
   /* width: 86%; */
   padding: 4px 14px;
-  margin: 20px 3% 0px;
+  margin: 0 3% 1rem;
   border-radius: 14px;  
 }
 

@@ -23,208 +23,122 @@ import '../index.css'
 
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
-const Input = styled('input')({
+/* const Input = styled('input')({
      display: 'none',
-})
+}) */
 
-export default function NewRecipe(props) {
+export default function NewRecipe() {
+     const [formStep, setFormStep] = useState(1)
+
      const [name, setName] = useState('')
      const [time, setTime] = useState()
      const [cuisine, setCuisine] = useState('')
      const [value, setValue] = useState(null)
+     //const [steps, setSteps] = useState([])
+     //const [availableIngredients, setAvailableIngredients] = useState([])
+     const [ingredients, setIngredients] = useState([])
      const [step, setStep] = useState([])
-     const [availableIngredients, setAvailableIngredients] = useState([])
+
+     const [newRecipe, setNewRecipe] = useState({})
 
      const storedToken = localStorage.getItem('authToken')
 
-     const handleNameInput = (e) => setName(e.target.value)
-     const handleTimeInput = (e) => setTime(e.target.value)
-     const handleCuisineInput = (e) => setCuisine(e.target.value)
-     const handleChange = (e) => setValue(e.target.value)
-
-
-     const nextStep = (name, duration, cuisine) => {
-          console.log(`hola -----> `, name, duration, cuisine)
+     const nextFormStep = () => {
+          setFormStep((formStep > 0 || formStep < 4) && formStep + 1)
+          console.log('name----->', name)
+          console.log('time----->', time)
+          console.log('cuisine----->', cuisine)
+          console.log('ingredients----->', ingredients)
+          console.log('steps----->', step)
+          setNewRecipe({
+               name: {name},
+               time: {time},
+               cuisine: {cuisine},
+               ingredients: {ingredients},
+               steps: {step}
+          })
      }
 
-     const deleteStep = () => {
-          console.log('deleting Step')
+     const prevFormStep = () => {
+          setFormStep((formStep > 1 || formStep < 4) && formStep - 1)
      }
 
-     const seeArr = () => {
-          console.log('array of steps ----->', step)
-     }
-
-     const addStep = () => {
-          console.log('value ------>', value)
-          setStep([...step, value])
-          //console.log('array of steps on add steps ----->', step)
-          setValue('')
-     }
-
-     const steps = step.map((currentStep, index) => (
-          <div className="RecipeInputs">
-               <div className="RecipeStepBubble">
-                    <div className="RecipeStepHeader">
-                         <h3 className="RecipeStepNumber"> {index + 1}</h3>
-                         <IconButton aria-label="delete">
-                              <CloseIcon onClick={deleteStep} />
-                         </IconButton>
-                    </div>
-                    <p className="RecipeStepParagraph">{currentStep}</p>
-               </div>
-          </div>
-     ))
-
-     useEffect(() => {
+     /* useEffect(() => {
           axios.get(`${REACT_APP_API_URI}/api/search-all-ing`, {
                headers: { Authorization: `Bearer ${storedToken}` },
           }).then((res) => {
                setAvailableIngredients(res.data)
           })
-     }, [])
-
-     const recipeDescription = () => (
-          <div>
-               <div className="AddRecipeText">
-                    <GenericPagesSubtitle text="Recipe description" />
-               </div>
-               <div className="RecipeInputs">
-                    <label
-                         htmlFor="icon-button-file"
-                         className="RecipePicUpload"
-                    >
-                         <Input
-                              accept="image/*"
-                              id="icon-button-file"
-                              type="file"
-                         />
-                         <IconButton
-                              color="primary"
-                              aria-label="upload picture"
-                              component="span"
-                         >
-                              <PhotoCamera />
-                         </IconButton>
-                    </label>
-               </div>
-               <FormInput
-                    name={name}
-                    updateName={handleNameInput}
-                    time={time}
-                    updateTime={handleTimeInput}
-                    cuisine={cuisine}
-                    updateCuisine={handleCuisineInput}
-               />
-               <div className="RecipeInputs">
-                    <Link>
-                         <Button
-                              variant="contained"
-                              size="large"
-                              disableElevation
-                         >
-                              Next
-                         </Button>
-                    </Link>
-               </div>
-          </div>
-     )
-
-     const recipeIngredients = () => (
-          <div>
-               <div className="AddRecipeText">
-                    <GenericPagesSubtitle text="Recipe ingredients" />
-               </div>
-               <div className="RecipeInputs">
-                    <Stack spacing={3} sx={{ width: '94%', mb: 2 }}>
-                         <Autocomplete
-                              multiple
-                              id="tags-filled"
-                              options={availableIngredients.map(
-                                   (option) => option.name
-                              )}
-                              freeSolo
-                              renderTags={(value, getTagProps) =>
-                                   value.map((option, index) => (
-                                        <Chip
-                                             variant="outlined"
-                                             label={option}
-                                             {...getTagProps({ index })}
-                                        />
-                                   ))
-                              }
-                              renderInput={(params) => (
-                                   <TextField
-                                        {...params}
-                                        variant="outlined"
-                                        label="Add ingredients"
-                                        placeholder="Add ingredient"
-                                   />
-                              )}
-                         />
-                    </Stack>
-
-                    <Button variant="contained" size="large" disableElevation>
-                         Next
-                    </Button>
-               </div>
-          </div>
-     )
-
-     const recipeSteps = () => (
-          <div>
-               <div className="AddRecipeText">
-                    <GenericPagesSubtitle text="Recipe steps" />
-               </div>
-               <div>{steps}</div>
-               <div className="RecipeInputs">
-                    <TextField
-                         sx={{ width: '94%', mb: 2 }}
-                         id="outlined-textarea"
-                         label="Steps"
-                         placeholder="Next step"
-                         multiline
-                         onChange={handleChange}
-                         value={value}
-                    />
-                    <Button
-                         sx={{ mb: 2 }}
-                         variant="text"
-                         startIcon={<AddCircleOutlineIcon />}
-                         onClick={addStep}
-                    >
-                         Add new step
-                    </Button>
-
-                    <Button
-                         sx={{ mb: 2 }}
-                         variant="contained"
-                         size="large"
-                         disableElevation
-                    >
-                         Submit
-                    </Button>
-
-                    <Button type="button" variant="outlined" onClick={seeArr}>
-                         See array
-                    </Button>
-               </div>
-          </div>
-     )
-
-     const [formStep, setformStep] = useState('')
+     }, []) */
 
      return (
           <div>
                <div className="AddRecipeText">
                     <GenericPageTitle text="Add a new recipe" />
                </div>
-               {/* RECIPE DESCRIPTION */}
-               <NewRecipeStep1
-                    func={nextStep}
-               />
-               {/* RECIPE INGREDIENTS */}
-               {/* RECIPE STEPS */}
+               {formStep === 1 && (
+                    <NewRecipeStep1
+                         name={name}
+                         setName={setName}
+                         time={time}
+                         setTime={setTime}
+                         cuisine={cuisine}
+                         setCuisine={setCuisine}
+                    />
+               )}
+               {formStep === 2 && (
+                    <NewRecipeStep2
+                         ingredients={ingredients}
+                         setIngredients={setIngredients}
+                    />
+               )}
+               {formStep === 3 && (
+                    <NewRecipeStep3 
+                         step={step} 
+                         setStep={setStep} 
+                    />
+               )}
+               <div className="RecipeInputs">
+                    <div>
+                         {formStep > 1 && formStep < 4 && (
+                              <Link>
+                                   <Button
+                                        sx={{ ml: 1, mr: 1 }}
+                                        variant="contained"
+                                        size="large"
+                                        disableElevation
+                                        onClick={prevFormStep}
+                                   >
+                                        Previous
+                                   </Button>
+                              </Link>
+                         )}
+                         {formStep > 0 && formStep < 3 && (
+                              <Link>
+                                   <Button
+                                        sx={{ ml: 1, mr: 1 }}
+                                        variant="contained"
+                                        size="large"
+                                        disableElevation
+                                        onClick={nextFormStep}
+                                   >
+                                        Next
+                                   </Button>
+                              </Link>
+                         )}
+
+                         {formStep === 3 && (
+                              <Button
+                                   sx={{ ml: 1, mr: 1 }}
+                                   variant="contained"
+                                   size="large"
+                                   disableElevation
+                              >
+                                   Submit
+                              </Button>
+                         )}
+                    </div>
+               </div>
           </div>
      )
 }

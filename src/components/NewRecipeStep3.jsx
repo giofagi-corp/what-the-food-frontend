@@ -7,26 +7,28 @@ import TextField from '@mui/material/TextField'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 
 export default function NewRecipeStep3(props) {
+
+     console.log("props ------>",props)
      const handleChange = (e) => setValue(e.target.value)
      const [value, setValue] = useState(null)
-     const [step, setStep] = useState([])
+     //const {step, setStep} = props
 
      const deleteStep = () => {
           console.log('deleting Step')
      }
 
      const seeArr = () => {
-          console.log('array of steps ----->', step)
+          console.log('array of steps ----->', props.step)
      }
 
      const addStep = () => {
           console.log('value ------>', value)
-          setStep([...step, value])
+          props.setStep([...props.step, value])
           //console.log('array of steps on add steps ----->', step)
           setValue('')
      }
 
-     const steps = step.map((currentStep, index) => (
+     const steps = props.step.map((currentStep, index) => (
           <div className="RecipeInputs">
                <div className="RecipeStepBubble">
                     <div className="RecipeStepHeader">
@@ -48,7 +50,7 @@ export default function NewRecipeStep3(props) {
                <div>{steps}</div>
                <div className="RecipeInputs">
                     <TextField
-                         sx={{ width: '94%', mb: 2 }}
+                         sx={{ width: '94%', mb: 2}}
                          id="outlined-textarea"
                          label="Steps"
                          placeholder="Next step"
@@ -63,19 +65,6 @@ export default function NewRecipeStep3(props) {
                          onClick={addStep}
                     >
                          Add new step
-                    </Button>
-
-                    <Button
-                         sx={{ mb: 2 }}
-                         variant="contained"
-                         size="large"
-                         disableElevation
-                    >
-                         Submit
-                    </Button>
-
-                    <Button type="button" variant="outlined" onClick={seeArr}>
-                         See array
                     </Button>
                </div>
           </div>

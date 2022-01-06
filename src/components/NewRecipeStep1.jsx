@@ -13,19 +13,22 @@ const Input = styled('input')({
 })
 
 export default function NewRecipeStep1(props) {
-     const [name, setName] = useState('')
-     const [time, setTime] = useState()
-     const [cuisine, setCuisine] = useState('')
 
-     const handleNameInput = (e) => setName(e.target.value)
-     const handleTimeInput = (e) => setTime(e.target.value)
-     const handleCuisineInput = (e) => setCuisine(e.target.value)
+     console.log("props----->",props);
+     //const [name, setName] = useState('')
+     // const [time, setTime] = useState()
+     // const [cuisine, setCuisine] = useState('')
+
+     const handleNameInput = (e) => props.setName(e.target.value)
+     const handleTimeInput = (e) => props.setTime(e.target.value)
+     const handleCuisineInput = (e) => props.setCuisine(e.target.value)
 
      return (
           <div>
                <div className="AddRecipeText">
                     <GenericPagesSubtitle text="Recipe description" />
                </div>
+               
                <div className="RecipeInputs">
                     <label
                          htmlFor="icon-button-file"
@@ -46,14 +49,15 @@ export default function NewRecipeStep1(props) {
                     </label>
                </div>
                <FormInput
-                    name={name}
+                    name={props.name}
                     updateName={handleNameInput}
-                    time={time}
+                    time={props.time}
                     updateTime={handleTimeInput}
-                    cuisine={cuisine}
+                    cuisine={props.cuisine}
                     updateCuisine={handleCuisineInput}
                />
-               <div className="RecipeInputs">
+               
+               {/* <div className="RecipeInputs">
                     <Link>
                          <Button
                               variant="contained"
@@ -64,7 +68,7 @@ export default function NewRecipeStep1(props) {
                               Next
                          </Button>
                     </Link>
-               </div>
+               </div> */}
           </div>
      )
 }
