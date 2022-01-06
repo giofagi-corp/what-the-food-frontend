@@ -61,9 +61,9 @@ export default function NewRecipeStep2() {
                          />
                     </Stack>
                
-               <Button variant="contained" size="large" disableElevation>
+               {/* <Button variant="contained" size="large" disableElevation>
                     Next
-               </Button>
+               </Button> */}
                </div>
         </div>
     )

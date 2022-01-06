@@ -53,7 +53,7 @@ export default function NewRecipeStep1({nextStep}) {
                     cuisine={cuisine}
                     updateCuisine={handleCuisineInput}
                />
-               <div className="RecipeInputs">
+               {/* <div className="RecipeInputs">
                     <Link>
                          <Button
                               variant="contained"
@@ -64,7 +64,7 @@ export default function NewRecipeStep1({nextStep}) {
                               Next
                          </Button>
                     </Link>
-               </div>
+               </div> */}
           </div>
      )
 }

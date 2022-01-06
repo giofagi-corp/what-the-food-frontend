@@ -34,6 +34,7 @@ export default function NewRecipe(props) {
      const [value, setValue] = useState(null)
      const [step, setStep] = useState([])
      const [availableIngredients, setAvailableIngredients] = useState([])
+     const [formStep, setFormStep] = useState(1)
 
      const storedToken = localStorage.getItem('authToken')
 
@@ -42,9 +43,12 @@ export default function NewRecipe(props) {
      const handleCuisineInput = (e) => setCuisine(e.target.value)
      const handleChange = (e) => setValue(e.target.value)
 
+     const nextFormStep = () => {
+          setFormStep((formStep > 0 || formStep < 4) && formStep + 1)
+     }
 
-     const nextStep = () => {
-          console.log("hola")
+     const prevFormStep = () => {
+          setFormStep((formStep > 1 || formStep < 4) && formStep - 1)
      }
 
      const deleteStep = () => {
@@ -212,17 +216,58 @@ export default function NewRecipe(props) {
           </div>
      )
 
-     const [formStep, setformStep] = useState('')
-
      return (
           <div>
                <div className="AddRecipeText">
                     <GenericPageTitle text="Add a new recipe" />
                </div>
                {/* RECIPE DESCRIPTION */}
-               <NewRecipeStep1
-                    nexStep={nextStep}
-               />
+               {formStep === 1 && <NewRecipeStep1 />}
+               {formStep === 2 && <NewRecipeStep2 />}
+               {formStep === 3 && <NewRecipeStep3 />}
+               {/* <NewRecipeStep1/> */}
+
+               {formStep > 1 && formStep < 4 && (
+                    <div className="RecipeInputs">
+                         <Link>
+                              <Button
+                                   variant="contained"
+                                   size="large"
+                                   disableElevation
+                                   onClick={prevFormStep}
+                              >
+                                   Previous
+                              </Button>
+                         </Link>
+                    </div>
+               )}
+               {formStep > 0 && formStep < 3 && (
+                    <div className="RecipeInputs">
+                         <Link>
+                              <Button
+                                   variant="contained"
+                                   size="large"
+                                   disableElevation
+                                   onClick={nextFormStep}
+                              >
+                                   Next
+                              </Button>
+                         </Link>
+                    </div>
+               )}
+               
+               {formStep === 3 && (
+                    <div className="RecipeInputs">
+                         <Button
+                              sx={{ mb: 2 }}
+                              variant="contained"
+                              size="large"
+                              disableElevation
+                         >
+                              Submit
+                         </Button>
+                    </div>
+               )}
                {/* RECIPE INGREDIENTS */}
                {/* RECIPE STEPS */}
           </div>

@@ -65,18 +65,18 @@ export default function NewRecipeStep3(props) {
                          Add new step
                     </Button>
 
-                    <Button
+                    {/* <Button
                          sx={{ mb: 2 }}
                          variant="contained"
                          size="large"
                          disableElevation
                     >
                          Submit
-                    </Button>
+                    </Button> */}
 
-                    <Button type="button" variant="outlined" onClick={seeArr}>
+                    {/* <Button type="button" variant="outlined" onClick={seeArr}>
                          See array
-                    </Button>
+                    </Button> */}
                </div>
           </div>
      )
