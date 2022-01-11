@@ -9,7 +9,6 @@ const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 export default function RecipePage() {
     const storedToken = localStorage.getItem("authToken");
 
-
     const {id} = useParams()
     console.log(id);
     const [recipe, setRecipe] = useState([])
@@ -34,7 +33,7 @@ export default function RecipePage() {
     return (
         <div>
             <Hero recipe={recipe}/>
-            <RecipeBody description={recipe.description} ingredients={recipe.ingredients}/>
+            <RecipeBody recipe={recipe}/>
         </div>
     )
     }
