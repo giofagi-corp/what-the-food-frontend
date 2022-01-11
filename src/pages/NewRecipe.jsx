@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import GenericPageTitle from '../components/GenericPageTitle'
 import axios from 'axios'
@@ -17,10 +17,38 @@ export default function NewRecipe() {
      const [cuisine, setCuisine] = useState('')
      const [ingredients, setIngredients] = useState([])
      const [step, setStep] = useState([])
+     const [ingredientsId, setIngredientsId] = useState([])
 
      const [newRecipe, setNewRecipe] = useState({})
 
      const storedToken = localStorage.getItem('authToken')
+
+     const handleIngredientId = (ing) => {
+          ing.map((e) => {
+               axios.post(
+                    `${REACT_APP_API_URI}/api/search-ingredient/${e}`,
+                    {},
+                    {
+                         headers: { Authorization: `Bearer ${storedToken}` },
+                    }
+               )
+                    .then((response) => {
+                         setIngredientsId([
+                              ...ingredientsId,
+                              response.data[0]._id,
+                         ])
+                    })
+                    .catch((error) => console.log(error))
+          })
+     }
+
+     const CreateNewRecipe = (recipe) => {
+          axios.post(`${REACT_APP_API_URI}/api/recipe/create/`, recipe, {
+               headers: { Authorization: `Bearer ${storedToken}` },
+          }).then((res) => {
+               console.log('res data fron DB ------>', res.data)
+          })
+     }
 
      const nextFormStep = () => {
           setFormStep((formStep > 0 || formStep < 4) && formStep + 1)
@@ -38,38 +66,34 @@ export default function NewRecipe() {
           setFormStep((formStep > 1 || formStep < 4) && formStep - 1)
      }
 
-     
      const submit = () => {
-
-          console.log("step ------->",step)
-          
           setNewRecipe({
                imageUrl: '',
                name: name,
-               ingredients: ingredients,
+               ingredients: ingredientsId,
                time: time,
                description: step,
-               cuisine: cuisine, 
-          })
-
-          // no se actualiza el state
-          console.log("what we're gonna create ---->", newRecipe)
-          axios
-               .post(`${REACT_APP_API_URI}/api/recipe/create/`, newRecipe, {
-               headers: { Authorization: `Bearer ${storedToken}` },
-             })
-          .then((res) => {
-               console.log("res data fron DB ------>",res.data)
+               cuisine: cuisine,
           })
      }
 
-     /* useEffect(() => {
-          axios.get(`${REACT_APP_API_URI}/api/search-all-ing`, {
-               headers: { Authorization: `Bearer ${storedToken}` },
-          }).then((res) => {
-               setAvailableIngredients(res.data)
-          })
-     }, []) */
+     useEffect(() => {
+          console.log('newRecipe Updated------>', newRecipe)
+          if (step.length !== 0) {
+               CreateNewRecipe(newRecipe)
+          }
+     }, [newRecipe])
+
+     useEffect(() => {
+          console.log('ingredientsId Updated------>', ingredients)
+          if (ingredients.length !== 0) {
+               console.log('ingredients----->', ingredients)
+               console.log('hola qué tal')
+               // Bring ingredientes Id
+               handleIngredientId(ingredients)
+               console.log(ingredientsId)
+          }
+     }, [ingredients])
 
      return (
           <div>
@@ -93,10 +117,7 @@ export default function NewRecipe() {
                     />
                )}
                {formStep === 3 && (
-                    <NewRecipeStep3 
-                         step={step} 
-                         setStep={setStep}  
-                    />
+                    <NewRecipeStep3 step={step} setStep={setStep} />
                )}
                <div className="RecipeInputs">
                     <div>
