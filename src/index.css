@@ -171,6 +171,16 @@ nav li {
      padding-right: 20px;
 }
 
+.RecipeBodyHeader {
+     display: flex;
+     justify-content: flex-start;
+}
+
+.RecipeBodyHeader div{
+     margin-right: 50px;
+     
+}
+
 .RecipeName {
      float: left;
      text-align: left;
@@ -320,9 +330,9 @@ select {
      justify-content: center;
 }
 
-.RecipePicUploadButtons{
-  display: flex;
-  justify-content: center;
+.RecipePicUploadButtons {
+     display: flex;
+     justify-content: center;
 }
 
 .RecipeStepBubble {

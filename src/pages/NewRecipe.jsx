@@ -25,7 +25,8 @@ export default function NewRecipe() {
 
      const handleIngredientId = (ing) => {
           ing.map((e) => {
-               axios.post(
+               
+               return axios.post(
                     `${REACT_APP_API_URI}/api/search-ingredient/${e}`,
                     {},
                     {
@@ -33,10 +34,7 @@ export default function NewRecipe() {
                     }
                )
                     .then((response) => {
-                         setIngredientsId([
-                              ...ingredientsId,
-                              response.data[0]._id,
-                         ])
+                         setIngredientsId([...ingredientsId, response.data[0]._id,])
                     })
                     .catch((error) => console.log(error))
           })
@@ -78,20 +76,14 @@ export default function NewRecipe() {
      }
 
      useEffect(() => {
-          console.log('newRecipe Updated------>', newRecipe)
           if (step.length !== 0) {
                CreateNewRecipe(newRecipe)
           }
      }, [newRecipe])
 
      useEffect(() => {
-          console.log('ingredientsId Updated------>', ingredients)
           if (ingredients.length !== 0) {
-               console.log('ingredients----->', ingredients)
-               console.log('hola qué tal')
-               // Bring ingredientes Id
                handleIngredientId(ingredients)
-               console.log(ingredientsId)
           }
      }, [ingredients])
 
