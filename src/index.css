@@ -8,6 +8,14 @@ body {
   color: #4d4d4d;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Roboto", sans-serif;
+}
+
 a {
   list-style: none;
   color: black;
@@ -188,11 +196,13 @@ nav li {
 }
 
 .NotificationsPage {
-  padding: 0 20px 0 20px;
+  padding: 0 24px 0 24px;
 }
 
 .GenericPageTitle {
   text-align: left;
+  padding-left: 40px;
+  margin-top: -50px;
 }
 
 .Notifications {

@@ -58,7 +58,7 @@ function LoginPage(props) {
 
         <button type="submit">Login</button>
       </form> */}
-      <GenericPageTitle text="Login" />
+      <GenericPageTitle text="Login"/>
       <Box component="form" sx={{ '& > :not(style)': { mb: 2, width: '100%' },}} noValidate autoComplete="off">
           <TextField type="text" 
             name="email"
