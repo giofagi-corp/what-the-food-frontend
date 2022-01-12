@@ -95,6 +95,7 @@ export default function NewRecipe() {
                     .post(`https://api.cloudinary.com/v1_1/${cloudinaryName}/upload`, formData)
                     .then((res) =>{
                          console.log("res----->", res)
+                         console.log(res.data.url)
                     })
           }
      }, [image])
