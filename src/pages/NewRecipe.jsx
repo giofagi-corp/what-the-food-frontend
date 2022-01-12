@@ -10,8 +10,11 @@ import '../index.css'
 
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
+const cloudinaryName = process.env.REACT_APP_CLOUDINARY_NAME
+
 export default function NewRecipe() {
      const [formStep, setFormStep] = useState(1)
+     const [image, setImage] = useState('')
      const [name, setName] = useState('')
      const [time, setTime] = useState()
      const [cuisine, setCuisine] = useState('')
@@ -40,7 +43,8 @@ export default function NewRecipe() {
           })
      }
 
-     const CreateNewRecipe = (recipe) => {
+     const createNewRecipe = (recipe) => {
+
           axios.post(`${REACT_APP_API_URI}/api/recipe/create/`, recipe, {
                headers: { Authorization: `Bearer ${storedToken}` },
           }).then((res) => {
@@ -50,8 +54,9 @@ export default function NewRecipe() {
 
      const nextFormStep = () => {
           setFormStep((formStep > 0 || formStep < 4) && formStep + 1)
+          console.log("image on next form Step----->",image)
           setNewRecipe({
-               imageUrl: '',
+               imageUrl: image,
                name: name,
                ingredients: ingredients,
                time: time,
@@ -65,8 +70,9 @@ export default function NewRecipe() {
      }
 
      const submit = () => {
+          console.log("image on submit----->",image)
           setNewRecipe({
-               imageUrl: '',
+               imageUrl: image,
                name: name,
                ingredients: ingredientsId,
                time: time,
@@ -74,10 +80,28 @@ export default function NewRecipe() {
                cuisine: cuisine,
           })
      }
+     useEffect(() => {
+
+          console.log("cloudinaryName---------------------->",cloudinaryName)
+          console.log("REACT_APP_API_URI---------------------->",REACT_APP_API_URI)
+          const formData = new FormData()
+          formData.append("file", image[0])
+          formData.append("upload_preset", "images")
+
+          //console.log("image------->", image[0])
+          if(image !== "") {
+               //console.log("----->", image[0])
+               axios
+                    .post(`https://api.cloudinary.com/v1_1/${cloudinaryName}/upload`, formData)
+                    .then((res) =>{
+                         console.log("res----->", res)
+                    })
+          }
+     }, [image])
 
      useEffect(() => {
           if (step.length !== 0) {
-               CreateNewRecipe(newRecipe)
+               createNewRecipe(newRecipe)
           }
      }, [newRecipe])
 
@@ -94,6 +118,8 @@ export default function NewRecipe() {
                </div>
                {formStep === 1 && (
                     <NewRecipeStep1
+                         image={image}
+                         setImage={setImage}
                          name={name}
                          setName={setName}
                          time={time}

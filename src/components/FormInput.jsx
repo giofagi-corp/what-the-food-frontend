@@ -17,18 +17,21 @@ export default function FormInput(props) {
          }} noValidate autoComplete="off">
           <TextField type="text"
             name="search"
+            required
             value={name}
             onChange={updateName}
             placeholder="Name"
             id="outlined-basic" label="Name" variant="outlined" />
           <TextField type="number"
             name="search"
+            required
             value={time}
             onChange={updateTime}
             placeholder="Duration"
             id="outlined-basic" label="Duration" variant="outlined" />
           <TextField type="text"
             name="search"
+            required
             value={cuisine}
             onChange={updateCuisine}
             placeholder="Cuisine"

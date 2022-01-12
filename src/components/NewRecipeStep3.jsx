@@ -8,7 +8,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 
 export default function NewRecipeStep3(props) {
 
-     console.log("props ------>",props)
+     //console.log("props ------>",props)
      const handleChange = (e) => setValue(e.target.value)
      const [value, setValue] = useState(null)
      //const {step, setStep} = props
@@ -22,7 +22,7 @@ export default function NewRecipeStep3(props) {
      }
 
      const addStep = () => {
-          console.log('value ------>', value)
+          //console.log('value ------>', value)
           props.setStep([...props.step, value])
           //console.log('array of steps on add steps ----->', step)
           setValue('')

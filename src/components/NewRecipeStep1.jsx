@@ -12,12 +12,12 @@ const Input = styled('input')({
      display: 'none',
 })
 
-export default function NewRecipeStep1(props) {
-     console.log('props----->', props)
-     //const [name, setName] = useState('')
-     // const [time, setTime] = useState()
-     // const [cuisine, setCuisine] = useState('')
+const Div = styled('div')(({ theme }) => ({
+     ...theme.typography.button,
+}))
 
+export default function NewRecipeStep1(props) {
+     const handleImageInput = (e) => props.setImage(e.target.files)
      const handleNameInput = (e) => props.setName(e.target.value)
      const handleTimeInput = (e) => props.setTime(e.target.value)
      const handleCuisineInput = (e) => props.setCuisine(e.target.value)
@@ -37,19 +37,11 @@ export default function NewRecipeStep1(props) {
                               accept="image/*"
                               id="icon-button-file"
                               type="file"
+                              onChange={handleImageInput}
                          />
-                         <div className='RecipePicUploadButtons'>
-                              <IconButton
-                                   sx={{ p: 0 }}
-                                   color="primary"
-                                   aria-label="upload picture"
-                                   component="span"
-                              >
-                                   <PhotoCamera />
-                              </IconButton>
-                              <Button sx={{ p: 0 }} variant="text">
-                                   Upload Image
-                              </Button>
+                         <div className="RecipePicUploadButtons">
+                              <PhotoCamera sx={{ mr: 0.5 }}/>
+                              <Div sx={{ ml: 0.5 }}>{'Upload Image'}</Div>
                          </div>
                     </label>
                </div>
