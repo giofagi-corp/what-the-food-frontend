@@ -15,13 +15,13 @@ const cloudinaryName = process.env.REACT_APP_CLOUDINARY_NAME
 export default function NewRecipe() {
      const [formStep, setFormStep] = useState(1)
      const [image, setImage] = useState('')
+     const [deleteImage, setDeleteImage] = useState(false)
      const [name, setName] = useState('')
      const [time, setTime] = useState()
      const [cuisine, setCuisine] = useState('')
      const [ingredients, setIngredients] = useState([])
      const [step, setStep] = useState([])
      const [ingredientsId, setIngredientsId] = useState([])
-
      const [newRecipe, setNewRecipe] = useState({})
 
      const storedToken = localStorage.getItem('authToken')
@@ -80,18 +80,27 @@ export default function NewRecipe() {
                cuisine: cuisine,
           })
      }
+
+     useEffect(()=>{
+          console.log("deleteImage ------>", deleteImage)
+          setImage("")
+     }, [deleteImage])
+
      useEffect(() => {
-          const formData = new FormData()
-          formData.append("file", image[0])
-          formData.append("upload_preset", "images")
-          if(image !== "") {
-               axios
-                    .post(`https://api.cloudinary.com/v1_1/${cloudinaryName}/upload`, formData)
-                    .then((res) =>{
-                         console.log(res.data.url)
-                         setImage(res.data.url)
-                         console.log("nuevo estado image ------->", image);
-                    })
+          if (!deleteImage){
+               const formData = new FormData()
+                    formData.append("file", image[0])
+                    formData.append("upload_preset", "images") 
+               if(image !== "") {
+                    axios
+                         .post(`https://api.cloudinary.com/v1_1/${cloudinaryName}/upload`, formData)
+                         .then((res) =>{
+                              setImage(res.data.url)
+                         })
+               } 
+          } else {
+               setImage("")
+               setDeleteImage(false)
           }
      }, [image])
 
@@ -111,13 +120,15 @@ export default function NewRecipe() {
           <div>
                <div className="AddRecipeText">
                     <GenericPageTitle text="Add a new recipe" />
+                    
                </div>
                {formStep === 1 && (
                     <div>
-                         <img src={image} style={{width: "200px"}}/>
-                         <NewRecipeStep1
+                         <NewRecipeStep1 
                               image={image}
                               setImage={setImage}
+                              deleteImage={deleteImage}
+                              setDeleteImage={setDeleteImage}
                               name={name}
                               setName={setName}
                               time={time}

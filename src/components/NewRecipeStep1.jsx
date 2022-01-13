@@ -7,6 +7,7 @@ import { IconButton } from '@mui/material'
 import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import { styled } from '@mui/material/styles'
 import '../index.css'
+import CloseIcon from '@mui/icons-material/Close'
 
 const Input = styled('input')({
      display: 'none',
@@ -22,6 +23,8 @@ export default function NewRecipeStep1(props) {
      const handleTimeInput = (e) => props.setTime(e.target.value)
      const handleCuisineInput = (e) => props.setCuisine(e.target.value)
 
+     const handleDeleteImage = () => props.setDeleteImage(true)
+
      return (
           <div>
                <div className="AddRecipeText">
@@ -29,21 +32,38 @@ export default function NewRecipeStep1(props) {
                </div>
 
                <div className="RecipeInputs">
-                    <label
-                         htmlFor="icon-button-file"
-                         className="RecipePicUpload"
-                    >
-                         <Input
-                              accept="image/*"
-                              id="icon-button-file"
-                              type="file"
-                              onChange={handleImageInput}
-                         />
-                         <div className="RecipePicUploadButtons">
-                              <PhotoCamera sx={{ mr: 0.5 }}/>
-                              <Div sx={{ ml: 0.5 }}>{'Upload Image'}</Div>
+                    {props.image !== '' ? (
+                         <div>
+                              <Link
+                                   onClick={handleImageInput}
+                                   className="RecipeImage"
+                              >
+                                   <IconButton aria-label="delete">
+                                        <CloseIcon
+                                             className="RecipeImageCloseIcon"
+                                             onClick={handleDeleteImage}
+                                        />
+                                   </IconButton>
+                                   <img src={`${props.image}`} />
+                              </Link>
                          </div>
-                    </label>
+                    ) : (
+                         <label
+                              htmlFor="icon-button-file"
+                              className="RecipePicUpload"
+                         >
+                              <Input
+                                   accept="image/*"
+                                   id="icon-button-file"
+                                   type="file"
+                                   onChange={handleImageInput}
+                              />
+                              <div className="RecipePicUploadButtons">
+                                   <PhotoCamera sx={{ mr: 0.5 }} />
+                                   <Div sx={{ ml: 0.5 }}>{'Upload Image'}</Div>
+                              </div>
+                         </label>
+                    )}
                </div>
                <FormInput
                     name={props.name}
