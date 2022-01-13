@@ -81,21 +81,16 @@ export default function NewRecipe() {
           })
      }
      useEffect(() => {
-
-          console.log("cloudinaryName---------------------->",cloudinaryName)
-          console.log("REACT_APP_API_URI---------------------->",REACT_APP_API_URI)
           const formData = new FormData()
           formData.append("file", image[0])
           formData.append("upload_preset", "images")
-
-          //console.log("image------->", image[0])
           if(image !== "") {
-               //console.log("----->", image[0])
                axios
                     .post(`https://api.cloudinary.com/v1_1/${cloudinaryName}/upload`, formData)
                     .then((res) =>{
-                         console.log("res----->", res)
                          console.log(res.data.url)
+                         setImage(res.data.url)
+                         console.log("nuevo estado image ------->", image);
                     })
           }
      }, [image])
@@ -118,16 +113,19 @@ export default function NewRecipe() {
                     <GenericPageTitle text="Add a new recipe" />
                </div>
                {formStep === 1 && (
-                    <NewRecipeStep1
-                         image={image}
-                         setImage={setImage}
-                         name={name}
-                         setName={setName}
-                         time={time}
-                         setTime={setTime}
-                         cuisine={cuisine}
-                         setCuisine={setCuisine}
-                    />
+                    <div>
+                         <img src={image} style={{width: "200px"}}/>
+                         <NewRecipeStep1
+                              image={image}
+                              setImage={setImage}
+                              name={name}
+                              setName={setName}
+                              time={time}
+                              setTime={setTime}
+                              cuisine={cuisine}
+                              setCuisine={setCuisine}
+                         />
+                    </div>
                )}
                {formStep === 2 && (
                     <NewRecipeStep2
