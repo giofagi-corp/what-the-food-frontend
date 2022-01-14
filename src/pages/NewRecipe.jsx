@@ -23,6 +23,7 @@ export default function NewRecipe() {
      const [step, setStep] = useState([])
      const [ingredientsId, setIngredientsId] = useState([])
      const [newRecipe, setNewRecipe] = useState({})
+     const [loading, setLoading] = useState(false)
 
      const storedToken = localStorage.getItem('authToken')
 
@@ -53,8 +54,9 @@ export default function NewRecipe() {
      }
 
      const nextFormStep = () => {
+
           setFormStep((formStep > 0 || formStep < 4) && formStep + 1)
-          console.log("image on next form Step----->",image)
+
           setNewRecipe({
                imageUrl: image,
                name: name,
@@ -71,6 +73,8 @@ export default function NewRecipe() {
 
      const submit = () => {
           console.log("image on submit----->",image)
+          console.log("step on submit----->",step)
+
           setNewRecipe({
                imageUrl: image,
                name: name,
@@ -91,16 +95,19 @@ export default function NewRecipe() {
                const formData = new FormData()
                     formData.append("file", image[0])
                     formData.append("upload_preset", "images") 
+                    
                if(image !== "") {
                     axios
                          .post(`https://api.cloudinary.com/v1_1/${cloudinaryName}/upload`, formData)
                          .then((res) =>{
                               setImage(res.data.url)
+                              setLoading(true)
                          })
                } 
           } else {
                setImage("")
                setDeleteImage(false)
+               setLoading(false)
           }
      }, [image])
 
@@ -125,6 +132,7 @@ export default function NewRecipe() {
                {formStep === 1 && (
                     <div>
                          <NewRecipeStep1 
+                              loading={loading}
                               image={image}
                               setImage={setImage}
                               deleteImage={deleteImage}

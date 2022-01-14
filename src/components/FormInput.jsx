@@ -16,22 +16,25 @@ export default function FormInput(props) {
 
          }} noValidate autoComplete="off">
           <TextField type="text"
-            name="search"
             required
+            name="search"
             value={name}
             onChange={updateName}
             placeholder="Name"
-            id="outlined-basic" label="Name" variant="outlined" />
+            id="outlined-basic" label="Name" variant="outlined" 
+            // error={name === ""}
+            // helperText={name === "" ? 'This field is required' : ''}
+            />
           <TextField type="number"
-            name="search"
             required
+            name="search"
             value={time}
             onChange={updateTime}
             placeholder="Duration"
             id="outlined-basic" label="Duration" variant="outlined" />
           <TextField type="text"
+            required  
             name="search"
-            required
             value={cuisine}
             onChange={updateCuisine}
             placeholder="Cuisine"

@@ -8,6 +8,8 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import { styled } from '@mui/material/styles'
 import '../index.css'
 import CloseIcon from '@mui/icons-material/Close'
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 const Input = styled('input')({
      display: 'none',
@@ -18,6 +20,8 @@ const Div = styled('div')(({ theme }) => ({
 }))
 
 export default function NewRecipeStep1(props) {
+
+
      const handleImageInput = (e) => props.setImage(e.target.files)
      const handleNameInput = (e) => props.setName(e.target.value)
      const handleTimeInput = (e) => props.setTime(e.target.value)
@@ -34,7 +38,16 @@ export default function NewRecipeStep1(props) {
                <div className="RecipeInputs">
                     {props.image !== '' ? (
                          <div>
-                              <Link
+                              {!props.loading ? 
+                              (
+                                   <div className="RecipePicUpload">
+                                   <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                                        <CircularProgress />
+                                   </Box>
+                                   </div>
+                              ) 
+                              : 
+                              (<Link
                                    onClick={handleImageInput}
                                    className="RecipeImage"
                               >
@@ -45,7 +58,8 @@ export default function NewRecipeStep1(props) {
                                         />
                                    </IconButton>
                                    <img src={`${props.image}`} />
-                              </Link>
+                              </Link>)
+                              }
                          </div>
                     ) : (
                          <label
@@ -60,7 +74,7 @@ export default function NewRecipeStep1(props) {
                               />
                               <div className="RecipePicUploadButtons">
                                    <PhotoCamera sx={{ mr: 0.5 }} />
-                                   <Div sx={{ ml: 0.5 }}>{'Upload Image'}</Div>
+                                   <Div sx={{ ml: 0.5 }}>{'Upload Image*'}</Div>
                               </div>
                          </label>
                     )}
@@ -73,19 +87,6 @@ export default function NewRecipeStep1(props) {
                     cuisine={props.cuisine}
                     updateCuisine={handleCuisineInput}
                />
-
-               {/* <div className="RecipeInputs">
-                    <Link>
-                         <Button
-                              variant="contained"
-                              size="large"
-                              disableElevation
-                              onClick={props.func(name, time, cuisine)}
-                         >
-                              Next
-                         </Button>
-                    </Link>
-               </div> */}
           </div>
      )
 }

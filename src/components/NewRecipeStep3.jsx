@@ -50,6 +50,7 @@ export default function NewRecipeStep3(props) {
                <div>{steps}</div>
                <div className="RecipeInputs">
                     <TextField
+                    required
                          sx={{ width: '94%', mb: 2}}
                          id="outlined-textarea"
                          label="Steps"
