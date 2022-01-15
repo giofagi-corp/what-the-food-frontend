@@ -9,8 +9,6 @@ import NewRecipeStep1 from '../components/NewRecipeStep1'
 import '../index.css'
 import Alert from '@mui/material/Alert';
 
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
 import Collapse from '@mui/material/Collapse';
 import Fade from '@mui/material/Fade';
 
@@ -31,12 +29,12 @@ export default function NewRecipe() {
      const [newRecipe, setNewRecipe] = useState({})
      const [loading, setLoading] = useState(false)
      const [fieldEmpty, setFieldEmpty] = useState(false)
+     const [open, setOpen] = React.useState(true);
+     const [recipeReady, setRecipeReady] = useState(false)
 
      const storedToken = localStorage.getItem('authToken')
 
-     const [open, setOpen] = React.useState(true);
 
-     let popper
 
 
      const handleIngredientId = (ing) => {
@@ -66,42 +64,68 @@ export default function NewRecipe() {
      }
 
      const nextFormStep = () => {
-          setFormStep((formStep > 0 || formStep < 4) && formStep + 1)
-          setNewRecipe({
-               imageUrl: image,
-               name: name,
-               ingredients: ingredients,
-               time: time,
-               description: step,
-               cuisine: cuisine,
-          })
+
+          if(formStep === 1){
+               
+               if(image === "" || name === "" || time === null || cuisine === "") {
+                    setFieldEmpty(true)
+               } else {
+                    setFieldEmpty(false)
+               setNewRecipe({
+                    imageUrl: image,
+                    name: name,
+                    ingredients: ingredientsId,
+                    time: time,
+                    description: step,
+                    cuisine: cuisine,
+               })
+               setFormStep((formStep > 0 || formStep < 4) && formStep + 1)
+               }
+          }else if(formStep === 2){
+               console.log("ingredients----->", ingredients)
+               
+               if(ingredients.length === 0) {
+                    console.log("entra en ingredients----->", ingredients)
+                    setFieldEmpty(true)
+               } else {
+                    setFieldEmpty(false)
+               setNewRecipe({
+                    imageUrl: image,
+                    name: name,
+                    ingredients: ingredientsId,
+                    time: time,
+                    description: step,
+                    cuisine: cuisine,
+               })
+               setFormStep((formStep > 0 || formStep < 4) && formStep + 1)
+               }
+          }
      }
 
      const prevFormStep = () => {
           setFormStep((formStep > 1 || formStep < 4) && formStep - 1)
+          setRecipeReady(false)
      }
 
      const submit = () => {
 
-          if(image === "" || name === "" || time === null || ingredients === [] || step === [] || cuisine === "") {
+          if(step.length === 0) {
                setFieldEmpty(true)
-               console.log("hay campos sin rellenar")
-               console.log("fields empties? ----->", fieldEmpty)
-               //alert("hay campos sin rellenar")
-           } else {
+          } else {
                setFieldEmpty(false)
-          setNewRecipe({
-               imageUrl: image,
-               name: name,
-               ingredients: ingredientsId,
-               time: time,
-               description: step,
-               cuisine: cuisine,
-          })}
+               setNewRecipe({
+                    imageUrl: image,
+                    name: name,
+                    ingredients: ingredientsId,
+                    time: time,
+                    description: step,
+                    cuisine: cuisine,
+               })
+               setRecipeReady(true)
+          }
      }
 
      useEffect(()=>{
-          //console.log("deleteImage ------>", deleteImage)
           setImage("")
      }, [deleteImage])
 
@@ -127,10 +151,10 @@ export default function NewRecipe() {
      }, [image])
 
      useEffect(() => {
-          if (step.length !== 0) {
+          if (recipeReady && !fieldEmpty) {
                createNewRecipe(newRecipe)
           }
-     }, [newRecipe])
+     }, [newRecipe, recipeReady])
 
      useEffect(() => {
           if (ingredients.length !== 0) {
@@ -218,10 +242,7 @@ export default function NewRecipe() {
                     <Fade in={fieldEmpty}>
                          <Alert color="error" severity="error" sx={{m: "20px", display: "flex", justifyContent: "center"}}>There are fields empty — check it out!</Alert>
                     </Fade>
-                         
                     </Collapse>) : <div></div> }</div>
-
-               {/* <div>{fieldEmpty ? <Alert color="error" severity="error" sx={{m: "20px", display: "flex", justifyContent: "center"}}>There are fields empty — check it out!</Alert> : <div></div> }</div> */}
           </div>
      )
 }
