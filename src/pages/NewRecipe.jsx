@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import GenericPageTitle from '../components/GenericPageTitle'
 import axios from 'axios'
@@ -7,6 +7,12 @@ import NewRecipeStep3 from '../components/NewRecipeStep3'
 import NewRecipeStep2 from '../components/NewRecipeStep2'
 import NewRecipeStep1 from '../components/NewRecipeStep1'
 import '../index.css'
+import Alert from '@mui/material/Alert';
+
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Collapse from '@mui/material/Collapse';
+import Fade from '@mui/material/Fade';
 
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
@@ -17,15 +23,21 @@ export default function NewRecipe() {
      const [image, setImage] = useState('')
      const [deleteImage, setDeleteImage] = useState(false)
      const [name, setName] = useState('')
-     const [time, setTime] = useState()
+     const [time, setTime] = useState(null)
      const [cuisine, setCuisine] = useState('')
      const [ingredients, setIngredients] = useState([])
      const [step, setStep] = useState([])
      const [ingredientsId, setIngredientsId] = useState([])
      const [newRecipe, setNewRecipe] = useState({})
      const [loading, setLoading] = useState(false)
+     const [fieldEmpty, setFieldEmpty] = useState(false)
 
      const storedToken = localStorage.getItem('authToken')
+
+     const [open, setOpen] = React.useState(true);
+
+     let popper
+
 
      const handleIngredientId = (ing) => {
           ing.map((e) => {
@@ -50,13 +62,11 @@ export default function NewRecipe() {
                headers: { Authorization: `Bearer ${storedToken}` },
           }).then((res) => {
                console.log('res data fron DB ------>', res.data)
-          })
+          }).catch((error) => console.log(error))
      }
 
      const nextFormStep = () => {
-
           setFormStep((formStep > 0 || formStep < 4) && formStep + 1)
-
           setNewRecipe({
                imageUrl: image,
                name: name,
@@ -72,9 +82,14 @@ export default function NewRecipe() {
      }
 
      const submit = () => {
-          console.log("image on submit----->",image)
-          console.log("step on submit----->",step)
 
+          if(image === "" || name === "" || time === null || ingredients === [] || step === [] || cuisine === "") {
+               setFieldEmpty(true)
+               console.log("hay campos sin rellenar")
+               console.log("fields empties? ----->", fieldEmpty)
+               //alert("hay campos sin rellenar")
+           } else {
+               setFieldEmpty(false)
           setNewRecipe({
                imageUrl: image,
                name: name,
@@ -82,11 +97,11 @@ export default function NewRecipe() {
                time: time,
                description: step,
                cuisine: cuisine,
-          })
+          })}
      }
 
      useEffect(()=>{
-          console.log("deleteImage ------>", deleteImage)
+          //console.log("deleteImage ------>", deleteImage)
           setImage("")
      }, [deleteImage])
 
@@ -102,7 +117,7 @@ export default function NewRecipe() {
                          .then((res) =>{
                               setImage(res.data.url)
                               setLoading(true)
-                         })
+                         }).catch((error) => console.log(error))
                } 
           } else {
                setImage("")
@@ -122,6 +137,7 @@ export default function NewRecipe() {
                handleIngredientId(ingredients)
           }
      }, [ingredients])
+
 
      return (
           <div>
@@ -197,6 +213,15 @@ export default function NewRecipe() {
                          )}
                     </div>
                </div>
+               <div>{fieldEmpty ? (
+                    <Collapse in={open}>
+                    <Fade in={fieldEmpty}>
+                         <Alert color="error" severity="error" sx={{m: "20px", display: "flex", justifyContent: "center"}}>There are fields empty — check it out!</Alert>
+                    </Fade>
+                         
+                    </Collapse>) : <div></div> }</div>
+
+               {/* <div>{fieldEmpty ? <Alert color="error" severity="error" sx={{m: "20px", display: "flex", justifyContent: "center"}}>There are fields empty — check it out!</Alert> : <div></div> }</div> */}
           </div>
      )
 }
