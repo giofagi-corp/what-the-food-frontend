@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import GenericPageTitle from '../components/GenericPageTitle'
 import axios from 'axios'
 import Button from '@mui/material/Button'
@@ -31,6 +31,7 @@ export default function NewRecipe() {
      const [fieldEmpty, setFieldEmpty] = useState(false)
      const [open, setOpen] = React.useState(true);
      const [recipeReady, setRecipeReady] = useState(false)
+     const history = useHistory();
 
      const storedToken = localStorage.getItem('authToken')
 
@@ -60,6 +61,7 @@ export default function NewRecipe() {
                headers: { Authorization: `Bearer ${storedToken}` },
           }).then((res) => {
                console.log('res data fron DB ------>', res.data)
+                 history.push(`/recipe-user/${res.data._id}`);
           }).catch((error) => console.log(error))
      }
 
@@ -242,7 +244,9 @@ export default function NewRecipe() {
                     <Fade in={fieldEmpty}>
                          <Alert color="error" severity="error" sx={{m: "20px", display: "flex", justifyContent: "center"}}>There are fields empty — check it out!</Alert>
                     </Fade>
-                    </Collapse>) : <div></div> }</div>
+                    </Collapse>) : <div></div> 
+                    }
+               </div>
           </div>
      )
 }

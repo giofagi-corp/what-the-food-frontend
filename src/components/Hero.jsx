@@ -8,7 +8,7 @@ export default function Hero (props) {
   return (
     <div className="Hero" style={{backgroundImage: `url(${recipe.imageUrl})`}} >
         <BackButton/>
-        <HeroHeader recipe={recipe}/>
+        <HeroHeader recipe={recipe} editable={props.editable}/>
     </div>
   );
 }
