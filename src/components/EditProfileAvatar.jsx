@@ -14,6 +14,9 @@ const Input = styled('input')({
 
 export default function NewRecipeStep1(props) {
      console.log('props----->', props)
+     //const [name, setName] = useState('')
+     // const [time, setTime] = useState()
+     // const [cuisine, setCuisine] = useState('')
 
      const handleNameInput = (e) => props.setName(e.target.value)
      const handleTimeInput = (e) => props.setTime(e.target.value)

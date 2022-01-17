@@ -18,6 +18,10 @@ import Chip from '@mui/material/Chip';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
@@ -26,8 +30,11 @@ export default function CustomizedInputBase(props) {
     const {handleSearchInput} = props;
     const {inputSearch} = props;
     const [availableIngredients, setAvailableIngredients] = useState([]);
+    const [availableCuisines, setAvailableCuisines] = useState([]);
     const [value, setValue] = useState('1');
     const storedToken = localStorage.getItem("authToken");
+
+    const [ingredients, setIngredients] = useState([]);
 
     useEffect(() => {
     axios
@@ -40,33 +47,88 @@ export default function CustomizedInputBase(props) {
       });
     }, []);
     
+    useEffect(() => {
+    axios
+      .get(`${REACT_APP_API_URI}/api/cuisine`, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((res) => {
+          setAvailableCuisines(res.data);
+          console.log("availabe cuisines ------>", availableCuisines)
+      })
+    }, [])
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
-    }; 
+    };
 
     return (
         <Box sx={{ width: '100%' }}>
             <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <TabList centered onChange={handleChange}>
-                        <Tab sx={{ width: '50%'}} label="Ingredients" value="1" />
-                        <Tab sx={{ width: '50%'}} label="Cuisine" value="2" />
+                        <Tab sx={{ width: '50%'}} label="Search by Ingredients" value="1" />
+                        <Tab sx={{ width: '50%'}} label="Search by Cuisine" value="2" />
                     </TabList>
                 </Box>
                     <TabPanel sx={{ p: '30px 24px 0 24px' }} value="1">
                         <Stack spacing={3}>
+                            {/* <Autocomplete
+                                multiple
+                                id="tags-filled"
+                                value={props.ingredients}
+                                options={availableIngredients.map(
+                                    (option) => option.name
+                                )}
+                                renderTags={(value, getTagProps) =>(
+                                   setIngredients(value),
+                                   value.map((option, index) => (
+                                        <Chip
+                                             variant="outlined"
+                                             label={option}
+                                             {...getTagProps({ index })}
+                                        />
+                                   )))
+                                }
+                                renderInput={params => (
+                                <TextField
+                                    {...params}
+                                    variant="outlined"
+                                    label="Add ingredients"
+                                    placeholder="Add ingredients"
+                                />
+                                )}
+                            /> */}
+
+                            {/* <Paper
+                            component="form"
+                            sx={{ p: '2px 8px', display: 'flex', alignItems: 'center', height: 50}}
+                            onSubmit={handleSubmit}
+                            >
+                            <InputBase
+                                sx={{ ml: 1, flex: 1 }}
+                                placeholder="Choose an ingredient"
+                                inputProps={{ 'aria-label': 'search google maps' }}
+                                value={inputSearch} 
+                                onChange={handleSearchInput}
+                            />
+                            </Paper> */}
+
                             <Autocomplete
                                 multiple
                                 id="tags-outlined"
                                 options={availableIngredients}
                                 getOptionLabel={(option) => option.name}
                                 filterSelectedOptions
+                                onSubmit={handleSubmit}
                                 renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    label="Select Ingredients"
-                                    placeholder=""
-                                />
+                                    <TextField
+                                        {...params}
+                                        value={inputSearch} 
+                                        onChange={handleSearchInput}
+                                        label="Select Ingredients"
+                                        placeholder=""
+                                    />
                                 )}
                             />
                         </Stack>
@@ -76,15 +138,15 @@ export default function CustomizedInputBase(props) {
                             <Autocomplete
                                 multiple
                                 id="tags-outlined"
-                                options={availableIngredients}
-                                getOptionLabel={(option) => option.name}
+                                options={availableCuisines}
+                                getOptionLabel={(option) => option}
                                 filterSelectedOptions
                                 renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    label="Select Cuisine"
-                                    placeholder="Cuisine"
-                                />
+                                    <TextField
+                                        {...params}
+                                        label="Select Cuisine"
+                                        placeholder="Cuisine"
+                                    />
                                 )}
                             />
                         </Stack>
