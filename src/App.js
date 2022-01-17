@@ -7,7 +7,7 @@ import ProjectDetailsPage from "./pages/ProjectDetailsPage";
 import EditProfilePage from "./pages/EditProfilePage";
 import ProfilePage from "./pages/ProfilePage";
 import RecipePage from "./pages/RecipePage";
-
+import EditRecipePage from "./pages/EditRecipePage";
 
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
@@ -38,6 +38,7 @@ function App() {
         <PrivateRoute exact path="/search" component={HomePage} />
         <PrivateRoute exact path="/recipe/:id" component={RecipePage} />
         <PrivateRoute exact path="/recipe-user/:id" component={RecipePageUser} />
+        <PrivateRoute exact path="/edit-recipe/:id" component={EditRecipePage} />
         <PrivateRoute exact path="/edit-profile" component={EditProfilePage} />
 
         {/* 👇 UPDATE THE EXISTING ROUTES 👇  */}

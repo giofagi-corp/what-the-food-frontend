@@ -48,6 +48,13 @@ export default function Navbar() {
           value="profile"
           icon={<AccountCircleOutlinedIcon />}
       />
+      <BottomNavigationAction
+          component={Link}
+          to="/edit-recipe/61e59002b1bb6b1774d4cb56"
+          label="Edit"
+          value="edit"
+          icon={<AccountCircleOutlinedIcon />}
+      />
       </BottomNavigation>
     </Box>
   );

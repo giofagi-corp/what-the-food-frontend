@@ -10,7 +10,7 @@ export default function HeroHeader (props) {
     <div className='HeroHeader'>
       <div className='HeroHeaderContent'>
         <div className='RecipeName'>
-          <div style={{display: "flex", alignItems: "center"}}><h2>{recipe.name}</h2>{props.editable && <div><Link to='/'><EditIcon style={{marginLeft: "10px"}}/></Link></div>}</div>
+          <div style={{display: "flex", alignItems: "center"}}><h2>{recipe.name}</h2>{props.editable && <div><Link to={`/edit-recipe/${props.recipe._id}`}><EditIcon style={{marginLeft: "10px"}}/></Link></div>}</div>
         </div>
         <div className='RecipeFavSave'>
           <FavoriteBorderIcon />

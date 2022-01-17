@@ -53,19 +53,15 @@ export default function RecipePageUser() {
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
             >
-              {/* <DialogTitle sx={{mx: 'auto'}} id="alert-dialog-title">
-                {"Título"}
-              </DialogTitle> */}
-              <DialogContent sx={{width: '90%'}} >
+              <DialogContent sx={{width: '80%', mx: 'auto'}} >
                 <DialogContentText sx={{textAlign: 'center'}} id="alert-dialog-description">
-                  <div style={{display: "flex", justifyContent: "center"}}><img style={{width: "120px", padding: "35px"}} src="https://res.cloudinary.com/dtgwzogvc/image/upload/v1642365840/images/3d-hands-fun-and-wild-213_xkx9l6.png" alt="" /></div>
+                  <div style={{display: "flex", justifyContent: "center"}}><img style={{width: "220px", paddingTop: "35px"}} src="https://res.cloudinary.com/dtgwzogvc/image/upload/v1642433888/images/3d-fluency-grapes_xpp3yi.png" alt="" /></div>
                   <h1>Congrats!</h1>
                   <h2> You have created a new recipe</h2> 
                   
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
-                {/* <Button onClick={handleClose}>Disagree</Button> */}
                 <Button sx={{mx: 'auto'}} onClick={handleClose} autoFocus>
                   Ok
                 </Button>

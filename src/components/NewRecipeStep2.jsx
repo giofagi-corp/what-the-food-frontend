@@ -62,10 +62,6 @@ export default function NewRecipeStep2(props) {
                               )}
                          />
                     </Stack>
-
-                    {/* <Button variant="contained" size="large" disableElevation>
-                    Next
-               </Button> */}
                </div>
           </div>
      )
