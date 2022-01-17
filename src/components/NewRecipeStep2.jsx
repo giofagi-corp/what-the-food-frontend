@@ -56,8 +56,8 @@ export default function NewRecipeStep2(props) {
                                    <TextField
                                         {...params}
                                         variant="outlined"
-                                        label="Add ingredients"
-                                        placeholder="Add ingredient"
+                                        label="Add ingredients *"
+                                        placeholder="Add ingredient *"
                                    />
                               )}
                          />

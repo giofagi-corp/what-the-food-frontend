@@ -7,20 +7,27 @@ import { IconButton } from '@mui/material'
 import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import { styled } from '@mui/material/styles'
 import '../index.css'
+import CloseIcon from '@mui/icons-material/Close'
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 const Input = styled('input')({
      display: 'none',
 })
 
-export default function NewRecipeStep1(props) {
-     console.log('props----->', props)
-     //const [name, setName] = useState('')
-     // const [time, setTime] = useState()
-     // const [cuisine, setCuisine] = useState('')
+const Div = styled('div')(({ theme }) => ({
+     ...theme.typography.button,
+}))
 
+export default function NewRecipeStep1(props) {
+
+
+     const handleImageInput = (e) => props.setImage(e.target.files)
      const handleNameInput = (e) => props.setName(e.target.value)
      const handleTimeInput = (e) => props.setTime(e.target.value)
      const handleCuisineInput = (e) => props.setCuisine(e.target.value)
+
+     const handleDeleteImage = () => props.setDeleteImage(true)
 
      return (
           <div>
@@ -29,29 +36,48 @@ export default function NewRecipeStep1(props) {
                </div>
 
                <div className="RecipeInputs">
-                    <label
-                         htmlFor="icon-button-file"
-                         className="RecipePicUpload"
-                    >
-                         <Input
-                              accept="image/*"
-                              id="icon-button-file"
-                              type="file"
-                         />
-                         <div className='RecipePicUploadButtons'>
-                              <IconButton
-                                   sx={{ p: 0 }}
-                                   color="primary"
-                                   aria-label="upload picture"
-                                   component="span"
+                    {props.image !== '' ? (
+                         <div>
+                              {!props.loading ? 
+                              (
+                                   <div className="RecipePicUpload">
+                                   <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                                        <CircularProgress />
+                                   </Box>
+                                   </div>
+                              ) 
+                              : 
+                              (<Link
+                                   onClick={handleImageInput}
+                                   className="RecipeImage"
                               >
-                                   <PhotoCamera />
-                              </IconButton>
-                              <Button sx={{ p: 0 }} variant="text">
-                                   Upload Image
-                              </Button>
+                                   <IconButton aria-label="delete">
+                                        <CloseIcon
+                                             className="RecipeImageCloseIcon"
+                                             onClick={handleDeleteImage}
+                                        />
+                                   </IconButton>
+                                   <img src={`${props.image}`} />
+                              </Link>)
+                              }
                          </div>
-                    </label>
+                    ) : (
+                         <label
+                              htmlFor="icon-button-file"
+                              className="RecipePicUpload"
+                         >
+                              <Input
+                                   accept="image/*"
+                                   id="icon-button-file"
+                                   type="file"
+                                   onChange={handleImageInput}
+                              />
+                              <div className="RecipePicUploadButtons">
+                                   <PhotoCamera sx={{ mr: 0.5 }} />
+                                   <Div sx={{ ml: 0.5 }}>{'Upload Image*'}</Div>
+                              </div>
+                         </label>
+                    )}
                </div>
                <FormInput
                     name={props.name}
@@ -61,19 +87,6 @@ export default function NewRecipeStep1(props) {
                     cuisine={props.cuisine}
                     updateCuisine={handleCuisineInput}
                />
-
-               {/* <div className="RecipeInputs">
-                    <Link>
-                         <Button
-                              variant="contained"
-                              size="large"
-                              disableElevation
-                              onClick={props.func(name, time, cuisine)}
-                         >
-                              Next
-                         </Button>
-                    </Link>
-               </div> */}
           </div>
      )
 }
