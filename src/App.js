@@ -4,10 +4,11 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import ProjectListPage from "./pages/ProjectListPage";
 import ProjectDetailsPage from "./pages/ProjectDetailsPage";
-import EditProjectPage from "./pages/EditProjectPage";
+import EditProfilePage from "./pages/EditProfilePage";
 import ProfilePage from "./pages/ProfilePage";
 import EditProfile from "./pages/EditProfilePage";
 import RecipePage from "./pages/RecipePage";
+
 
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
@@ -19,6 +20,7 @@ import TopCuisinePage from "./pages/TopCuisinePage";
 import TopIngredientsPage from "./pages/TopIngredientsPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import NewRecipe from "./pages/NewRecipe";
+import RecipePageUser from "./pages/RecipePageUser";
 
 
 function App() {
@@ -37,6 +39,9 @@ function App() {
         <PrivateRoute exact path="/search" component={HomePage} />
         <PrivateRoute exact path="/recipe/:id" component={RecipePage} /> 
         <PrivateRoute exact path="/edit-profile" component={EditProfile} /> 
+        <PrivateRoute exact path="/recipe/:id" component={RecipePage} />
+        <PrivateRoute exact path="/recipe-user/:id" component={RecipePageUser} />
+        <PrivateRoute exact path="/edit-profile" component={EditProfilePage} />
 
         {/* 👇 UPDATE THE EXISTING ROUTES 👇  */}
         <PrivateRoute exact path="/projects" component={ProjectListPage} />
@@ -44,11 +49,6 @@ function App() {
           exact
           path="/projects/:id"
           component={ProjectDetailsPage}
-        />
-        <PrivateRoute
-          exact
-          path="/projects/edit/:id"
-          component={EditProjectPage}
         />
 
         <AnonRoute exact path="/signup" component={SignupPage} />
