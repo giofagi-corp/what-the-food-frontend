@@ -50,7 +50,7 @@ export default function Navbar() {
       />
       <BottomNavigationAction
           component={Link}
-          to="/edit-recipe/61e59002b1bb6b1774d4cb56"
+          to="/edit-recipe/61e7ef85df99a70fe308284d"
           label="Edit"
           value="edit"
           icon={<AccountCircleOutlinedIcon />}

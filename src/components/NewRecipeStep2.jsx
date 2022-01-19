@@ -4,6 +4,8 @@ import BackButton from '../components/BackButton'
 import GenericPagesSubtitle from '../components/GenericPageSubtitle'
 import axios from 'axios'
 import TextField from '@mui/material/TextField'
+import CloseIcon from '@mui/icons-material/Close'
+
 import Autocomplete from '@mui/material/Autocomplete'
 import Button from '@mui/material/Button'
 import { Chip } from '@mui/material'
@@ -46,7 +48,7 @@ export default function NewRecipeStep2(props) {
                                    props.setIngredients(value),
                                    value.map((option, index) => (
                                         <Chip
-                                             variant="outlined"
+                                             deleteIcon={<CloseIcon />}
                                              label={option}
                                              {...getTagProps({ index })}
                                         />

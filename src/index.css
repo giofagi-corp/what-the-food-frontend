@@ -363,11 +363,11 @@ select {
 }
 
 .RecipeStepBubble {
-     background-color: #d8f3ff;
+     background-color: #ebebeb;
      width: 86%;
      padding: 4px 14px;
      margin: 0 3% 1rem;
-     border-radius: 14px;
+     border-radius: 16px;
 }
 
 .RecipeStepHeader {
@@ -384,7 +384,7 @@ select {
      justify-content: center;
      font-weight: bold;
      margin: 0px;
-     background: #1976d2;
+     background: #aeaeae;
      color: white;
      width: 30px;
      height: 30px;

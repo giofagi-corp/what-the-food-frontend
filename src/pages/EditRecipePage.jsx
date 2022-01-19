@@ -49,6 +49,10 @@ export default function EditRecipePage() {
 
     const storedToken = localStorage.getItem('authToken')
 
+    const submit = () => {
+        console.log("hello submit");
+    }
+
    useEffect(() => {
     axios.get(
         `${REACT_APP_API_URI}/api/recipe/${id}`,
@@ -60,7 +64,11 @@ export default function EditRecipePage() {
         .then((response) => {
             setCurrentRecipe(response.data)
             setStep(response.data.description)
-            const ing = currentRecipe.ingredients.map(e => e.name)
+            setName(response.data.name)
+            setTime(response.data.time)
+            setCuisine(response.data.cuisine)
+            const ing = response.data.ingredients.map(e => e.name)
+            console.log("ing ----->",ing);
             setIngredients(ing) 
         })
         .catch((error) => console.log(error))
@@ -85,11 +93,13 @@ export default function EditRecipePage() {
         setValue('')
     }
     
-    /* console.log("currentRecipe.ingredients------>", currentRecipe.ingredients)
+    // console.log("currentRecipe.ingredients------>", currentRecipe.ingredients)
     console.log("ingredients----->", ingredients)
-    console.log("step----->", step) */
-    console.log("currentRecipe.imageUrl----->", currentRecipe.imageUrl)
-    console.log("CurrentRecipe----->", currentRecipe)
+    // console.log("step----->", step)
+    // console.log("currentRecipe.imageUrl----->", currentRecipe.imageUrl)
+    // console.log("CurrentRecipe----->", currentRecipe)
+    console.log("time------>", time);
+    // console.log("name------>", name);
     const steps = step.map((currentStep, index) => (
         <div className="RecipeInputs" >
              <div className="RecipeStepBubble">
@@ -126,14 +136,38 @@ export default function EditRecipePage() {
                 </Link>
                </div>
             <div>
-                <FormInput
-                name={currentRecipe.name}
-                updateName={handleNameInput}
-                time={currentRecipe.time}
-                updateTime={handleTimeInput}
-                cuisine={currentRecipe.cuisine}
-                updateCuisine={handleCuisineInput}
-               />
+                <Box component="form" sx={{ 
+                '& > :not(style)': { mb: 2, width: '94%' }, 
+                display: 'flex',
+                flexDirection: "column",
+                alignItems: 'center',
+
+                }} noValidate autoComplete="off">
+                <TextField type="text"
+                    required
+                    name="search"
+                    defaultValue="Name"
+                    value={name}
+                    onChange={handleNameInput}
+                    placeholder="Name"
+                    id="outlined-basic" label="Name" variant="outlined" />
+                <TextField type="number"
+                    required
+                    name="search"
+                    defaultValue={0}
+                    value={time}
+                    onChange={handleTimeInput}
+                    placeholder="Duration"
+                    id="outlined-basic" label="Duration" variant="outlined" />
+                <TextField type="text"
+                    required 
+                    defaultValue="Cuisine" 
+                    name="search"
+                    value={cuisine}
+                    onChange={handleCuisineInput}
+                    placeholder="Cuisine"
+                    id="outlined-basic" label="Cuisine" variant="outlined" />
+                </Box>
             </div>
             <div className="AddRecipeText">
                 <GenericPagesSubtitle text="Recipe ingredients" />
@@ -143,18 +177,19 @@ export default function EditRecipePage() {
                          <Autocomplete
                               multiple
                               id="tags-filled"
-                              defaultValue={ingredients}
+                              //defaultValue={ingredients}
+                              //value={ingredients}
                               options={availableIngredients.map(
                                    (option) => option.name
                               )}
                               freeSolo
                               renderTags={(value, getTagProps) =>(
-                                   setIngredients(value),
+                                   setIngredients(...ingredients, value),
                                    value.map((option, index) => (
                                         <Chip
-                                             variant="outlined"
-                                             label={option}
-                                             {...getTagProps({ index })}
+                                            deleteIcon={<CloseIcon />}
+                                            label={option}
+                                            {...getTagProps({ index })}
                                         />
                                    )))
                               }
@@ -192,6 +227,17 @@ export default function EditRecipePage() {
                         >
                             Add new step
                         </Button>
+                </div>
+                <div className="RecipeInputs">
+                <Button
+                    sx={{ ml: 1, mr: 1 }}
+                    variant="contained"
+                    size="large"
+                    disableElevation
+                    onClick={submit}
+                >
+                    Submit
+                </Button>
                 </div>
         </div>
     )

@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 export default function FormInput(props) {
+
+  console.log("props------->",props)
   const { name, updateName } = props;
   const { time, updateTime } = props;
   const { cuisine, updateCuisine } = props;
