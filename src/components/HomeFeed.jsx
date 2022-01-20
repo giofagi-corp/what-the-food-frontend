@@ -22,7 +22,7 @@ export default function ProfileFeed() {
         getAllRecipes();
     }, []);
     return (
-        <Box>
+        <Box sx={{maxWidth: '980px'}}>
             <RecipesList sx={{ p: '0 24px' }} recipes={recipes}/>
         </Box>
     )

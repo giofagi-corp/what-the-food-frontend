@@ -10,16 +10,19 @@ const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 export default function ProfileHeader() {
 
     return (
-        <div className='ProfileHeader'>
-                <div className='ProfileHeaderPic'>
-                        <ProfilePicUpdate/>
+        <div className='css-8atqhb'>
+            <div className='ProfileHeader'>
+                    <div className='ProfileHeaderPic'>
+                            <ProfilePicUpdate/>
+                        </div>
+                        <div className='ProfileHeaderInfo'>
+                            <h3>Harold</h3>
+                            <p>haroldmeme@gmail.com</p>
+                            <FavIngredients/>
                     </div>
-                    <div className='ProfileHeaderInfo'>
-                        <h3>Harold</h3>
-                        <p>haroldmeme@gmail.com</p>
-                        <FavIngredients/>
-                </div>
+            </div>
         </div>
+        
     )
 }
 

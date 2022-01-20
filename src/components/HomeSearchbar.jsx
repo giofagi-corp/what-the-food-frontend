@@ -22,6 +22,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Button from '@mui/material/Button';
 
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
@@ -35,6 +36,10 @@ export default function CustomizedInputBase(props) {
     const storedToken = localStorage.getItem("authToken");
 
     const [ingredients, setIngredients] = useState([]);
+
+    const searchRecipeByIngredients = ()=>{
+        console.log('search by ingredient')
+    }
 
     useEffect(() => {
     axios
@@ -100,7 +105,7 @@ export default function CustomizedInputBase(props) {
                                 )}
                             /> */}
 
-                            {/* <Paper
+                            <Paper
                             component="form"
                             sx={{ p: '2px 8px', display: 'flex', alignItems: 'center', height: 50}}
                             onSubmit={handleSubmit}
@@ -112,7 +117,7 @@ export default function CustomizedInputBase(props) {
                                 value={inputSearch} 
                                 onChange={handleSearchInput}
                             />
-                            </Paper> */}
+                            </Paper>
 
                             <Autocomplete
                                 multiple
@@ -131,6 +136,7 @@ export default function CustomizedInputBase(props) {
                                     />
                                 )}
                             />
+                            <Button onClick={searchRecipeByIngredients} >Search</Button>
                         </Stack>
                     </TabPanel>
                     <TabPanel sx={{ p: '30px 24px 0 24px' }} value="2">

@@ -27,7 +27,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-
+      
       <Switch>
         <PrivateRoute exact path="/" component={HomePage} />
         <PrivateRoute exact path="/top-recipes" component={TopRecipesPage} />
