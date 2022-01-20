@@ -24,8 +24,10 @@ const Div = styled('div')(({ theme }) => ({
     ...theme.typography.button,
 }))
 
-export default function EditRecipePage() {
+//const ingre = ['black pepper', 'onion']
 
+export default function EditRecipePage() {
+    
     const [currentRecipe, setCurrentRecipe] = useState({})
     const [image, setImage] = useState(currentRecipe.imageUrl)
     const [deleteImage, setDeleteImage] = useState(false)
@@ -56,31 +58,29 @@ export default function EditRecipePage() {
    useEffect(() => {
     axios.get(
         `${REACT_APP_API_URI}/api/recipe/${id}`,
-        {},
         {
              headers: { Authorization: `Bearer ${storedToken}` },
         }
    )
-        .then((response) => {
-            setCurrentRecipe(response.data)
-            setStep(response.data.description)
-            setName(response.data.name)
-            setTime(response.data.time)
-            setCuisine(response.data.cuisine)
-            const ing = response.data.ingredients.map(e => e.name)
-            console.log("ing ----->",ing);
-            setIngredients(ing) 
+        .then((res) => {
+            setCurrentRecipe(res.data)
+            setStep(res.data.description)
+            setName(res.data.name)
+            setTime(res.data.time)
+            setCuisine(res.data.cuisine)
+            const ing = res.data.ingredients.map(e => e.name)
+            setIngredients([...ing]) 
         })
         .catch((error) => console.log(error))
    }, [])
 
    useEffect(() => {
-    axios.get(`${REACT_APP_API_URI}/api/search-all-ing`, {
-         headers: { Authorization: `Bearer ${storedToken}` },
-    }).then((res) => {
-         setAvailableIngredients(res.data)
-    })
-}, [])
+        axios.get(`${REACT_APP_API_URI}/api/search-all-ing`, {
+            headers: { Authorization: `Bearer ${storedToken}` },
+        }).then((res) => {
+            setAvailableIngredients(res.data)
+        })
+    }, [])
 
    
    const deleteStep = (index) => {
@@ -93,13 +93,6 @@ export default function EditRecipePage() {
         setValue('')
     }
     
-    // console.log("currentRecipe.ingredients------>", currentRecipe.ingredients)
-    console.log("ingredients----->", ingredients)
-    // console.log("step----->", step)
-    // console.log("currentRecipe.imageUrl----->", currentRecipe.imageUrl)
-    // console.log("CurrentRecipe----->", currentRecipe)
-    console.log("time------>", time);
-    // console.log("name------>", name);
     const steps = step.map((currentStep, index) => (
         <div className="RecipeInputs" >
              <div className="RecipeStepBubble">
@@ -114,10 +107,11 @@ export default function EditRecipePage() {
         </div>
    ))
 
-    return (
-        <div>
+   console.log("ingredients state---->", ingredients);
+
+        const form = (
+            <div>
             <div className="AddRecipeText">
-                {/* <BackButton/> */}
                 <GenericPageTitle text="Edit recipe" /> 
                 <GenericPagesSubtitle text="Recipe description" />
             </div>
@@ -134,7 +128,7 @@ export default function EditRecipePage() {
                 </IconButton>
                     <img src={`${currentRecipe.imageUrl}`} />
                 </Link>
-               </div>
+            </div>
             <div>
                 <Box component="form" sx={{ 
                 '& > :not(style)': { mb: 2, width: '94%' }, 
@@ -174,34 +168,33 @@ export default function EditRecipePage() {
             </div>
             <div className="RecipeInputs">
                     <Stack spacing={3} sx={{ width: '94%', mb: 2 }}>
-                         <Autocomplete
-                              multiple
-                              id="tags-filled"
-                              //defaultValue={ingredients}
-                              //value={ingredients}
-                              options={availableIngredients.map(
-                                   (option) => option.name
-                              )}
-                              freeSolo
-                              renderTags={(value, getTagProps) =>(
-                                   setIngredients(...ingredients, value),
-                                   value.map((option, index) => (
+                        <Autocomplete
+                            multiple
+                            id="tags-filled"
+                            options={availableIngredients.map(
+                                (option) => option.name
+                            )}
+                            //value={ingredients}
+                            defaultValue={ingredients}
+                            freeSolo
+                            renderTags={(value, getTagProps) =>(
+                                value.map((option, index) => (   
                                         <Chip
                                             deleteIcon={<CloseIcon />}
                                             label={option}
                                             {...getTagProps({ index })}
                                         />
-                                   )))
-                              }
-                              renderInput={(params) => (
-                                   <TextField
+                                )))
+                            }
+                            renderInput={(params) => (
+                                <TextField
                                         {...params}
                                         variant="outlined"
                                         label="Add ingredients *"
                                         placeholder="Add ingredient *"
-                                   />
-                              )}
-                         />
+                                />
+                            )}
+                        />
                     </Stack>
                 </div>
                 <div className="AddRecipeText">
@@ -238,7 +231,18 @@ export default function EditRecipePage() {
                 >
                     Submit
                 </Button>
-                </div>
+            </div>
+        </div>
+
+        )
+
+    return (
+        <div>
+            {ingredients.length ? form : (   
+                              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: "center", height: "90vh" }}>
+                                        <CircularProgress />
+                                   </Box>
+                              ) }
         </div>
     )
 }
