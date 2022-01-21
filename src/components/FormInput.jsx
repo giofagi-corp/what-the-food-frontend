@@ -8,32 +8,20 @@ export default function FormInput(props) {
   const { cuisine, updateCuisine } = props;
   return (
     <div>
-        <Box component="form" sx={{ 
-          '& > :not(style)': { mb: 2, width: '94%' }, 
-          display: 'flex',
-          flexDirection: "column",
-          alignItems: 'center',
-
-         }} noValidate autoComplete="off">
+        <Box component="form" sx={{ '& > :not(style)': { mb: 2, width: '100%' },}} noValidate autoComplete="off">
           <TextField type="text"
-            required
             name="search"
             value={name}
             onChange={updateName}
             placeholder="Name"
-            id="outlined-basic" label="Name" variant="outlined" 
-            // error={name === ""}
-            // helperText={name === "" ? 'This field is required' : ''}
-            />
+            id="outlined-basic" label="Name" variant="outlined" />
           <TextField type="number"
-            required
             name="search"
             value={time}
             onChange={updateTime}
             placeholder="Duration"
             id="outlined-basic" label="Duration" variant="outlined" />
           <TextField type="text"
-            required  
             name="search"
             value={cuisine}
             onChange={updateCuisine}

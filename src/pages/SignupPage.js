@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import LoginPageTitle from "../components/GenericPageTitle";
+import GenericPageTitle from "../components/GenericPageTitle";
+import GenericPageSubtitle from "../components/GenericPageSubtitle";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -41,8 +42,26 @@ function SignupPage(props) {
   return (
     <>
     <div className="NotificationsPage">
-      <LoginPageTitle text="Sign Up"/>
 
+      {/* <form onSubmit={handleSignupSubmit}>
+        <label>Email:</label>
+        <input type="text" name="email" value={email} onChange={handleEmail} />
+
+        <label>Password:</label>
+        <input
+          type="password"
+          name="password"
+          value={password}
+          onChange={handlePassword}
+        />
+
+        <label>Name:</label>
+        <input type="text" name="name" value={name} onChange={handleName} />
+
+        <button type="submit">Sign Up</button>
+      </form> */}
+
+      <GenericPageTitle text="Sign Up" />
       <Box component="form" sx={{ '& > :not(style)': { mb: 2, width: '100%' },}} noValidate autoComplete="off">
       
           <TextField type="text" 

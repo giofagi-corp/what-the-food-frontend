@@ -4,7 +4,6 @@ import HomeContent from "../components/HomeContent";
 import HomeSearchbar from "../components/HomeSearchbar";
 import { useState, useEffect } from "react";
 import NotFound from "../components/NotFound";
-import Footer from "../components/Footer";
 
 
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
@@ -80,7 +79,7 @@ export default function HomePage() {
                 inputSearch={inputSearch}
             />
             {isFound === true ? <HomeContent recipes={recipes} /> : <NotFound />}
-            <Footer />
+            
         </div>
     );
 }
