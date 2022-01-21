@@ -8,7 +8,7 @@ import {AuthContext} from "./../context/auth.context"
 export default function ProfilePage() {
     const {logOutUser} = useContext(AuthContext)
     return (
-        <>      
+        <>
             <ProfileHeader/>
             <ContentTabs/>
         </>

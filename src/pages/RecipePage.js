@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import Hero from "../components/Hero"
 import RecipeBody from "../components/RecipeBody"
-import RelatedRecipes from "../components/RelatedRecipes"
 import axios from 'axios';
 
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
 export default function RecipePage() {
     const storedToken = localStorage.getItem("authToken");
+
 
     const {id} = useParams()
     console.log(id);
@@ -32,10 +32,9 @@ export default function RecipePage() {
     }, [])
 
     return (
-        <div className='RecipePage'>
+        <div>
             <Hero recipe={recipe}/>
-            <RecipeBody recipe={recipe}/>
-            <RelatedRecipes/>
+            <RecipeBody description={recipe.description} ingredients={recipe.ingredients}/>
         </div>
     )
     }

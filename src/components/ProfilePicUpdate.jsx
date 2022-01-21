@@ -7,9 +7,6 @@ import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { Button } from '@mui/material';
 import { useContext } from 'react';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import { Link } from "react-router-dom";
-
 import { AuthContext } from './../context/auth.context'
 
 const Input = styled('input')({
@@ -39,13 +36,7 @@ export default function ProfilePicUpdate() {
         <div>
             <div>
                 <Image className='avatar' cloudName="dtu7oski7" publicId="https://res.cloudinary.com/dtu7oski7/image/upload/v1639653273/avatar_xzu7es.png"/>
-                <BottomNavigationAction
-                component={Link}
-                showLabels
-                to="/edit-profile"
-                label="Add"
-                value="add-recipe"/>
-                <Button onClick={logOutUser} sx={{ width: '100%', height: '36px' }} type="submit" variant="contained">Edit profile</Button>
+                <Button onClick={logOutUser} sx={{ width: '100%', height: '36px' }} type="submit" variant="contained">Log Out</Button>
             </div>
         </div>
     )
