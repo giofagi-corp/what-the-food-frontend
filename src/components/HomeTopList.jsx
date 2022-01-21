@@ -8,7 +8,7 @@ export default function RecipesList(props) {
   return (
     <Box sx={{p: '0 24px' }}> 
       {recipes.map((recipe) => (
-        <Link to={recipe.link}><RecipeCard key={recipe._id} {...recipe} /></Link>
+        <Link to={`recipe/${recipe._id}`}><RecipeCard key={recipe._id} {...recipe} /></Link>
       ))}
     </Box>
   );

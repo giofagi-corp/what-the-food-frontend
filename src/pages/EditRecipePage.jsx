@@ -77,19 +77,20 @@ export default function EditRecipePage() {
     }, [deleteImage])
 
    useEffect(() => {
+       console.log("image------>", image);
         if (!deleteImage){
-            // const formData = new FormData()
-            //     formData.append("file", image[0])
-            //     formData.append("upload_preset", "images") 
+            const formData = new FormData()
+                formData.append("file", image[0])
+                formData.append("upload_preset", "images") 
                
-            // if(image !== "") {
-            //     axios
-            //         .post(`https://api.cloudinary.com/v1_1/${cloudinaryName}/upload`, formData)
-            //         .then((res) =>{
-            //                 setImage(res.data.url)
-            //                 setLoading(true)
-            //         }).catch((error) => console.log(error))
-            // } 
+            if(image !== currentRecipe.imageUrl) {
+                axios
+                    .post(`https://api.cloudinary.com/v1_1/${cloudinaryName}/upload`, formData)
+                    .then((res) =>{
+                            setImage(res.data.url)
+                            setLoading(true)
+                    }).catch((error) => console.log(error))
+            } 
         } else {
             console.log("hola");
             setImage("")
@@ -201,47 +202,47 @@ export default function EditRecipePage() {
                 </Link>
             </div> */}
             <div className="RecipeInputs">
-                    {image !== '' ? (
-                         <div>
-                              {!loading ? 
-                              (
-                                   <div className="RecipePicUpload">
-                                   <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                    {image !== currentRecipe.imageUrl ? (
+                        <div>
+                            {!loading ? 
+                            (
+                                <div className="RecipePicUpload">
+                                    {console.log("image---->", image)}
+                                    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                                         <CircularProgress />
-                                   </Box>
-                                   </div>
-                              ) 
-                              : 
-                              (<Link
+                                    </Box>
+                                </div>
+                            ) : (
+                                <Link
                                    onClick={handleImageInput}
                                    className="RecipeImage"
-                              >
-                                   <IconButton aria-label="delete">
+                                >
+                                    <IconButton aria-label="delete">
                                         <CloseIcon
-                                             className="RecipeImageCloseIcon"
-                                             onClick={handleDeleteImage}
+                                            className="RecipeImageCloseIcon"
+                                            onClick={handleDeleteImage}
                                         />
-                                   </IconButton>
-                                   <img src={`${image}`} />
-                              </Link>)
+                                    </IconButton>
+                                    <img src={`${image}`} />
+                                </Link>)
                               }
-                         </div>
+                        </div>
                     ) : (
-                         <label
-                              htmlFor="icon-button-file"
-                              className="RecipePicUpload"
-                         >
-                              <Input
-                                   accept="image/*"
-                                   id="icon-button-file"
-                                   type="file"
-                                   onChange={handleImageInput}
-                              />
-                              <div className="RecipePicUploadButtons">
-                                   <PhotoCamera sx={{ mr: 0.5 }} />
-                                   <Div sx={{ ml: 0.5 }}>{'Upload Image*'}</Div>
-                              </div>
-                         </label>
+                        <label
+                            htmlFor="icon-button-file"
+                            className="RecipePicUpload"
+                        >
+                            <Input
+                                accept="image/*"
+                                id="icon-button-file"
+                                type="file"
+                                onChange={handleImageInput}
+                            />
+                            <div className="RecipePicUploadButtons">
+                                <PhotoCamera sx={{ mr: 0.5 }} />
+                                <Div sx={{ ml: 0.5 }}>{'Upload Image*'}</Div>
+                            </div>
+                        </label>
                     )}
                </div>
 
