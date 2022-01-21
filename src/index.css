@@ -1,9 +1,24 @@
+@font-face {
+  font-family: "Wallie";
+  src: url("./fonts/Wallie-Fit.woff2");
+}
+
+@font-face {
+  font-family: "Wallie-Chunky";
+  src: url("./fonts/Wallie-Chunky.woff2");
+}
+
+@font-face {
+  font-family: "Wallie-Skinny";
+  src: url("./fonts/Wallie-Skinny.woff2");
+}
+
 #root {
 }
 
 body {
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Wallie", "Roboto", sans-serif !important;
   color: #4d4d4d;
   background-color: #f4f5f7 !important;
 }
@@ -13,7 +28,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: "Roboto", sans-serif;
+  font-family: "Wallie-Chunky", "Roboto", sans-serif;
 }
 
 a {
@@ -160,6 +175,18 @@ nav li {
   align-items: center;
   bottom: 20px;
   /* position: absolute; */
+}
+
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+  font-family: "Wallie", "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root {
+  font-family: "Wallie", "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.css-9e5uuu-MuiPaper-root-MuiAutocomplete-paper {
+  font-family: "Wallie", "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
 .css-bhp9pd-MuiPaper-root-MuiCard-root {
@@ -347,7 +374,7 @@ select {
   width: 100%;
   border-radius: 4px;
   border-color: rgba(0, 0, 0, 0.23) !important;
-  font-family: "Roboto", sans-serif !important;
+  font-family: "Wallie", "Roboto", sans-serif !important;
 }
 
 .AddRecipeText {
@@ -504,10 +531,19 @@ select {
 .css-h93ljk-MuiTypography-root {
   font-size: 1.3rem !important;
   font-weight: 700;
+  font-family: "Wallie", "Roboto", sans-serif !important;
+}
+
+.css-gulbw7-MuiButtonBase-root-MuiTab-root {
+  font-family: "Wallie-Chunky", "Roboto", sans-serif !important;
+}
+
+.css-imwso6-MuiBottomNavigationAction-label {
+  font-family: "Wallie", "Roboto", sans-serif !important;
 }
 
 .Home {
-  max-width: 980px;
+  max-width: 850px;
   margin: 0 auto;
 }
 
@@ -539,6 +575,13 @@ select {
   padding-top: 10px;
   font-weight: 500;
   font-size: 2rem;
+}
+
+.css-vj1n65-MuiGrid-root {
+  background-color: ;
+}
+.css-1fhqxln-MuiButtonBase-root-MuiIconButton-root {
+  color: white !important;
 }
 
 ol {
@@ -580,6 +623,10 @@ ol li::before {
   padding: 0 24px 100px !important;
 }
 
+.css-1iz24ed-MuiChip-root {
+  font-family: "Wallie", "Roboto", sans-serif !important;
+}
+
 .Footer {
   background-color: white;
   width: 100%;
@@ -594,6 +641,25 @@ ol li::before {
   display: flex;
   flex-direction: column;
   padding: 30px 24px 0 24px;
+  font-size: 0.875rem;
+}
+
+.FooterBody p {
+  color: #a8a8a9;
+  font-family: "Wallie-Skinny", "Roboto", sans-serif;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.FooterBody img {
+  max-width: 180px;
+}
+
+.FooterBody h4 {
+  color: #7a7a7a;
+  font-family: "Wallie", "Roboto", sans-serif;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 .FooterColumn {
@@ -701,7 +767,6 @@ ol li::before {
   .MuiCardMedia-root {
     border-radius: 3px;
   }
-  .css-18be2q5{
-
+  .css-18be2q5 {
   }
 }

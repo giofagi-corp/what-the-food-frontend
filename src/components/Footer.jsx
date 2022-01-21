@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import { Link } from "react-router-dom";
 
 export default function Footer() {
@@ -6,24 +6,26 @@ export default function Footer() {
       <div className='Footer'>
         <div className='FooterBody'>
             <div className='FooterColumn'>
-                <p>You may also like</p>
-                <p>Copyright © 2022 What The Food.</p>
+                <img alt='logo' src='../images/logo.svg'/>
+                <p>2022 What The Food ©</p>
             </div>
             <div className='FooterColumn'>
                 <h4>What The Food</h4>
-                <p>You may also like</p>
-                <p>You may also like</p>
-                <p>You may also like</p>
+                <p>About Us</p>
+                <p>Brand Book</p>
+                <p>Press</p>
             </div>
             <div className='FooterColumn'>
                 <h4>Support</h4>
-                <p>Support</p>
-                <p>You may also like</p>
+                <p>F.A.Q's</p>
+                <p>Security Advice</p>
                 <p>You may also like</p>
             </div>
             <div className='FooterColumn'>
                 <h4>Legal</h4>
-                <p>Legal</p>
+                <p>Terms & Conditions</p>
+                <p>Privacy Policy</p>
+                <p>Cookies</p>
             </div>
         </div>
     </div>

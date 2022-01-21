@@ -15,7 +15,7 @@ export default function BackButton() {
         <div className='BackButton'>
             <Grid>
                 <IconButton onClick={history.goBack} color="primary" aria-label="go back" sx={{ padding: 0, minWidth: '1px'}}>
-                    <ArrowBackIcon sx={{ padding: 0 }}/>
+                    <ArrowBackIcon sx={{ padding: 0, color: 'white'}}/>
                 </IconButton>
             </Grid>
         </div>
