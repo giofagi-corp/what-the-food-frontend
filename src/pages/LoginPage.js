@@ -7,6 +7,9 @@ import GenericPageSubtitle from "../components/GenericPageSubtitle";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+import Collapse from '@mui/material/Collapse';
+import Fade from '@mui/material/Fade';
 
 const API_URI = process.env.REACT_APP_API_URI;
 
@@ -14,6 +17,7 @@ function LoginPage(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
+  const [open, setOpen] = useState(true);
 
   const { logInUser } = useContext(AuthContext);
 
@@ -80,7 +84,12 @@ function LoginPage(props) {
         <p>Don't have an account yet? <Link to={"/signup"}> Sign Up</Link></p>
       </div>      
 
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      {errorMessage && (
+                    <Collapse in={open}>
+                      <Fade in={errorMessage}>
+                          <Alert color="error" severity="error" sx={{m: "20px", display: "flex", justifyContent: "center"}}>{errorMessage}</Alert>
+                      </Fade>
+                    </Collapse>)}
     </div>
   );
 }
