@@ -38,7 +38,7 @@ export default function EditRecipePage() {
     const [ingredientsId, setIngredientsId] = useState([])
     const [value, setValue] = useState(null)
     const { id } = useParams();
-    const [image, setImage] = useState(currentRecipe.imageUrl)
+    const [image, setImage] = useState('')
     const [updateRecipe, setUpdateRecipe] = useState({})
     const [recipeReady, setRecipeReady] = useState(false)
 
@@ -52,8 +52,6 @@ export default function EditRecipePage() {
     const storedToken = localStorage.getItem('authToken')
 
     const handleIngredientId = (ing) => {
-
-        //console.log("handle ingredients");
         let arrId = []
         ing.map((e) => {  
             return axios.post(
@@ -62,15 +60,10 @@ export default function EditRecipePage() {
                     headers: { Authorization: `Bearer ${storedToken}` },
                 })
                 .then((res) => {
-                    //console.log("response data ---->" ,res.data[0]._id);
-                    const ingId = res.data[0]._id
-                    arrId.push(ingId)
-                    //setIngredientsId([...ingredientsId, ingId])
-                    //console.log("array ingredientes Id ---->" ,ingredientsId);
+                    arrId.push(res.data[0]._id)
                 })
                 .catch((error) => console.log(error))
-            })
-            //console.log("ingredients Id on handleingredients ---->",ingredientsId);
+            });
             setIngredientsId(arrId)
             
         }
@@ -79,16 +72,37 @@ export default function EditRecipePage() {
         handleIngredientId(ingredients)
     }, [ingredients])
 
+    useEffect(()=>{
+        setImage("")
+    }, [deleteImage])
+
+   useEffect(() => {
+        if (!deleteImage){
+            // const formData = new FormData()
+            //     formData.append("file", image[0])
+            //     formData.append("upload_preset", "images") 
+               
+            // if(image !== "") {
+            //     axios
+            //         .post(`https://api.cloudinary.com/v1_1/${cloudinaryName}/upload`, formData)
+            //         .then((res) =>{
+            //                 setImage(res.data.url)
+            //                 setLoading(true)
+            //         }).catch((error) => console.log(error))
+            // } 
+        } else {
+            console.log("hola");
+            setImage("")
+            setDeleteImage(false)
+            setLoading(false)
+        }
+    }, [image])
 
     const submit = () => {
-        // console.log("hello submit");
-        //console.log("ingredients Id",ingredientsId);
-        //handleIngredientId(ingredients)
         setUpdateRecipe({
                 // LA IMAGEN NO ESTÁ ACTUALIZADA <--------
                 imageUrl: image,
                 name: name,
-                // HAY QUE BUSCAR LOS IDS DE LOS INGREDIENTES PARA CREAR LA RECETA <--------
                 ingredients: ingredientsId,
                 time: time,
                 description: step,
@@ -101,7 +115,6 @@ export default function EditRecipePage() {
     useEffect(()=>{
 
         console.log("updateRecipe------>",updateRecipe);
-        //console.log("updateRecipe------>",updateRecipe.ingredients);
 
         // ACCESO AL ENDPOINT LISTO <--------
 
@@ -123,6 +136,7 @@ export default function EditRecipePage() {
    )
         .then((res) => {
             setCurrentRecipe(res.data)
+            setImage(res.data.imageUrl)
             setStep(res.data.description)
             setName(res.data.name)
             setTime(res.data.time)
@@ -172,7 +186,7 @@ export default function EditRecipePage() {
                 <GenericPageTitle text="Edit recipe" /> 
                 <GenericPagesSubtitle text="Recipe description" />
             </div>
-            <div className="RecipeInputs">
+            {/* <div className="RecipeInputs">
                 <Link
                     onClick={handleImageInput}
                     className="RecipeImage"
@@ -185,7 +199,52 @@ export default function EditRecipePage() {
                 </IconButton>
                     <img src={`${currentRecipe.imageUrl}`} />
                 </Link>
-            </div>
+            </div> */}
+            <div className="RecipeInputs">
+                    {image !== '' ? (
+                         <div>
+                              {!loading ? 
+                              (
+                                   <div className="RecipePicUpload">
+                                   <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                                        <CircularProgress />
+                                   </Box>
+                                   </div>
+                              ) 
+                              : 
+                              (<Link
+                                   onClick={handleImageInput}
+                                   className="RecipeImage"
+                              >
+                                   <IconButton aria-label="delete">
+                                        <CloseIcon
+                                             className="RecipeImageCloseIcon"
+                                             onClick={handleDeleteImage}
+                                        />
+                                   </IconButton>
+                                   <img src={`${image}`} />
+                              </Link>)
+                              }
+                         </div>
+                    ) : (
+                         <label
+                              htmlFor="icon-button-file"
+                              className="RecipePicUpload"
+                         >
+                              <Input
+                                   accept="image/*"
+                                   id="icon-button-file"
+                                   type="file"
+                                   onChange={handleImageInput}
+                              />
+                              <div className="RecipePicUploadButtons">
+                                   <PhotoCamera sx={{ mr: 0.5 }} />
+                                   <Div sx={{ ml: 0.5 }}>{'Upload Image*'}</Div>
+                              </div>
+                         </label>
+                    )}
+               </div>
+
             <div>
                 <Box component="form" sx={{ 
                 '& > :not(style)': { mb: 2, width: '94%' }, 
