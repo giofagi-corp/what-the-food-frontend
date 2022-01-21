@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function RecipesList(props) {
   const { recipes } = props;
   return (
-    <div>
+    <div className="CardContainer">
       {recipes.map((recipe) => (
         <Link to={`/recipe/${recipe._id}`} ><RecipeCard key={recipe._id} {...recipe} /></Link>
       ))}
