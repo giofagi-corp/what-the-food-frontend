@@ -395,3 +395,20 @@ select {
 .RecipeStepParagraph {
      padding: 0 14px;
 }
+
+.NotFound {
+     height: 75vh;
+     background-color: white;
+     display: flex;
+     align-items: center;
+}
+
+.NotFound h2 {
+     color: black;
+     padding: 0 30px;
+     text-align: center;
+}
+
+.NotFound img {
+     width: 50vw;
+}
