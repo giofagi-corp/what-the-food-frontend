@@ -24,12 +24,9 @@ const Div = styled('div')(({ theme }) => ({
     ...theme.typography.button,
 }))
 
-//const ingre = ['black pepper', 'onion']
-
 export default function EditRecipePage() {
     
     const [currentRecipe, setCurrentRecipe] = useState({})
-    const [image, setImage] = useState(currentRecipe.imageUrl)
     const [deleteImage, setDeleteImage] = useState(false)
     const [name, setName] = useState('')
     const [time, setTime] = useState(null)
@@ -41,6 +38,9 @@ export default function EditRecipePage() {
     const [ingredientsId, setIngredientsId] = useState([])
     const [value, setValue] = useState(null)
     const { id } = useParams();
+    const [image, setImage] = useState(currentRecipe.imageUrl)
+    const [updateRecipe, setUpdateRecipe] = useState({})
+    const [recipeReady, setRecipeReady] = useState(false)
 
     const handleImageInput = (e) => setImage(e.target.files)
     const handleNameInput = (e) => setName(e.target.value)
@@ -51,9 +51,68 @@ export default function EditRecipePage() {
 
     const storedToken = localStorage.getItem('authToken')
 
+    const handleIngredientId = (ing) => {
+
+        //console.log("handle ingredients");
+        let arrId = []
+        ing.map((e) => {  
+            return axios.post(
+                `${REACT_APP_API_URI}/api/search-ingredient/${e}`, {},
+                {
+                    headers: { Authorization: `Bearer ${storedToken}` },
+                })
+                .then((res) => {
+                    //console.log("response data ---->" ,res.data[0]._id);
+                    const ingId = res.data[0]._id
+                    arrId.push(ingId)
+                    //setIngredientsId([...ingredientsId, ingId])
+                    //console.log("array ingredientes Id ---->" ,ingredientsId);
+                })
+                .catch((error) => console.log(error))
+            })
+            //console.log("ingredients Id on handleingredients ---->",ingredientsId);
+            setIngredientsId(arrId)
+            
+        }
+
+    useEffect(()=>{
+        handleIngredientId(ingredients)
+    }, [ingredients])
+
+
     const submit = () => {
-        console.log("hello submit");
+        // console.log("hello submit");
+        //console.log("ingredients Id",ingredientsId);
+        //handleIngredientId(ingredients)
+        setUpdateRecipe({
+                // LA IMAGEN NO ESTÁ ACTUALIZADA <--------
+                imageUrl: image,
+                name: name,
+                // HAY QUE BUSCAR LOS IDS DE LOS INGREDIENTES PARA CREAR LA RECETA <--------
+                ingredients: ingredientsId,
+                time: time,
+                description: step,
+                cuisine: cuisine,
+        })
+        setRecipeReady(true)
+       
     }
+
+    useEffect(()=>{
+
+        console.log("updateRecipe------>",updateRecipe);
+        //console.log("updateRecipe------>",updateRecipe.ingredients);
+
+        // ACCESO AL ENDPOINT LISTO <--------
+
+        /* recipeReady && (
+            axios.put(`${REACT_APP_API_URI}/api/recipe/${id}`, updateRecipe, {
+                headers: { Authorization: `Bearer ${storedToken}` },
+            }).then((res) => {
+                console.log(res.data);
+            })
+        ) */
+    }, [recipeReady])
 
    useEffect(() => {
     axios.get(
@@ -106,8 +165,6 @@ export default function EditRecipePage() {
              </div>
         </div>
    ))
-
-   console.log("ingredients state---->", ingredients);
 
         const form = (
             <div>
@@ -174,10 +231,10 @@ export default function EditRecipePage() {
                             options={availableIngredients.map(
                                 (option) => option.name
                             )}
-                            //value={ingredients}
                             defaultValue={ingredients}
                             freeSolo
                             renderTags={(value, getTagProps) =>(
+                                setIngredients(value),
                                 value.map((option, index) => (   
                                         <Chip
                                             deleteIcon={<CloseIcon />}
@@ -238,11 +295,13 @@ export default function EditRecipePage() {
 
     return (
         <div>
-            {ingredients.length ? form : (   
-                              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: "center", height: "90vh" }}>
-                                        <CircularProgress />
-                                   </Box>
-                              ) }
+            {ingredients.length ? form : 
+                (
+                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: "center", height: "90vh" }}>
+                    <CircularProgress />
+                </Box>
+                )
+            }
         </div>
     )
 }
