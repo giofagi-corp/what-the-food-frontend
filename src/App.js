@@ -6,6 +6,7 @@ import ProjectListPage from "./pages/ProjectListPage";
 import ProjectDetailsPage from "./pages/ProjectDetailsPage";
 import EditProfilePage from "./pages/EditProfilePage";
 import ProfilePage from "./pages/ProfilePage";
+import EditProfile from "./pages/EditProfilePage";
 import RecipePage from "./pages/RecipePage";
 
 
@@ -18,15 +19,15 @@ import TopRecipesPage from "./pages/TopRecipesPage";
 import TopCuisinePage from "./pages/TopCuisinePage";
 import TopIngredientsPage from "./pages/TopIngredientsPage";
 import NotificationsPage from "./pages/NotificationsPage";
-import AddRecipe from "./pages/AddRecipe";
 import NewRecipe from "./pages/NewRecipe";
 import RecipePageUser from "./pages/RecipePageUser";
+
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-
+      
       <Switch>
         <PrivateRoute exact path="/" component={HomePage} />
         <PrivateRoute exact path="/top-recipes" component={TopRecipesPage} />
@@ -36,6 +37,8 @@ function App() {
         <PrivateRoute exact path="/profile" component={ProfilePage} />
         <PrivateRoute exact path="/add-recipe" component={NewRecipe} />
         <PrivateRoute exact path="/search" component={HomePage} />
+        <PrivateRoute exact path="/recipe/:id" component={RecipePage} /> 
+        <PrivateRoute exact path="/edit-profile" component={EditProfile} /> 
         <PrivateRoute exact path="/recipe/:id" component={RecipePage} />
         <PrivateRoute exact path="/recipe-user/:id" component={RecipePageUser} />
         <PrivateRoute exact path="/edit-profile" component={EditProfilePage} />

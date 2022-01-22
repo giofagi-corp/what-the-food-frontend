@@ -6,7 +6,6 @@ import Box from '@mui/material/Box';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
@@ -33,13 +32,6 @@ export default function Navbar() {
           label="Add"
           value="add-recipe"
           icon={<AddCircleOutlineOutlinedIcon />}
-      />
-      <BottomNavigationAction
-          component={Link}
-          to="/notifications"
-          label="Notifications"
-          value="notifications"
-          icon={<NotificationsNoneOutlinedIcon />}
       />
       <BottomNavigationAction
           component={Link}
