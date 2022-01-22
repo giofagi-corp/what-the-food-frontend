@@ -6,7 +6,7 @@ import BackButton from '../components/BackButton';
 export default function Hero (props) {
   const {recipe} = props
   return (
-    <div className="Hero" style={{backgroundImage: `url(${recipe.imageUrl})`}} >
+    <div className="MobileHero" style={{backgroundImage: `url(${recipe.imageUrl})`}} >
         <BackButton/>
         <HeroHeader recipe={recipe} editable={props.editable}/>
     </div>

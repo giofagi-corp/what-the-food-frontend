@@ -1,67 +1,93 @@
+@font-face {
+  font-family: "Wallie";
+  src: url("./fonts/Wallie-Fit.woff2");
+}
+
+@font-face {
+  font-family: "Wallie-Chunky";
+  src: url("./fonts/Wallie-Chunky.woff2");
+}
+
+@font-face {
+  font-family: "Wallie-Skinny";
+  src: url("./fonts/Wallie-Skinny.woff2");
+}
+
 #root {
-     margin-bottom: 90px;
 }
 
 body {
-     margin: 0;
-     font-family: 'Roboto', sans-serif;
-     color: #4d4d4d;
+  margin: 0;
+  font-family: "Wallie", "Roboto", sans-serif !important;
+  color: #4d4d4d;
+  background-color: #f4f5f7 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Wallie-Chunky", "Roboto", sans-serif;
 }
 
 a {
-     list-style: none;
-     color: black;
-     text-decoration: none !important;
+  list-style: none;
+  color: black;
+  text-decoration: none !important;
 }
 
 button,
 select {
-     padding: 5px 10px;
-     min-width: 50px;
-     margin: 5px;
-     font-size: 18px;
+  padding: 5px 10px;
+  margin: 5px;
+  font-size: 18px;
 }
 
 label {
-     width: 200px;
-     display: block;
+  width: 200px;
+  display: block;
 }
 
 input,
 textarea {
-     padding: 10px;
-     display: inline-block;
-     margin: 10px;
+  padding: 10px;
+  display: inline-block;
+  margin: 10px;
 }
 
 nav {
-     color: white;
-     padding: 0px 20px;
-     box-shadow: 0px 1px 2px gray;
-     width: 100%;
-     padding: 5px;
+  color: white;
+  padding: 0px 20px;
+  box-shadow: 0px 1px 2px gray;
+  width: 100%;
+  padding: 5px;
 }
 
 nav li {
-     list-style: none;
-     color: white;
-     font-size: 24px;
-     font-weight: 600;
+  list-style: none;
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
 }
 
 .card {
-     width: 400px;
-     padding: 10px;
-     box-shadow: 0px 2px 3px grey;
-     margin: 0 auto;
-     margin-bottom: 20px;
-     background: #94a7c8;
-     border-radius: 4px;
+  width: 400px;
+  padding: 10px;
+  box-shadow: 0px 2px 3px grey;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  background: #94a7c8;
+  border-radius: 4px;
 }
 
 .ProjectCard h3::after {
-     content: url('https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/m3/icon-expand.png');
-     margin-left: 5px;
+  content: url("https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/m3/icon-expand.png");
+  margin-left: 5px;
+}
+
+.error-message {
+  text-align: center !important;
 }
 
 .EditProjectPage,
@@ -69,28 +95,28 @@ nav li {
 .AddTask,
 .SignupPage,
 .LoginPage {
-     background: #f9eec3;
-     border: 1px solid grey;
-     box-shadow: 0px 2px 3px grey;
-     width: 400px;
-     text-align: center;
-     margin: 0 auto;
-     margin-bottom: 20px;
-     padding: 10px;
-     border-radius: 4px;
+  background: #f9eec3;
+  border: 1px solid grey;
+  box-shadow: 0px 2px 3px grey;
+  width: 400px;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 4px;
 }
 
 .EditProjectPage {
-     background-color: rgb(239, 196, 88);
+  background-color: rgb(239, 196, 88);
 }
 
 .SignupPage,
 .LoginPage {
-     background-color: #608dd5;
+  background-color: #608dd5;
 }
 
 .LoginPage {
-     background-color: #94a7c8;
+  background-color: #94a7c8;
 }
 
 .EditProjectPage form,
@@ -98,268 +124,345 @@ nav li {
 .AddProject form,
 .SignupPage form,
 .LoginPage form {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .AddTask button,
 .AddProject button {
-     display: block;
+  display: block;
 }
 
 .TaskCard {
-     background-color: #dfeef9;
+  background-color: #dfeef9;
 }
 
-.Hero {
-     background-image: url('https://more.ctv.ca/food/recipes/potato-and-gochujang-braised-eggs/_jcr_content/root/responsivegrid_1778395324/responsivegrid_182136378/featuredmedia.coreimg.jpeg/1605192371688/81438-potato-and-gochujang-braised-eggs-.jpeg');
-     height: 300px;
-     background-position: center; /* Center the image */
-     background-repeat: no-repeat; /* Do not repeat the image */
-     background-size: cover;
-     position: relative;
-     padding: 0 20px 0 20px;
+.MobileHero {
+  background-image: url("https://more.ctv.ca/food/recipes/potato-and-gochujang-braised-eggs/_jcr_content/root/responsivegrid_1778395324/responsivegrid_182136378/featuredmedia.coreimg.jpeg/1605192371688/81438-potato-and-gochujang-braised-eggs-.jpeg");
+  height: 300px;
+  background-position: center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+  position: relative;
+  padding: 0 20px 0 20px;
+  max-width: 980px;
+  margin: 0 auto;
 }
 
 .BottomNavigation {
-     border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.Separator {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 0px;
 }
 
 .HeroHeader {
-     height: 230px;
-     display: flex;
-     flex-direction: column;
-     justify-content: flex-end;
+  height: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .HeroHeaderContent {
-     display: flex;
-     justify-content: space-between;
-     color: #ffffff;
-     align-items: center;
-     bottom: 20px;
-     /* position: absolute; */
+  display: flex;
+  justify-content: space-between;
+  color: #ffffff;
+  align-items: center;
+  bottom: 20px;
+  /* position: absolute; */
 }
 
-.GenericCard {
-     width: '100%';
-     margin: 30px 0 30px 0;
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+  font-family: "Wallie", "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root {
+  font-family: "Wallie", "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.css-9e5uuu-MuiPaper-root-MuiAutocomplete-paper {
+  font-family: "Wallie", "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
 .css-bhp9pd-MuiPaper-root-MuiCard-root {
-     box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 6%),
-          0px 1px 1px 0px rgb(0 0 0 / 6%), 0px 1px 3px 0px rgb(0 0 0 / 11%) !important;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 6%), 0px 1px 1px 0px rgb(0 0 0 / 6%),
+    0px 1px 3px 0px rgb(0 0 0 / 11%) !important;
+}
+
+.css-8atqhb {
+  background-color: white;
+}
+
+.RecipePage {
+  background-color: #f4f5f7;
 }
 
 .RecipeBody {
-     text-align: left;
-     padding: 10px 20px 0 20px;
+  text-align: left;
+  padding: 10px 20px 90px 20px;
+  background-color: #fff;
+  max-width: 980px;
+}
+.RecipeBody ul {
+  padding-left: 30px;
 }
 
 .RecipeBody ul li {
-     text-transform: capitalize;
-     line-height: 2;
+  text-transform: capitalize;
+  line-height: 2;
 }
+
 .RecipeBody ol {
-     padding-left: 35px;
+  padding-left: 35px;
 }
 
 .RecipeBody ol li {
-     line-height: 1.4;
-     margin-bottom: 20px;
-     padding-right: 20px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+  padding-right: 20px;
 }
 
 .RecipeBodyHeader {
-     display: flex;
-     justify-content: flex-start;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .RecipeBodyHeader div {
-     margin-right: 50px;
+  margin-right: 50px;
 }
 
 .RecipeName {
-     float: left;
-     text-align: left;
+  float: left;
+  text-align: left;
 }
 
 .RecipeFavSave {
-     float: right;
-     text-align: right;
+  float: right;
+  text-align: right;
 }
 
 .BackButton {
-     padding-top: 30px;
-     display: flex;
-     color: #666666;
+  padding-top: 30px;
+  display: flex;
+  color: #666666;
 }
 
 .NotificationsPage {
-     padding: 0 20px 0 20px;
+  padding: 0 24px 0 24px;
+}
+
+.EditProfilePage {
+  padding: 0 24px 0 24px;
+  text-align: center;
 }
 
 .GenericPageTitle {
-     text-align: left;
+  text-align: left;
+  padding-left: 40px;
+  margin-top: -50px;
 }
 
 .Notifications {
-     padding-bottom: 50px;
+  padding-bottom: 50px;
+}
+
+.AddRecipePage {
+  max-width: 980px;
+  margin: 0 auto;
 }
 
 .ProfileHeader {
-     display: flex;
-     flex-direction: row;
-     margin-top: 30px;
-     padding-bottom: 20px;
-     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: row;
+  padding-top: 30px;
+  padding-bottom: 20px;
 }
 
 .ProfileHeaderPic {
-     width: 35%;
-     text-align: center;
-     padding: 0 20px 0 20px;
+  width: 35%;
+  text-align: center;
+  padding: 0 20px 0 30px;
 }
 
 .ProfileHeaderInfo {
-     width: 65%;
-     text-align: left;
+  width: 65%;
+  text-align: left;
 }
 
 .ProfileHeaderInfo h3 {
-     margin-top: 0;
-     margin-bottom: 5px;
+  margin-top: 0;
+  margin-bottom: 5px;
 }
 
 .ProfileHeaderInfo h4 {
-     margin-top: 0;
-     margin-bottom: 15px;
+  margin-top: 0;
+  margin-bottom: 15px;
 }
 
 .ProfileHeaderInfo p {
-     margin-top: 0;
-     margin-bottom: 30px;
+  margin-top: 0;
+  margin-bottom: 30px;
 }
 
 .favIngredientsChips {
-     margin-left: -5px;
+  margin-left: -5px;
 }
 
 .IngredientChip {
-     margin-left: 6px;
-     margin-bottom: 8px;
+  margin-left: 6px;
+  margin-bottom: 8px;
 }
 
 .avatar {
-     border-radius: 100%;
-     max-width: 140px;
+  border-radius: 100%;
+  max-width: 140px;
+}
+
+.CardTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 
 .MuiTypography-h5 {
-     text-transform: capitalize !important;
-     text-decoration: none;
-     color: #4d4d4d;
+  text-transform: capitalize !important;
+  text-decoration: none;
+  color: #4d4d4d;
 }
 
 .TagLine {
-     text-align: center;
-     margin-top: 40px;
+  text-align: center;
+  margin-top: 40px;
 }
 
 .PodiumNumber {
-     display: flex;
-     align-items: center;
-     z-index: 1000 !important;
-     color: #ffffff !important;
+  display: flex;
+  align-items: center;
+  z-index: 1000 !important;
+  color: #ffffff !important;
 }
 
 .MuiBadge-badge {
-     font-size: 1rem !important;
-     height: 30px !important;
-     width: 30px;
-     border-radius: 100px !important;
-     bottom: 9px !important;
-     right: 2px !important;
-     color: #1976d2 !important;
-     background-color: #fff !important;
+  font-size: 1rem !important;
+  height: 30px !important;
+  width: 30px;
+  border-radius: 100px !important;
+  bottom: 9px !important;
+  right: 2px !important;
+  color: #1976d2 !important;
+  background-color: #fff !important;
 }
 
 .TopCard {
-     margin-top: -70px;
+  margin-top: -70px;
 }
 
 img {
-     filter: brightness(80%);
+  filter: brightness(100%);
 }
 
 select {
-     color: #8a8a8a !important;
-     text-transform: capitalize !important;
-     padding: 10px 10px;
-     min-width: 50px;
-     margin: 0 0 20px 0px;
-     font-size: 18px;
-     width: 100%;
-     border-radius: 4px;
-     border-color: rgba(0, 0, 0, 0.23) !important;
-     font-family: 'Roboto', sans-serif !important;
+  color: #8a8a8a !important;
+  text-transform: capitalize !important;
+  padding: 10px 10px;
+  margin: 0 0 20px 0px;
+  font-size: 18px;
+  width: 100%;
+  border-radius: 4px;
+  border-color: rgba(0, 0, 0, 0.23) !important;
+  font-family: "Wallie", "Roboto", sans-serif !important;
 }
 
 .AddRecipeText {
-     margin: 0 3% 0;
+  margin: 0 3% 0;
 }
 
 .RecipeInputs {
-     display: flex;
-     flex-direction: column;
-     align-content: center;
-     align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.EditProfilePic {
+  display: flex;
+  justify-content: center;
+}
+
+.EditProfilePicUpload {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 100%;
+  height: 200px;
+  margin-top: 60px;
+  background-color: #ececec;
+}
+
+.EditProfileContent {
+  margin-top: 30px;
+}
+
+.EditProfileContent h1 {
+  margin-bottom: 0px !important;
+}
+
+.EditProfileContent p {
+  margin-top: 5px !important;
+  margin-bottom: 50px !important;
 }
 
 .RecipeInputs img {
-     display: flex;
-     justify-content: center;
-     width: 94vw;
-     height: 250px;
-     object-fit: cover;
-     margin-bottom: 15px;
-     border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  height: 250px;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border-radius: 4px;
 }
 
 .RecipeImage {
-     display: flex;
-     flex-direction: column;
-     align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .RecipeImageCloseIcon {
-     background: rgba(0, 0, 0, 0.12);
-     color: white;
-     padding: 4px;
-     border-radius: 15%;
-     position: absolute;
-     right: 8px;
-     top: 25px;
-     z-index: 1;
+  background: rgba(0, 0, 0, 0.12);
+  color: white;
+  padding: 4px;
+  border-radius: 15%;
+  position: absolute;
+  right: 8px;
+  top: 25px;
+  z-index: 1;
+}
+
+.css-1086esm > :not(style) {
+  margin-bottom: 16px;
+  width: 100% !important;
 }
 
 .RecipePicUpload {
-     display: flex;
-     color: #1976d2;
-     margin-bottom: 15px;
-     border-radius: 4px;
-     background-color: #ececec;
-     height: 250px;
-     /* width: 93.5%; */
-     min-width: 93.5vw;
-     flex-direction: column;
-     justify-content: center;
+  display: flex;
+  color: #1976d2;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  background-color: #ececec;
+  height: 250px;
+  width: 100%;
+  max-width: 980px;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .RecipePicUploadButtons {
-     display: flex;
-     justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .RecipeStepBubble {
@@ -371,11 +474,11 @@ select {
 }
 
 .RecipeStepHeader {
-     display: flex;
-     justify-content: space-between;
-     margin: 20px 0px 6px;
-     height: 20px;
-     padding-left: 14px;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0px 6px;
+  height: 20px;
+  padding-left: 14px;
 }
 
 .RecipeStepNumber {
@@ -393,7 +496,283 @@ select {
 }
 
 .RecipeStepParagraph {
-     padding: 0 14px;
+  padding: 0 14px;
+}
+
+.css-w8dmq8 {
+  background-color: #f4f5f7;
+}
+
+.css-1wf8b0h-MuiTabs-flexContainer {
+  background-color: #ffffff;
+}
+
+.css-46bh2p-MuiCardContent-root {
+  padding: 10px !important;
+}
+
+.css-1gsv261 {
+  border-top: 1px solid;
+}
+
+.MuiCardContent-root {
+  min-height: 70px;
+}
+
+.MuiCardMedia-root {
+  border-radius: 4px;
+}
+
+.EditProfilePage {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.css-h93ljk-MuiTypography-root {
+  font-size: 1.3rem !important;
+  font-weight: 700;
+  font-family: "Wallie", "Roboto", sans-serif !important;
+}
+
+.css-gulbw7-MuiButtonBase-root-MuiTab-root {
+  font-family: "Wallie-Chunky", "Roboto", sans-serif !important;
+}
+
+.css-imwso6-MuiBottomNavigationAction-label {
+  font-family: "Wallie", "Roboto", sans-serif !important;
+}
+
+.Home {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.RecipeInputs {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.CardContainer {
+  padding-bottom: 90px;
+  background-color: #f4f5f7;
+}
+
+.GenericCard {
+  margin: 30px 0 30px 0;
+  padding: 6px 6px 0px;
+  box-shadow: 0 0 4px 1px rgb(0 0 0 / 2%), 0 0 4px 1px rgb(0 0 0 / 5%);
+  -webkit-transition: box-shadow 0.25s ease;
+  -moz-transition: box-shadow 0.25s ease;
+  -o-transition: box-shadow 0.25s ease;
+  transition: box-shadow 0.25s ease;
+}
+
+.RecipeBody h3 {
+  font-weight: 500;
+}
+
+.RecipeBody h2 {
+  padding-top: 10px;
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.css-vj1n65-MuiGrid-root {
+  background-color: ;
+}
+.css-1fhqxln-MuiButtonBase-root-MuiIconButton-root {
+  color: white !important;
+}
+
+ol {
+  counter-reset: my-awesome-counter;
+  list-style: none;
+  padding-left: 40px;
+}
+
+ol li {
+  margin: 0 0 0.5rem 0;
+  counter-increment: my-awesome-counter;
+  position: relative;
+}
+
+ol li::before {
+  content: counter(my-awesome-counter);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  position: absolute;
+  --size: 25px;
+  left: calc(-1 * var(--size) - 10px);
+  line-height: var(--size);
+  width: var(--size);
+  height: var(--size);
+  top: 0;
+  background: rgb(133, 133, 133);
+  border-radius: 50%;
+  text-align: center;
+}
+
+.CuisineType {
+  text-transform: capitalize;
+}
+
+.css-16d8ppv {
+  max-width: 870px;
+  margin: 0 auto;
+  padding: 0 24px 100px !important;
+}
+
+.css-1iz24ed-MuiChip-root {
+  font-family: "Wallie", "Roboto", sans-serif !important;
+}
+
+.Footer {
+  background-color: white;
+  width: 100%;
+  bottom: 0;
+  padding-bottom: 90px;
+  overflow: hidden;
+}
+
+.FooterBody {
+  max-width: 850px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 24px 0 24px;
+  font-size: 0.875rem;
+}
+
+.FooterBody p {
+  color: #a8a8a9;
+  font-family: "Wallie-Skinny", "Roboto", sans-serif;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.FooterBody img {
+  max-width: 180px;
+}
+
+.FooterBody h4 {
+  color: #7a7a7a;
+  font-family: "Wallie", "Roboto", sans-serif;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.FooterColumn {
+  width: 100%;
+}
+
+@media (max-width: 799px) {
+  .DesktopHero {
+    display: none;
+  }
+  .FooterColumn {
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 736px) {
+  .GenericCard {
+    width: 45%;
+    margin-left: 2.5%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    display: inline-flex;
+    flex-direction: column;
+  }
+  .CardContainer {
+    padding-top: 20px;
+  }
+  .ProfileHeaderPic {
+    width: 140px;
+    text-align: center;
+    padding-left: 50px;
+  }
+}
+
+@media (min-width: 800px) {
+  .FooterBody {
+    max-width: 850px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .FooterColumn {
+    max-width: 23%;
+  }
+
+  .DesktopHero {
+    height: 450px;
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    background-size: cover;
+    position: relative;
+    padding: 0 20px 0 20px;
+    max-width: 980px;
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+  .MobileHero {
+    display: none;
+  }
+  .RecipePage {
+    padding-bottom: 100px;
+  }
+  .RecipeBody {
+    max-width: 850px;
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: left;
+    padding: 20px 20px 0 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 6%),
+      0px 1px 1px 0px rgb(0 0 0 / 6%), 0px 1px 3px 0px rgb(0 0 0 / 11%) !important;
+  }
+  .RecipeBody ol {
+    padding-bottom: 25px;
+  }
+  .GenericCard {
+    max-width: 30%;
+    margin-left: 1.6%;
+    margin-top: 2%;
+    margin-bottom: 0%;
+    display: inline-flex;
+    flex-direction: column;
+  }
+  .CardTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #253238;
+  }
+  .MuiTabPanel-root {
+    max-width: 850px;
+    margin: 0 auto;
+  }
+  .ProfileHeader {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 30px;
+    padding-left: 30px;
+  }
+  .HeroHeaderContent {
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .MuiCardMedia-root {
+    border-radius: 3px;
+  }
+  .css-18be2q5 {
+    display: none;
+  }
 }
 
 .NotFound {

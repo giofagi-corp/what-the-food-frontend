@@ -166,7 +166,7 @@ export default function NewRecipe() {
 
 
      return (
-          <div>
+          <div className="AddRecipePage">
                <div className="AddRecipeText">
                     <GenericPageTitle text="Add a new recipe" />
                     
