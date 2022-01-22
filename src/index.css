@@ -670,6 +670,9 @@ ol li::before {
   .DesktopHero {
     display: none;
   }
+  .FooterColumn {
+    margin-bottom: 20px;
+  }
 }
 
 @media (min-width: 736px) {
@@ -701,7 +704,7 @@ ol li::before {
   }
 
   .FooterColumn {
-    max-width: 22%;
+    max-width: 23%;
   }
 
   .DesktopHero {
@@ -768,5 +771,6 @@ ol li::before {
     border-radius: 3px;
   }
   .css-18be2q5 {
+    display: none;
   }
 }
