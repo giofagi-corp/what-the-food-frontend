@@ -76,6 +76,9 @@ export default function HomePage() {
         <div>
             <HomeSearchbar
                 handleSearchInput={handleSearchInput}
+                recipes={recipes}
+                setRecipes={setRecipes}
+                feedTops={feedTops}
                 handleSubmit={handleSubmit}
                 inputSearch={inputSearch}
             />

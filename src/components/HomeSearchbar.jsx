@@ -36,20 +36,60 @@ export default function CustomizedInputBase(props) {
     const storedToken = localStorage.getItem("authToken");
 
     const [ingredients, setIngredients] = useState([]);
+    const [cuisine, setCuisine] = useState([])
+    const [autocompleteValues, setAutocompleteValues] = useState([]);
 
     const searchRecipeByIngredients = ()=>{
-        console.log('search by ingredient')
-    }
+        console.log('search by ingredient', ingredients)
+        const arrIngId = autocompleteValues.map((e)=>e._id).join('+')
 
+        if(!arrIngId) {
+            console.log("hola");
+            axios
+                .get(`${REACT_APP_API_URI}/api/recipe/listAllRecipes` , {
+                headers: { Authorization: `Bearer ${storedToken}` }
+                })
+                .then((response) => {
+                    props.setRecipes(response.data)
+                })
+                .catch((error) => console.log(error))
+            
+        }else{
+            axios
+                .get(`${REACT_APP_API_URI}/api/recipes?ingredients=${arrIngId}` , {
+                headers: { Authorization: `Bearer ${storedToken}` }
+                })
+                .then((response) => {
+                    props.setRecipes(response.data)
+                })
+                .catch((error) => console.log(error))
+        }
+
+    }
+    
+    const searchRecipeBycuisine = ()=>{
+        console.log('search by cuisine')
+
+        axios
+            .get(`${REACT_APP_API_URI}/api/recipe/recipeByCuisine?cuisine=${cuisine}` , {
+            headers: { Authorization: `Bearer ${storedToken}` }
+            })
+            .then((response) => {
+                props.setRecipes(response.data)
+            })
+            .catch((error) => console.log(error));
+
+    }
     useEffect(() => {
-    axios
-      .get(`${REACT_APP_API_URI}/api/search-all-ing`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((res) => {
-        setAvailableIngredients(res.data);
-        console.log("availabe ingredients ------>", availableIngredients)
-      });
+        axios
+        .get(`${REACT_APP_API_URI}/api/search-all-ing`, {
+            headers: { Authorization: `Bearer ${storedToken}` },
+        })
+        .then((res) => {
+            console.log("availabe ingredients ------>", res.data)
+            setAvailableIngredients(res.data);
+            //console.log("availabe ingredients ------>", availableIngredients)
+        });
     }, []);
     
     useEffect(() => {
@@ -58,8 +98,9 @@ export default function CustomizedInputBase(props) {
           headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((res) => {
+          console.log("availabe cuisines ------>", res.data);
           setAvailableCuisines(res.data);
-          console.log("availabe cuisines ------>", availableCuisines)
+          //console.log("availabe cuisines ------>", availableCuisines)
       })
     }, [])
 
@@ -67,73 +108,58 @@ export default function CustomizedInputBase(props) {
         setValue(newValue);
     };
 
+    const handleChangeValues = (event, value) => {
+        setAutocompleteValues(value);
+    };
+
     return (
         <Box sx={{ width: '100%' }}>
             <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <TabList centered onChange={handleChange}>
-                        <Tab sx={{ width: '50%'}} label="Search by Ingredients" value="1" />
-                        <Tab sx={{ width: '50%'}} label="Search by Cuisine" value="2" />
+                        <Tab sx={{ width: '50%'}} label="Ingredients" value="1" />
+                        <Tab sx={{ width: '50%'}} label="Cuisine" value="2" />
                     </TabList>
                 </Box>
                     <TabPanel sx={{ p: '30px 24px 0 24px' }} value="1">
                         <Stack spacing={3}>
-                            {/* <Autocomplete
-                                multiple
-                                id="tags-filled"
-                                value={props.ingredients}
-                                options={availableIngredients.map(
-                                    (option) => option.name
-                                )}
-                                renderTags={(value, getTagProps) =>(
-                                   setIngredients(value),
-                                   value.map((option, index) => (
-                                        <Chip
-                                             variant="outlined"
-                                             label={option}
-                                             {...getTagProps({ index })}
-                                        />
-                                   )))
-                                }
-                                renderInput={params => (
-                                <TextField
-                                    {...params}
-                                    variant="outlined"
-                                    label="Add ingredients"
-                                    placeholder="Add ingredients"
-                                />
-                                )}
-                            /> */}
-
-                            <Paper
-                            component="form"
-                            sx={{ p: '2px 8px', display: 'flex', alignItems: 'center', height: 50}}
-                            onSubmit={handleSubmit}
+                            {/* <Paper
+                                component="form"
+                                sx={{ p: '2px 8px', display: 'flex', alignItems: 'center', height: 50}}
+                                onSubmit={handleSubmit}
                             >
-                            <InputBase
-                                sx={{ ml: 1, flex: 1 }}
-                                placeholder="Choose an ingredient"
-                                inputProps={{ 'aria-label': 'search google maps' }}
-                                value={inputSearch} 
-                                onChange={handleSearchInput}
-                            />
-                            </Paper>
+                                <InputBase
+                                    sx={{ ml: 1, flex: 1 }}
+                                    placeholder="Choose an ingredient"
+                                    inputProps={{ 'aria-label': 'search google maps' }}
+                                    value={inputSearch} 
+                                    onChange={handleSearchInput}
+                                />
+                            </Paper> */}
 
                             <Autocomplete
                                 multiple
+                                value={autocompleteValues}
+                                onChange={handleChangeValues}
                                 id="tags-outlined"
                                 options={availableIngredients}
                                 getOptionLabel={(option) => option.name}
                                 filterSelectedOptions
                                 onSubmit={handleSubmit}
                                 renderInput={(params) => (
-                                    <TextField
-                                        {...params}
-                                        value={inputSearch} 
-                                        onChange={handleSearchInput}
-                                        label="Select Ingredients"
-                                        placeholder=""
-                                    />
+                                    
+                                    <div>
+
+                                        <TextField
+                                            {...params}
+                                            value={inputSearch} 
+                                            onChange={handleSearchInput}
+                                            label="Select Ingredients"
+                                            placeholder=""
+                                        />
+                                        {console.log("params------>", params)}
+                                    </div>
+                                    
                                 )}
                             />
                             <Button onClick={searchRecipeByIngredients} >Search</Button>
@@ -142,19 +168,18 @@ export default function CustomizedInputBase(props) {
                     <TabPanel sx={{ p: '30px 24px 0 24px' }} value="2">
                         <Stack spacing={3}>
                             <Autocomplete
-                                multiple
-                                id="tags-outlined"
+                                disablePortal
+                                id="combo-box-demo"
                                 options={availableCuisines}
-                                getOptionLabel={(option) => option}
-                                filterSelectedOptions
+                                sx={{ width: "100%" }}
                                 renderInput={(params) => (
-                                    <TextField
-                                        {...params}
-                                        label="Select Cuisine"
-                                        placeholder="Cuisine"
-                                    />
+                                    <>
+                                    <TextField {...params} label="Cuisine"/>
+                                    {setCuisine(params.inputProps.value)}
+                                    </>
                                 )}
                             />
+                            <Button onClick={searchRecipeBycuisine} >Search</Button>
                         </Stack>
                     </TabPanel>
             </TabContext>
