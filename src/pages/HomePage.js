@@ -34,8 +34,22 @@ export default function HomePage() {
     ];
 
     const [inputSearch, setInputSearch] = useState("");
-    const [recipes, setRecipes] = useState(feedTops);
+    const [recipes, setRecipes] = useState([]);
     const [isFound, setIsFound] = useState(true);
+    const [newList, setNewList] = useState(feedTops)
+    const [isHome, setIsHome] = useState(true)
+
+    useEffect(()=>{
+        setRecipes(feedTops)
+    }, [])
+    
+    useEffect(()=>{
+        setIsHome(true)
+    }, [])
+
+    useEffect(()=>{
+        searchRecipeBycuisine(newList)
+    }, [newList])
 
     const getRecipesByIngredients = (name) => {
         
@@ -64,6 +78,18 @@ export default function HomePage() {
             .catch((error) => console.log(error));
     };
 
+    const searchRecipeBycuisine = (cuisine)=>{
+        console.log('search by cuisine in HomePage')
+        axios
+            .get(`${REACT_APP_API_URI}/api/recipe/recipeByCuisine?cuisine=${cuisine}` , {
+            headers: { Authorization: `Bearer ${storedToken}` }
+            })
+            .then((response) => {
+                setRecipes(response.data)
+            })
+            .catch((error) => console.log(error));
+    }
+
     const handleSearchInput = (e) => setInputSearch(e.target.value);
 
     const handleSubmit = (e) => {
@@ -76,13 +102,18 @@ export default function HomePage() {
         <div>
             <HomeSearchbar
                 handleSearchInput={handleSearchInput}
+                isHome={isHome}
+                setIsHome={setIsHome}
+                newList={newList}
+                setNewList={setNewList}
+                searchRecipeBycuisine={searchRecipeBycuisine}
                 recipes={recipes}
                 setRecipes={setRecipes}
                 feedTops={feedTops}
                 handleSubmit={handleSubmit}
                 inputSearch={inputSearch}
             />
-            {isFound === true ? <HomeContent recipes={recipes} /> : <NotFound />}
+            { !isHome ? (isFound ? <HomeContent recipes={recipes} /> : <NotFound />) : <HomeContent recipes={feedTops} /> }
             <Footer />
         </div>
     );

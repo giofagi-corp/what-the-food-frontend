@@ -36,7 +36,7 @@ export default function CustomizedInputBase(props) {
     const storedToken = localStorage.getItem("authToken");
 
     const [ingredients, setIngredients] = useState([]);
-    const [cuisine, setCuisine] = useState([])
+    const [cuisine, setCuisine] = useState("")
     const [autocompleteValues, setAutocompleteValues] = useState([]);
 
     const searchRecipeByIngredients = ()=>{
@@ -67,28 +67,13 @@ export default function CustomizedInputBase(props) {
 
     }
     
-    const searchRecipeBycuisine = ()=>{
-        console.log('search by cuisine')
-
-        axios
-            .get(`${REACT_APP_API_URI}/api/recipe/recipeByCuisine?cuisine=${cuisine}` , {
-            headers: { Authorization: `Bearer ${storedToken}` }
-            })
-            .then((response) => {
-                props.setRecipes(response.data)
-            })
-            .catch((error) => console.log(error));
-
-    }
     useEffect(() => {
         axios
         .get(`${REACT_APP_API_URI}/api/search-all-ing`, {
             headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((res) => {
-            console.log("availabe ingredients ------>", res.data)
             setAvailableIngredients(res.data);
-            //console.log("availabe ingredients ------>", availableIngredients)
         });
     }, []);
     
@@ -98,9 +83,7 @@ export default function CustomizedInputBase(props) {
           headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((res) => {
-          console.log("availabe cuisines ------>", res.data);
           setAvailableCuisines(res.data);
-          //console.log("availabe cuisines ------>", availableCuisines)
       })
     }, [])
 
@@ -135,7 +118,6 @@ export default function CustomizedInputBase(props) {
                                 renderInput={(params) => (
                                     
                                     <div>
-
                                         <TextField
                                             {...params}
                                             value={inputSearch} 
@@ -164,8 +146,11 @@ export default function CustomizedInputBase(props) {
                                     {setCuisine(params.inputProps.value)}
                                     </>
                                 )}
+                                onChange={
+                                    props.setNewList(cuisine), 
+                                    cuisine === "" ? props.setIsHome(true) : props.setIsHome(false) 
+                                    }
                             />
-                            <Button onClick={searchRecipeBycuisine} >Search</Button>
                         </Stack>
                     </TabPanel>
             </TabContext>
