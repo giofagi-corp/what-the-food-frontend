@@ -123,20 +123,6 @@ export default function CustomizedInputBase(props) {
                 </Box>
                     <TabPanel sx={{ p: '30px 24px 0 24px' }} value="1">
                         <Stack spacing={3}>
-                            {/* <Paper
-                                component="form"
-                                sx={{ p: '2px 8px', display: 'flex', alignItems: 'center', height: 50}}
-                                onSubmit={handleSubmit}
-                            >
-                                <InputBase
-                                    sx={{ ml: 1, flex: 1 }}
-                                    placeholder="Choose an ingredient"
-                                    inputProps={{ 'aria-label': 'search google maps' }}
-                                    value={inputSearch} 
-                                    onChange={handleSearchInput}
-                                />
-                            </Paper> */}
-
                             <Autocomplete
                                 multiple
                                 value={autocompleteValues}
