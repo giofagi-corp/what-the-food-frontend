@@ -36,7 +36,8 @@ export default function HomePage() {
     const [inputSearch, setInputSearch] = useState("");
     const [recipes, setRecipes] = useState([]);
     const [isFound, setIsFound] = useState(true);
-    const [newList, setNewList] = useState(feedTops)
+    const [newListCuisine, setNewListCuisine] = useState([])
+    const [newListIng, setNewListIng] = useState([])
     const [isHome, setIsHome] = useState(true)
 
     useEffect(()=>{
@@ -48,8 +49,8 @@ export default function HomePage() {
     }, [])
 
     useEffect(()=>{
-        searchRecipeBycuisine(newList)
-    }, [newList])
+        searchRecipeBycuisine(newListCuisine)
+    }, [newListCuisine])
 
     const getRecipesByIngredients = (name) => {
         
@@ -79,7 +80,6 @@ export default function HomePage() {
     };
 
     const searchRecipeBycuisine = (cuisine)=>{
-        console.log('search by cuisine in HomePage')
         axios
             .get(`${REACT_APP_API_URI}/api/recipe/recipeByCuisine?cuisine=${cuisine}` , {
             headers: { Authorization: `Bearer ${storedToken}` }
@@ -101,11 +101,13 @@ export default function HomePage() {
     return (
         <div>
             <HomeSearchbar
+                isFound={isFound}
+                setIsFound={setIsFound}
                 handleSearchInput={handleSearchInput}
                 isHome={isHome}
                 setIsHome={setIsHome}
-                newList={newList}
-                setNewList={setNewList}
+                newListCuisine={newListCuisine}
+                setNewListCuisine={setNewListCuisine}
                 searchRecipeBycuisine={searchRecipeBycuisine}
                 recipes={recipes}
                 setRecipes={setRecipes}
@@ -113,7 +115,10 @@ export default function HomePage() {
                 handleSubmit={handleSubmit}
                 inputSearch={inputSearch}
             />
-            { !isHome ? (isFound ? <HomeContent recipes={recipes} /> : <NotFound />) : <HomeContent recipes={feedTops} /> }
+            {console.log("isFound",isFound)}
+            {console.log("isHome",isHome)}
+            { !isHome ? (isFound && <HomeContent recipes={recipes} />) : <HomeContent recipes={feedTops} /> }
+            {console.log("recipes",recipes)}
             <Footer />
         </div>
     );

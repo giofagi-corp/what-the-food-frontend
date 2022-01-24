@@ -40,27 +40,31 @@ export default function CustomizedInputBase(props) {
     const [autocompleteValues, setAutocompleteValues] = useState([]);
 
     const searchRecipeByIngredients = ()=>{
-        console.log('search by ingredient', ingredients)
         const arrIngId = autocompleteValues.map((e)=>e._id).join('+')
-
+        
         if(!arrIngId) {
-            console.log("hola");
             axios
-                .get(`${REACT_APP_API_URI}/api/recipe/listAllRecipes` , {
+            .get(`${REACT_APP_API_URI}/api/recipe/listAllRecipes` , {
                 headers: { Authorization: `Bearer ${storedToken}` }
-                })
-                .then((response) => {
-                    props.setRecipes(response.data)
-                })
-                .catch((error) => console.log(error))
+            })
+            .then((response) => {
+                console.log("response.data",response.data)
+                props.setRecipes(response.data)
+                
+            })
+            .catch((error) => console.log(error))
             
         }else{
             axios
-                .get(`${REACT_APP_API_URI}/api/recipes?ingredients=${arrIngId}` , {
+            .get(`${REACT_APP_API_URI}/api/recipes?ingredients=${arrIngId}` , {
                 headers: { Authorization: `Bearer ${storedToken}` }
-                })
-                .then((response) => {
-                    props.setRecipes(response.data)
+            })
+            .then((response) => {
+                console.log("response.data",response.data)
+                props.setIsFound(true);
+                props.setIsHome(false);
+
+                props.setRecipes(response.data)
                 })
                 .catch((error) => console.log(error))
         }
@@ -93,6 +97,7 @@ export default function CustomizedInputBase(props) {
 
     const handleChangeValues = (event, value) => {
         setAutocompleteValues(value);
+
     };
 
     return (
@@ -109,7 +114,11 @@ export default function CustomizedInputBase(props) {
                             <Autocomplete
                                 multiple
                                 value={autocompleteValues}
-                                onChange={handleChangeValues}
+                                onChange={
+                                    handleChangeValues
+                                    //autocompleteValues !== "" ? props.setIsHome(true) : props.setIsHome(false) 
+                                    //console.log("value",value)
+                                    }
                                 id="tags-outlined"
                                 options={availableIngredients}
                                 getOptionLabel={(option) => option.name}
@@ -125,7 +134,7 @@ export default function CustomizedInputBase(props) {
                                             label="Select Ingredients"
                                             placeholder=""
                                         />
-                                        {console.log("params------>", params)}
+                                        {/* {console.log("params------>", params)} */}
                                     </div>
                                     
                                 )}
@@ -147,7 +156,7 @@ export default function CustomizedInputBase(props) {
                                     </>
                                 )}
                                 onChange={
-                                    props.setNewList(cuisine), 
+                                    props.setNewListCuisine(cuisine), 
                                     cuisine === "" ? props.setIsHome(true) : props.setIsHome(false) 
                                     }
                             />
