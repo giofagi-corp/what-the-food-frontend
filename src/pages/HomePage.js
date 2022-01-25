@@ -3,14 +3,12 @@ import axios from "axios";
 import HomeContent from "../components/HomeContent";
 import HomeSearchbar from "../components/HomeSearchbar";
 import { useState, useEffect } from "react";
-import NotFound from "../components/NotFound";
 import Footer from "../components/Footer";
 
 
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
 export default function HomePage() {
-  const storedToken = localStorage.getItem("authToken");
 
     const feedTops = [
         {
@@ -32,93 +30,70 @@ export default function HomePage() {
                 "https://mir-s3-cdn-cf.behance.net/project_modules/fs/f712fd54981539.59714c1193342.png",
         },
     ];
-
-    const [inputSearch, setInputSearch] = useState("");
-    const [recipes, setRecipes] = useState([]);
-    const [isFound, setIsFound] = useState(true);
-    const [newListCuisine, setNewListCuisine] = useState([])
-    const [newListIng, setNewListIng] = useState([])
+    
+    const [newSearch, setNewSearch] = useState("");
+    const [recipes, setRecipes] = useState(feedTops);
     const [isHome, setIsHome] = useState(true)
 
-    useEffect(()=>{
-        setRecipes(feedTops)
-    }, [])
-    
-    useEffect(()=>{
-        setIsHome(true)
-    }, [])
+    const storedToken = localStorage.getItem("authToken");
+
 
     useEffect(()=>{
-        searchRecipeBycuisine(newListCuisine)
-    }, [newListCuisine])
+        console.log("newSearch", newSearch);
 
-    const getRecipesByIngredients = (name) => {
-        
-        axios
-            .post(`${REACT_APP_API_URI}/api/search/${name}`, {},
-            {
-              headers: { Authorization: `Bearer ${storedToken}` }, 
-            })
-            .then((response) => {
-                if (response.data[0]) {
-                    const id = response.data[0]._id;
-                    axios
-                        .get(
-                            `${REACT_APP_API_URI}/api/recipes?ingredients=${id}`, {
-                              headers: { Authorization: `Bearer ${storedToken}` },
-                            }
-                        )
-                        .then((response) => {
-                            setIsFound(true);
-                            setRecipes(response.data);
-                        });
-                } else {
-                    setIsFound(false);
-                }
-            })
-            .catch((error) => console.log(error));
-    };
+    }, [newSearch])
 
-    const searchRecipeBycuisine = (cuisine)=>{
-        axios
-            .get(`${REACT_APP_API_URI}/api/recipe/recipeByCuisine?cuisine=${cuisine}` , {
-            headers: { Authorization: `Bearer ${storedToken}` }
-            })
-            .then((response) => {
-                setRecipes(response.data)
-            })
-            .catch((error) => console.log(error));
-    }
 
-    const handleSearchInput = (e) => setInputSearch(e.target.value);
+    // const searchRecipeByIngredients = () => {
+    //     if(autocompleteValues){
+    //         const arrIngId = autocompleteValues.map((e)=>e._id).join('+')
+    //         if(arrIngId) {
+    //             axios
+    //             .get(`${REACT_APP_API_URI}/api/recipes?ingredients=${arrIngId}` , {
+    //                 headers: { Authorization: `Bearer ${storedToken}` }
+    //             })
+    //             .then((response) => {
+    //                 setRecipes(response.data)
+    //                 setIsFull(true)
+    //                 })
+    //                 .catch((error) => console.log(error))
+    //         }else{
+    //             setRecipes(feedTops)
+    //             setIsFull(false)
+    //         }
+    //     }else{
+    //         console.log("There is not ingredients to search");
+    //         setRecipes(feedTops)
+    //     }
+    // }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        getRecipesByIngredients(inputSearch);
-        setInputSearch("");
-    };
-    
+    // const searchRecipeBycuisine = (cuisine)=>{
+    //     console.log("hola");
+    //     axios
+    //         .get(`${REACT_APP_API_URI}/api/recipe/recipeByCuisine?cuisine=${cuisine}` , {
+    //         headers: { Authorization: `Bearer ${storedToken}` }
+    //         })
+    //         .then((response) => {
+    //             setRecipes(response.data)
+    //             //setIsFull(true)
+    //         })
+    //         .catch((error) => console.log(error));
+    // }
+
+    // const handleSearchInput = (e) => setInputSearch(e.target.value);
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault() 
+    //     setInputSearch("")
+    // }
+
     return (
         <div>
             <HomeSearchbar
-                isFound={isFound}
-                setIsFound={setIsFound}
-                handleSearchInput={handleSearchInput}
-                isHome={isHome}
-                setIsHome={setIsHome}
-                newListCuisine={newListCuisine}
-                setNewListCuisine={setNewListCuisine}
-                searchRecipeBycuisine={searchRecipeBycuisine}
-                recipes={recipes}
-                setRecipes={setRecipes}
-                feedTops={feedTops}
-                handleSubmit={handleSubmit}
-                inputSearch={inputSearch}
+                newSearch={newSearch}
+                setNewSearch={setNewSearch}
             />
-            {console.log("isFound",isFound)}
-            {console.log("isHome",isHome)}
-            { !isHome ? (isFound && <HomeContent recipes={recipes} />) : <HomeContent recipes={feedTops} /> }
-            {console.log("recipes",recipes)}
+            {isHome ? <HomeContent recipes={feedTops} /> : <HomeContent recipes={recipes} /> }
             <Footer />
         </div>
     );

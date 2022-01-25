@@ -7,9 +7,12 @@ export default function RecipesList(props) {
   const { recipes } = props;
   return (
     <Box sx={{p: '0 24px' }}>
-      {recipes.map((recipe) => (
-        <Link to={`recipe/${recipe._id}`}><RecipeCard key={recipe._id} {...recipe} /></Link>
-      ))}
-    </Box>
+      {
+        recipes && recipes.map((recipe) => (
+          <Link to={`recipe/${recipe._id}`}><RecipeCard key={recipe._id} {...recipe} /></Link>
+        ))
+      }
+    </Box
+    >
   );
 }
