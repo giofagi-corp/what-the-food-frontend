@@ -3,15 +3,7 @@ import { useState, useEffect } from 'react'
 import GenericPageTitle from '../components/GenericPageTitle'
 import BackButton from '../components/BackButton'
 import FormInput from '../components/FormInput'
-import {
-	CircularProgress,
-	IconButton,
-	TextField,
-	Chip,
-	Autocomplete,
-	Stack,
-	Button,
-} from '@mui/material'
+import { CircularProgress, IconButton, TextField, Chip, Autocomplete, Stack, Button } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
@@ -63,13 +55,8 @@ export default function EditRecipePage() {
 		ing.map(e => {
 			return axios
 				.post(
-					`${REACT_APP_API_URI}/api/search-ingredient/${e}`,
-					{},
-					{
-						headers: {
-							Authorization: `Bearer ${storedToken}`,
-						},
-					}
+					`${REACT_APP_API_URI}/api/search-ingredient/${e}`, {},
+					{ headers: { Authorization: `Bearer ${storedToken}` }, }
 				)
 				.then(res => {
 					arrId.push(res.data[0]._id)
@@ -80,15 +67,68 @@ export default function EditRecipePage() {
 	}
 
 	useEffect(() => {
+		axios.get(`${REACT_APP_API_URI}/api/recipe/${id}`, {
+			headers: { Authorization: `Bearer ${storedToken}` },
+		})
+			.then(res => {
+				setCurrentRecipe(res.data)
+				setImage(res.data.imageUrl)
+				setStep(res.data.description)
+				setName(res.data.name)
+				setTime(res.data.time)
+				setCuisine(res.data.cuisine)
+				const ing = res.data.ingredients.map(e => e.name)
+				setIngredients([...ing])
+			})
+			.catch(error => console.log(error))
+
+		axios.get(`${REACT_APP_API_URI}/api/search-all-ing`, {
+			headers: { Authorization: `Bearer ${storedToken}` },
+		}).then(res => {
+			setAvailableIngredients(res.data)
+		})
+		
+	}, [])
+
+	useEffect(() => {
 		handleIngredientId(ingredients)
 	}, [ingredients])
 
 	useEffect(() => {
-		setImage('')
+		deleteImage && setImage('')
 	}, [deleteImage])
 
+	const uploadImage = () => {
+
+		console.log('imagen borrada')
+
+		setLoading(false)
+		return (
+			<>
+			<Link
+				onClick={handleImageInput}
+				className='RecipeImage'>
+				<IconButton aria-label='delete'>
+					<CloseIcon
+						className='RecipeImageCloseIcon'
+						onClick={handleDeleteImage}
+					/>
+				</IconButton>
+			</Link>
+				<img src={`${image}`} />
+			</>
+		)
+	}
+
 	useEffect(() => {
-		console.log('image------>', image)
+
+
+		console.log('imagen cambia')
+
+		deleteImage && uploadImage()
+
+		//console.log('image------>', image)
+		/* console.log("deleteImage",deleteImage);
 		if (!deleteImage) {
 			const formData = new FormData()
 			formData.append('file', image[0])
@@ -106,11 +146,11 @@ export default function EditRecipePage() {
 					.catch(error => console.log(error))
 			}
 		} else {
-			console.log('hola')
+			//console.log('hola')
 			setImage('')
 			setDeleteImage(false)
 			setLoading(false)
-		}
+		} */
 	}, [image])
 
 	const submit = () => {
@@ -127,7 +167,7 @@ export default function EditRecipePage() {
 	}
 
 	useEffect(() => {
-		console.log('updateRecipe------>', updateRecipe)
+		//console.log('updateRecipe------>', updateRecipe)
 
 		// ACCESO AL ENDPOINT LISTO <--------
 
@@ -140,30 +180,15 @@ export default function EditRecipePage() {
         ) */
 	}, [recipeReady])
 
-	useEffect(() => {
-		axios.get(`${REACT_APP_API_URI}/api/recipe/${id}`, {
-			headers: { Authorization: `Bearer ${storedToken}` },
-		})
-			.then(res => {
-				setCurrentRecipe(res.data)
-				setImage(res.data.imageUrl)
-				setStep(res.data.description)
-				setName(res.data.name)
-				setTime(res.data.time)
-				setCuisine(res.data.cuisine)
-				const ing = res.data.ingredients.map(e => e.name)
-				setIngredients([...ing])
-			})
-			.catch(error => console.log(error))
-	}, [])
+	
 
-	useEffect(() => {
+	/* useEffect(() => {
 		axios.get(`${REACT_APP_API_URI}/api/search-all-ing`, {
 			headers: { Authorization: `Bearer ${storedToken}` },
 		}).then(res => {
 			setAvailableIngredients(res.data)
 		})
-	}, [])
+	}, []) */
 
 	const deleteStep = index => {
 		step.splice(index, 1)
@@ -198,6 +223,9 @@ export default function EditRecipePage() {
 				<GenericPageTitle text='Edit recipe' />
 				<GenericPagesSubtitle text='Recipe description' />
 			</div>
+
+			
+			{/* // REQUESTED IMAGE */}
 			{/* <div className="RecipeInputs">
                 <Link
                     onClick={handleImageInput}
@@ -209,15 +237,18 @@ export default function EditRecipePage() {
                             onClick={handleDeleteImage}
                     />
                 </IconButton>
-                    <img src={`${currentRecipe.imageUrl}`} />
+                    <img src={`${image}`} />
                 </Link>
             </div> */}
+
+
 			<div className='RecipeInputs'>
 				{image !== currentRecipe.imageUrl ? (
 					<div>
+						{console.log("loading", )}
 						{!loading ? (
 							<div className='RecipePicUpload'>
-								{console.log('image---->', image)}
+								{/* {console.log('image---->', image)} */}
 								<Box
 									sx={{
 										display: 'flex',
@@ -227,6 +258,7 @@ export default function EditRecipePage() {
 								</Box>
 							</div>
 						) : (
+							<>
 							<Link
 								onClick={handleImageInput}
 								className='RecipeImage'>
@@ -236,25 +268,24 @@ export default function EditRecipePage() {
 										onClick={handleDeleteImage}
 									/>
 								</IconButton>
-								<img src={`${image}`} />
 							</Link>
+								<img src={`${image}`} />
+							</>
 						)}
 					</div>
 				) : (
-					<label
-						htmlFor='icon-button-file'
-						className='RecipePicUpload'>
-						<Input
-							accept='image/*'
-							id='icon-button-file'
-							type='file'
-							onChange={handleImageInput}
-						/>
-						<div className='RecipePicUploadButtons'>
-							<PhotoCamera sx={{ mr: 0.5 }} />
-							<Div sx={{ ml: 0.5 }}>{'Upload Image*'}</Div>
-						</div>
-					</label>
+					<Link
+                    onClick={handleImageInput}
+                    className="RecipeImage"
+                >
+                <IconButton aria-label="delete">
+                    <CloseIcon
+                            className="RecipeImageCloseIcon"
+                            onClick={handleDeleteImage}
+                    />
+                </IconButton>
+                    <img src={`${image}`} />
+                </Link>
 				)}
 			</div>
 
@@ -376,6 +407,9 @@ export default function EditRecipePage() {
 			</div>
 		</div>
 	)
+
+	console.log("loading",loading);
+	console.log("image",image);
 
 	return (
 		<div>

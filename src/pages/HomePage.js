@@ -84,7 +84,6 @@ export default function HomePage() {
 				isHome={isHome}
 				setIsHome={setIsHome}
 			/>
-			{console.log('isHome', isHome)}
 			{isHome ? (
 				<HomeContent isHome={isHome} recipes={feedTops} />
 			) : (
