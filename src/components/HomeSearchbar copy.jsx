@@ -99,7 +99,7 @@ export default function CustomizedInputBase(props) {
                                         <TextField
                                             {...params}
                                             value={inputSearch} 
-                                            onChange={ handleSearchInput }
+                                             
                                             label="Select Ingredients"
                                             placeholder=""
                                         />

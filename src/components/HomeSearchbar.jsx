@@ -50,16 +50,13 @@ export default function HomeSearchbar(props) {
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+        props.setIsHome(true)
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setInputSearch("");
     };
-
-    const handleSearchInput = (e) => setInputSearch(e.target.value);
-
-    //console.log(cuisine);
 
     return (
         <Box sx={{ width: '100%', typography: 'body1' }}>
@@ -80,13 +77,19 @@ export default function HomeSearchbar(props) {
                 getOptionLabel={(option) => option.name}
                 filterSelectedOptions
                 renderInput={(params) => (
-                <TextField
-                    {...params}
-                    value={inputSearch} 
-                    label="Select Ingredients"
-                    placeholder=""
-                    onChange={ (e, value) => setInputSearch(value), props.setIsCuisine(false) }
-                />
+                    <>
+                        <TextField
+                            {...params}
+                            value={inputSearch} 
+                            label="Select Ingredients"
+                            placeholder=""
+                            onChange={ (e, value) => setInputSearch(value), props.setIsCuisine(false) }
+                        />
+                        {/* {
+                            console.log("props.newSearch", props.newSearch),
+                            props.newSearch.length === 0 && props.setIsCuisine(false)
+                        } */}
+                    </>
                 )}
             />
             </TabPanel>

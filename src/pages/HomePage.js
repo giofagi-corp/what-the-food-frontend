@@ -51,9 +51,9 @@ export default function HomePage() {
             headers: { Authorization: `Bearer ${storedToken}` }
             })
             .then((response) => {
-                console.log("response.data cuisine",response.data)
+                //console.log("response.data cuisine",response.data)
                 setRecipes(response.data)
-                // !response.data  && setIsHome(true)
+                response.data.length === 0 && setIsHome(true)
             })
             .catch((error) => console.log(error));
 
@@ -68,10 +68,13 @@ export default function HomePage() {
                         headers: { Authorization: `Bearer ${storedToken}` }
                     })
                     .then((response) => {
-                        console.log("response.data ingredientes",response.data)
+                        //console.log("response.data ingredientes",response.data)
                         setRecipes(response.data)
+                        //response.data.length === 0 && setIsHome(true)
                     })
                         .catch((error) => console.log(error))
+            }else{
+                setIsHome(true)
             }
         }
 
