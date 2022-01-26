@@ -31,7 +31,8 @@ export default function HomePage() {
         },
     ];
     
-    const [newSearch, setNewSearch] = useState("");
+    const [newSearch, setNewSearch] = useState([]);
+    const [isCuisine, setIsCuisine] = useState();
     const [recipes, setRecipes] = useState(feedTops);
     const [isHome, setIsHome] = useState(true)
 
@@ -40,60 +41,55 @@ export default function HomePage() {
 
     useEffect(()=>{
         console.log("newSearch", newSearch);
+        console.log("isCuisine", isCuisine);
+
+        if(isCuisine){
+            setIsHome(false)
+
+            axios
+            .get(`${REACT_APP_API_URI}/api/recipe/recipeByCuisine?cuisine=${newSearch}` , {
+            headers: { Authorization: `Bearer ${storedToken}` }
+            })
+            .then((response) => {
+                console.log("response.data cuisine",response.data)
+                setRecipes(response.data)
+                // !response.data  && setIsHome(true)
+            })
+            .catch((error) => console.log(error));
+
+        }else {
+            setIsHome(false)
+            const arrIngId = newSearch.map((e)=>e._id).join('+')
+
+            if(arrIngId) {
+
+                axios
+                    .get(`${REACT_APP_API_URI}/api/recipes?ingredients=${arrIngId}` , {
+                        headers: { Authorization: `Bearer ${storedToken}` }
+                    })
+                    .then((response) => {
+                        console.log("response.data ingredientes",response.data)
+                        setRecipes(response.data)
+                    })
+                        .catch((error) => console.log(error))
+            }
+        }
 
     }, [newSearch])
-
-
-    // const searchRecipeByIngredients = () => {
-    //     if(autocompleteValues){
-    //         const arrIngId = autocompleteValues.map((e)=>e._id).join('+')
-    //         if(arrIngId) {
-    //             axios
-    //             .get(`${REACT_APP_API_URI}/api/recipes?ingredients=${arrIngId}` , {
-    //                 headers: { Authorization: `Bearer ${storedToken}` }
-    //             })
-    //             .then((response) => {
-    //                 setRecipes(response.data)
-    //                 setIsFull(true)
-    //                 })
-    //                 .catch((error) => console.log(error))
-    //         }else{
-    //             setRecipes(feedTops)
-    //             setIsFull(false)
-    //         }
-    //     }else{
-    //         console.log("There is not ingredients to search");
-    //         setRecipes(feedTops)
-    //     }
-    // }
-
-    // const searchRecipeBycuisine = (cuisine)=>{
-    //     console.log("hola");
-    //     axios
-    //         .get(`${REACT_APP_API_URI}/api/recipe/recipeByCuisine?cuisine=${cuisine}` , {
-    //         headers: { Authorization: `Bearer ${storedToken}` }
-    //         })
-    //         .then((response) => {
-    //             setRecipes(response.data)
-    //             //setIsFull(true)
-    //         })
-    //         .catch((error) => console.log(error));
-    // }
-
-    // const handleSearchInput = (e) => setInputSearch(e.target.value);
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault() 
-    //     setInputSearch("")
-    // }
 
     return (
         <div>
             <HomeSearchbar
                 newSearch={newSearch}
                 setNewSearch={setNewSearch}
+
+                isCuisine={isCuisine}
+                setIsCuisine={setIsCuisine}
+                isHome={isHome}
+                setIsHome={setIsHome}
             />
-            {isHome ? <HomeContent recipes={feedTops} /> : <HomeContent recipes={recipes} /> }
+            {console.log("isHome", isHome)}
+            {isHome ? <HomeContent recipes={feedTops} /> : <HomeContent recipes={recipes} /> } 
             <Footer />
         </div>
     );

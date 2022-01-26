@@ -85,13 +85,10 @@ export default function HomeSearchbar(props) {
                     value={inputSearch} 
                     label="Select Ingredients"
                     placeholder=""
-                    onChange={ e => setInputSearch(e.target.value) }
+                    onChange={ (e, value) => setInputSearch(value), props.setIsCuisine(false) }
                 />
                 )}
-
-                //onSubmit={handleSubmit}
             />
-            {/* <Button onClick={props.setNewSearch("holi")} >Search</Button> */}
             </TabPanel>
             <TabPanel value="2">
             <Autocomplete
@@ -104,7 +101,7 @@ export default function HomeSearchbar(props) {
                         <TextField {...params} label="Select cuisine" 
                             onChange={ e => setInputSearch(e.target.value) }
                         />
-                        {/* {setCuisine(params.inputProps.value)} */}
+                        {props.setIsCuisine(true)}
                     </>
                 )}
                 onChange={ (e, value)=> props.setNewSearch(value)}
