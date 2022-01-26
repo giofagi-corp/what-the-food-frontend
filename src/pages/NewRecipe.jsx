@@ -137,6 +137,10 @@ export default function NewRecipe() {
 			formData.append('file', image[0])
 			formData.append('upload_preset', 'images')
 
+			for (var key of formData.entries()) {
+        		console.log(key);
+    		}
+
 			if (image !== '') {
 				axios.post(
 					`https://api.cloudinary.com/v1_1/${cloudinaryName}/upload`,

@@ -98,41 +98,44 @@ export default function EditRecipePage() {
 		deleteImage && setImage('')
 	}, [deleteImage])
 
-	const uploadImage = () => {
-
-		console.log('imagen borrada')
-
-		setLoading(false)
-		return (
-			<>
-			<Link
-				onClick={handleImageInput}
-				className='RecipeImage'>
-				<IconButton aria-label='delete'>
-					<CloseIcon
-						className='RecipeImageCloseIcon'
-						onClick={handleDeleteImage}
-					/>
-				</IconButton>
-			</Link>
-				<img src={`${image}`} />
-			</>
-		)
-	}
+	const imageUpdateForm = (
+		<label
+			htmlFor='icon-button-file'
+			className='RecipePicUpload'>
+			<Input
+				accept='image/*'
+				id='icon-button-file'
+				type='file'
+				onChange={handleImageInput}
+			/>
+			<div className='RecipePicUploadButtons'>
+				<PhotoCamera sx={{ mr: 0.5 }} />
+				<Div sx={{ ml: 0.5 }}>{'Upload Image*'}</Div>
+			</div>
+		</label>
+	)
 
 	useEffect(() => {
+		setLoading(false)
 
+		/* console.log('image', image)
 
-		console.log('imagen cambia')
+		const formData = new FormData()
+		formData.append('file', image)
+		formData.append('upload_preset', 'images') */
 
-		deleteImage && uploadImage()
+    
+		
 
-		//console.log('image------>', image)
-		/* console.log("deleteImage",deleteImage);
+		console.log("deleteImage",deleteImage);
 		if (!deleteImage) {
 			const formData = new FormData()
 			formData.append('file', image[0])
 			formData.append('upload_preset', 'images')
+
+			for (var key of formData.entries()) {
+        		console.log(key);
+    		}
 
 			if (image !== currentRecipe.imageUrl) {
 				axios.post(
@@ -140,17 +143,17 @@ export default function EditRecipePage() {
 					formData
 				)
 					.then(res => {
+						console.log("res.data.url------>",res.data.url)
 						setImage(res.data.url)
 						setLoading(true)
 					})
 					.catch(error => console.log(error))
 			}
 		} else {
-			//console.log('hola')
 			setImage('')
 			setDeleteImage(false)
 			setLoading(false)
-		} */
+		}
 	}, [image])
 
 	const submit = () => {
@@ -167,28 +170,16 @@ export default function EditRecipePage() {
 	}
 
 	useEffect(() => {
-		//console.log('updateRecipe------>', updateRecipe)
 
-		// ACCESO AL ENDPOINT LISTO <--------
-
-		/* recipeReady && (
+		recipeReady && (
             axios.put(`${REACT_APP_API_URI}/api/recipe/${id}`, updateRecipe, {
                 headers: { Authorization: `Bearer ${storedToken}` },
             }).then((res) => {
                 console.log(res.data);
             })
-        ) */
+        )
 	}, [recipeReady])
 
-	
-
-	/* useEffect(() => {
-		axios.get(`${REACT_APP_API_URI}/api/search-all-ing`, {
-			headers: { Authorization: `Bearer ${storedToken}` },
-		}).then(res => {
-			setAvailableIngredients(res.data)
-		})
-	}, []) */
 
 	const deleteStep = index => {
 		step.splice(index, 1)
@@ -224,68 +215,21 @@ export default function EditRecipePage() {
 				<GenericPagesSubtitle text='Recipe description' />
 			</div>
 
-			
-			{/* // REQUESTED IMAGE */}
-			{/* <div className="RecipeInputs">
-                <Link
-                    onClick={handleImageInput}
-                    className="RecipeImage"
-                >
-                <IconButton aria-label="delete">
-                    <CloseIcon
-                            className="RecipeImageCloseIcon"
-                            onClick={handleDeleteImage}
-                    />
-                </IconButton>
-                    <img src={`${image}`} />
-                </Link>
-            </div> */}
-
-
 			<div className='RecipeInputs'>
-				{image !== currentRecipe.imageUrl ? (
+				{image === "" ? (
 					<div>
-						{console.log("loading", )}
-						{!loading ? (
-							<div className='RecipePicUpload'>
-								{/* {console.log('image---->', image)} */}
-								<Box
-									sx={{
-										display: 'flex',
-										justifyContent: 'center',
-									}}>
-									<CircularProgress />
-								</Box>
-							</div>
-						) : (
-							<>
-							<Link
-								onClick={handleImageInput}
-								className='RecipeImage'>
-								<IconButton aria-label='delete'>
-									<CloseIcon
-										className='RecipeImageCloseIcon'
-										onClick={handleDeleteImage}
-									/>
-								</IconButton>
-							</Link>
-								<img src={`${image}`} />
-							</>
-						)}
+						{imageUpdateForm}
 					</div>
 				) : (
-					<Link
-                    onClick={handleImageInput}
-                    className="RecipeImage"
-                >
-                <IconButton aria-label="delete">
-                    <CloseIcon
-                            className="RecipeImageCloseIcon"
-                            onClick={handleDeleteImage}
-                    />
-                </IconButton>
-                    <img src={`${image}`} />
-                </Link>
+					<div className='RecipeImage'>
+						<IconButton aria-label="delete">
+							<CloseIcon
+								className="RecipeImageCloseIcon"
+								onClick={handleDeleteImage}
+							/>
+						</IconButton>
+						<img src={`${image}`} />
+					</div>
 				)}
 			</div>
 
@@ -408,8 +352,8 @@ export default function EditRecipePage() {
 		</div>
 	)
 
-	console.log("loading",loading);
-	console.log("image",image);
+	//console.log("loading",loading);
+	//("image",image);
 
 	return (
 		<div>
