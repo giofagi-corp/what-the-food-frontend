@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-import TopList from "../components/TopList";
+import TopListIngredients from "../components/TopListIngredients";
 import GenericPageTitle from "../components/GenericPageTitle";
 import BackButton from "../components/BackButton";
 
@@ -33,7 +33,8 @@ export default function TopIngredientsPage() {
     <div className="NotificationsPage">
       <Link to="/"><BackButton/></Link>
       <GenericPageTitle text="Top Ingredients" />
-      <TopList recipes={recipes} />
+      <TopListIngredients recipes={recipes} />
+      {console.log("recipes------>", recipes)}
     </div>
   );
 }

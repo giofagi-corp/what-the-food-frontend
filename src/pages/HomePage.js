@@ -29,7 +29,7 @@ export default function HomePage() {
             imageUrl:
                 "https://mir-s3-cdn-cf.behance.net/project_modules/fs/f712fd54981539.59714c1193342.png",
         },
-    ];
+    ]
     
     const [newSearch, setNewSearch] = useState([]);
     const [isCuisine, setIsCuisine] = useState();
@@ -92,7 +92,7 @@ export default function HomePage() {
                 setIsHome={setIsHome}
             />
             {console.log("isHome", isHome)}
-            {isHome ? <HomeContent recipes={feedTops} /> : <HomeContent recipes={recipes} /> } 
+            {isHome ? <HomeContent isHome={isHome} recipes={feedTops} /> : <HomeContent recipes={recipes} /> } 
             <Footer />
         </div>
     );

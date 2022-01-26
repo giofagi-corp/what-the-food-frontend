@@ -2,11 +2,10 @@ import React from 'react'
 import HomeTopList from "../components/HomeTopList"
 
 export default function HomeContent(props) {
-    const {recipes} = props
+    const {recipes, isHome} = props
     return (
-        <div className="CardContainer">
-           
-            <HomeTopList recipes={recipes}/>
+        <div>     
+            <HomeTopList isHome={isHome} recipes={recipes}/>
         </div>
     )
 }

@@ -21,6 +21,7 @@ import TopIngredientsPage from "./pages/TopIngredientsPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import NewRecipe from "./pages/NewRecipe";
 import RecipePageUser from "./pages/RecipePageUser";
+import RecipeListPage from "./pages/RecipeListPage";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
       
       <Switch>
         <PrivateRoute exact path="/" component={HomePage} />
+        <PrivateRoute exact path="/recipes-list/:id" component={RecipeListPage} />
         <PrivateRoute exact path="/top-recipes" component={TopRecipesPage} />
         <PrivateRoute exact path="/top-cuisine" component={TopCuisinePage} />
         <PrivateRoute exact path="/top-ingredients" component={TopIngredientsPage} />
