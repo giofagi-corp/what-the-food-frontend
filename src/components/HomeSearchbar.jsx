@@ -12,7 +12,6 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
-
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
 export default function HomeSearchbar(props) {
@@ -85,10 +84,6 @@ export default function HomeSearchbar(props) {
                             placeholder=""
                             onChange={ (e, value) => setInputSearch(value), props.setIsCuisine(false) }
                         />
-                        {/* {
-                            console.log("props.newSearch", props.newSearch),
-                            props.newSearch.length === 0 && props.setIsCuisine(false)
-                        } */}
                     </>
                 )}
             />
@@ -101,7 +96,7 @@ export default function HomeSearchbar(props) {
                 sx={{ width: "100%" }}
                 renderInput={(params) => (
                     <>
-                        <TextField {...params} label="Select cuisine" 
+                        <TextField {...params} label="Select Cuisine" 
                             onChange={ e => setInputSearch(e.target.value) }
                         />
                         {props.setIsCuisine(true)}
