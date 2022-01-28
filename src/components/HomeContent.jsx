@@ -4,8 +4,7 @@ import HomeTopList from "../components/HomeTopList"
 export default function HomeContent(props) {
     const {recipes} = props
     return (
-        <div className="CardContainer">
-           
+        <div className="HomeCardContainer">
             <HomeTopList recipes={recipes}/>
         </div>
     )

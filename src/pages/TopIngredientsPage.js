@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import TopList from "../components/TopList";
 import GenericPageTitle from "../components/GenericPageTitle";
 import BackButton from "../components/BackButton";
+import Footer from "../components/Footer";
 
 import { useState, useEffect } from "react";
 
@@ -30,10 +31,16 @@ export default function TopIngredientsPage() {
   }, []);
 
   return (
-    <div className="NotificationsPage">
+    <>
+    <div className="HomeCardContainer">
+    <div className="TopCardContainer">
       <Link to="/"><BackButton/></Link>
       <GenericPageTitle text="Top Ingredients" />
       <TopList recipes={recipes} />
     </div>
+    </div>
+    <Footer />
+    </>
+    
   );
 }

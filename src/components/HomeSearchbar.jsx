@@ -72,53 +72,12 @@ export default function CustomizedInputBase(props) {
             <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <TabList centered onChange={handleChange}>
-                        <Tab sx={{ width: '50%'}} label="Search by Ingredients" value="1" />
-                        <Tab sx={{ width: '50%'}} label="Search by Cuisine" value="2" />
+                        <Tab sx={{ width: '50%'}} label="Ingredients" value="1" />
+                        <Tab sx={{ width: '50%'}} label="Cuisine" value="2" />
                     </TabList>
                 </Box>
-                    <TabPanel sx={{ p: '30px 24px 0 24px' }} value="1">
+                    <TabPanel sx={{ p: '30px 24px 30px 24px' }} value="1">
                         <Stack spacing={3}>
-                            {/* <Autocomplete
-                                multiple
-                                id="tags-filled"
-                                value={props.ingredients}
-                                options={availableIngredients.map(
-                                    (option) => option.name
-                                )}
-                                renderTags={(value, getTagProps) =>(
-                                   setIngredients(value),
-                                   value.map((option, index) => (
-                                        <Chip
-                                             variant="outlined"
-                                             label={option}
-                                             {...getTagProps({ index })}
-                                        />
-                                   )))
-                                }
-                                renderInput={params => (
-                                <TextField
-                                    {...params}
-                                    variant="outlined"
-                                    label="Add ingredients"
-                                    placeholder="Add ingredients"
-                                />
-                                )}
-                            /> */}
-
-                            <Paper
-                            component="form"
-                            sx={{ p: '2px 8px', display: 'flex', alignItems: 'center', height: 50}}
-                            onSubmit={handleSubmit}
-                            >
-                            <InputBase
-                                sx={{ ml: 1, flex: 1 }}
-                                placeholder="Choose an ingredient"
-                                inputProps={{ 'aria-label': 'search google maps' }}
-                                value={inputSearch} 
-                                onChange={handleSearchInput}
-                            />
-                            </Paper>
-
                             <Autocomplete
                                 multiple
                                 id="tags-outlined"
@@ -136,10 +95,9 @@ export default function CustomizedInputBase(props) {
                                     />
                                 )}
                             />
-                            <Button onClick={searchRecipeByIngredients} >Search</Button>
                         </Stack>
                     </TabPanel>
-                    <TabPanel sx={{ p: '30px 24px 0 24px' }} value="2">
+                    <TabPanel sx={{ p: '30px 24px 30px 24px' }} value="2">
                         <Stack spacing={3}>
                             <Autocomplete
                                 multiple

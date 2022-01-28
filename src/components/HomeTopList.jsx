@@ -6,9 +6,9 @@ import RecipeCard from "../components/RecipeCard";
 export default function RecipesList(props) {
   const { recipes } = props;
   return (
-    <Box sx={{p: '0 24px' }}>
+    <Box sx={{p: '0 24px'}}>
       {recipes.map((recipe) => (
-        <Link to={recipe.link}><RecipeCard key={recipe._id} {...recipe} /></Link>
+        <Link to={recipe.link}><RecipeCard sx={{marginBottom: '54px'}} key={recipe._id} {...recipe} /></Link>
       ))}
     </Box>
   );

@@ -10,14 +10,21 @@ import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOu
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
 
-export default function Navbar() {
+export default function DesktopNavbar() {
   // Subscribe to the AuthContext to gain access to
   // the values from AuthContext.Provider `value` prop
   const [value, setValue] = React.useState(0);
   // const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   return (
-    <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1000 }}>
-      <BottomNavigation className='MobileNavbar' showLabels value={value} onChange={(event, newValue) => {setValue(newValue);}}>
+    <Box>
+      <BottomNavigation className='DesktopNavbar' showLabels value={value} onChange={(event, newValue) => {setValue(newValue);}}>
+        <BottomNavigationAction
+            component={Link}
+            to="/profile"
+            label="Profile"
+            value="profile"
+            icon={<AccountCircleOutlinedIcon />}
+        />
         <BottomNavigationAction
           component={Link}
           to="/"
@@ -32,13 +39,6 @@ export default function Navbar() {
           label="Add"
           value="add-recipe"
           icon={<AddCircleOutlineOutlinedIcon />}
-      />
-      <BottomNavigationAction
-          component={Link}
-          to="/profile"
-          label="Profile"
-          value="profile"
-          icon={<AccountCircleOutlinedIcon />}
       />
       </BottomNavigation>
     </Box>
