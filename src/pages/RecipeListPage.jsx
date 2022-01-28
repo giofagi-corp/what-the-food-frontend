@@ -13,6 +13,7 @@ export default function RecipeListPage(props) {
 	const [recipesIng, setRecipesIng] = useState([])
 	const [recipesCuisine, setRecipesCuisine] = useState([])
 	const [ingredientName, setIngredientName] = useState("")
+	const [cuisineName, setCuisineName] = useState("")
 
 	const id = props.match.params.id
 
@@ -31,6 +32,7 @@ export default function RecipeListPage(props) {
 		)
 			.then(response => {
 				setRecipesCuisine(response.data)
+				setCuisineName(response.data[0].cuisine)
 			})
 			.catch(error => console.log(error))
 
@@ -51,8 +53,7 @@ export default function RecipeListPage(props) {
 			<Link to='/'>
 				<BackButton />
 			</Link>
-			{console.log("recipesIng----->",recipesIng)}
-			<GenericPageTitle text={ingredientName ? ingredientName : recipesCuisine[0].cuisine}/>
+			<GenericPageTitle text={ingredientName ? ingredientName : cuisineName }/>
 			{recipesIng &&
 				recipesIng.map(recipe => (
 					<Link to={`/recipe/${recipe._id}`}>
