@@ -12,6 +12,8 @@ export default function RecipeListPage(props) {
 	const storedToken = localStorage.getItem('authToken')
 	const [recipesIng, setRecipesIng] = useState([])
 	const [recipesCuisine, setRecipesCuisine] = useState([])
+	const [ingredientName, setIngredientName] = useState("")
+	const [cuisineName, setCuisineName] = useState("")
 
 	const id = props.match.params.id
 
@@ -28,7 +30,21 @@ export default function RecipeListPage(props) {
 				headers: { Authorization: `Bearer ${storedToken}` },
 			}
 		)
-			.then(response => setRecipesCuisine(response.data))
+			.then(response => {
+				setRecipesCuisine(response.data)
+				setCuisineName(response.data[0].cuisine)
+			})
+			.catch(error => console.log(error))
+
+		axios.get(
+			`${REACT_APP_API_URI}/api/ingredient/${id}`,
+			{
+				headers: { Authorization: `Bearer ${storedToken}` },
+			}
+		)
+			.then(response => {
+				setIngredientName(response.data.name)
+			})
 			.catch(error => console.log(error))
 	}, [])
 
@@ -37,7 +53,7 @@ export default function RecipeListPage(props) {
 			<Link to='/'>
 				<BackButton />
 			</Link>
-			<GenericPageTitle text='Top Cuisine' />
+			<GenericPageTitle text={ingredientName ? ingredientName : cuisineName }/>
 			{recipesIng &&
 				recipesIng.map(recipe => (
 					<Link to={`/recipe/${recipe._id}`}>

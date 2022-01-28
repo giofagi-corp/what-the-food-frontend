@@ -13,10 +13,6 @@
   src: url("./fonts/Wallie-Skinny.woff2");
 }
 
-#root {
-  margin-bottom: 90px;
-}
-
 body {
   margin: 0;
   font-family: "Wallie", "Roboto", sans-serif !important;
@@ -142,7 +138,7 @@ nav li {
 }
 
 .Hero {
-  background-image: url('https://more.ctv.ca/food/recipes/potato-and-gochujang-braised-eggs/_jcr_content/root/responsivegrid_1778395324/responsivegrid_182136378/featuredmedia.coreimg.jpeg/1605192371688/81438-potato-and-gochujang-braised-eggs-.jpeg');
+  background-image: url("https://more.ctv.ca/food/recipes/potato-and-gochujang-braised-eggs/_jcr_content/root/responsivegrid_1778395324/responsivegrid_182136378/featuredmedia.coreimg.jpeg/1605192371688/81438-potato-and-gochujang-braised-eggs-.jpeg");
   height: 300px;
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
@@ -201,7 +197,6 @@ nav li {
 .RecipePage {
   background-color: #f4f5f7;
 }
-
 
 .RecipeBody {
   text-align: left;
@@ -264,8 +259,9 @@ nav li {
 
 .GenericPageTitle {
   text-align: left;
+  padding-left: 40px;
+  margin-top: -50px;
 }
-
 .GenericPageTitle h2 {
   font-weight: 400;
 }
@@ -278,7 +274,6 @@ nav li {
   max-width: 850px;
   margin: 0 auto;
 }
-
 
 .ProfileHeader {
   display: flex;
@@ -385,8 +380,6 @@ select {
   margin: 0 3% 0;
 }
 
-
-
 .RecipeInputs {
   display: flex;
   flex-direction: column;
@@ -421,7 +414,6 @@ select {
   margin-top: 5px !important;
   margin-bottom: 50px !important;
 }
-
 
 .RecipeInputs img {
   display: flex;
@@ -807,8 +799,10 @@ ol li::before {
     display: inline-flex;
     flex-direction: column;
   }
-  .css-8atqhb {
+
+  .css-1v0lohn {
     padding-top: 56px;
+    font-family: "Wallie", "Roboto", "Helvetica", "Arial", sans-serif;
   }
 
   .HomeCardContainer {
@@ -834,8 +828,11 @@ ol li::before {
   .ProfileHeader {
     max-width: 900px;
     margin: 0 auto;
-    padding-top: 30px;
+    padding-top: 90px;
     padding-left: 30px;
+  }
+  .NotificationsPage {
+    padding-top: 60px;
   }
   .HeroHeaderContent {
     max-width: 980px;
@@ -884,18 +881,18 @@ ol li::before {
 }
 
 .NotFound {
-     height: 75vh;
-     background-color: white;
-     display: flex;
-     align-items: center;
+  height: 75vh;
+  background-color: white;
+  display: flex;
+  align-items: center;
 }
 
 .NotFound h2 {
-     color: black;
-     padding: 0 30px;
-     text-align: center;
+  color: black;
+  padding: 0 30px;
+  text-align: center;
 }
 
 .NotFound img {
-     width: 50vw;
+  width: 50vw;
 }
