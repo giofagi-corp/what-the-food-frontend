@@ -1,17 +1,13 @@
-import React from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-
-import TopList from "../components/TopList";
-import GenericPageTitle from "../components/GenericPageTitle";
-import BackButton from "../components/BackButton";
+import React from 'react'
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
+import TopListIngredients from '../components/TopListIngredients'
+import GenericPageTitle from '../components/GenericPageTitle'
+import BackButton from '../components/BackButton'
 import Footer from "../components/Footer";
 
-import { useState, useEffect } from "react";
-
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
-
-//import needed components
 
 export default function TopIngredientsPage() {
   const storedToken = localStorage.getItem("authToken");
@@ -35,8 +31,8 @@ export default function TopIngredientsPage() {
     <div className="HomeCardContainer">
     <div className="TopCardContainer">
       <Link to="/"><BackButton/></Link>
-      <GenericPageTitle text="Top Ingredients" />
-      <TopList recipes={recipes} />
+      <GenericPageTitle text='Top Ingredients' />
+			<TopListIngredients recipes={recipes} />
     </div>
     </div>
     <Footer />

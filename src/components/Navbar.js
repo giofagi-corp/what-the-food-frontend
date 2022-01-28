@@ -1,14 +1,13 @@
-import React from 'react';
-import { Link } from "react-router-dom";
-import { useContext } from "react";                       // <== IMPORT 
-import { AuthContext } from "../context/auth.context";  // <== IMPORT
-import Box from '@mui/material/Box';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { useContext } from 'react' // <== IMPORT
+import { AuthContext } from '../context/auth.context' // <== IMPORT
+import Box from '@mui/material/Box'
+import BottomNavigation from '@mui/material/BottomNavigation'
+import BottomNavigationAction from '@mui/material/BottomNavigationAction'
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined'
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
 
 export default function Navbar() {
   // Subscribe to the AuthContext to gain access to
@@ -40,6 +39,13 @@ export default function Navbar() {
           value="profile"
           icon={<AccountCircleOutlinedIcon />}
       />
+	  {/* <BottomNavigationAction
+					component={Link}
+					to='/edit-recipe/61e7ef85df99a70fe308284d'
+					label='Edit'
+					value='edit'
+					icon={<AccountCircleOutlinedIcon />}
+				/> */}
       </BottomNavigation>
     </Box>
   );
