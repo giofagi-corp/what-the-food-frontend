@@ -29,7 +29,8 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: "Wallie-Chunky", "Roboto", sans-serif;
+  font-family: "Wallie", "Roboto", sans-serif;
+  font-weight: 900;
 }
 
 a {
@@ -150,10 +151,6 @@ nav li {
   padding: 0 20px 0 20px;
 }
 
-.BottomNavigation {
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
-}
-
 .Separator {
   border-top: 1px solid rgba(0, 0, 0, 0.12);
   border-bottom: 0px;
@@ -269,12 +266,16 @@ nav li {
   text-align: left;
 }
 
+.GenericPageTitle h2 {
+  font-weight: 400;
+}
+
 .Notifications {
   padding-bottom: 50px;
 }
 
 .AddRecipePage {
-  max-width: 980px;
+  max-width: 850px;
   margin: 0 auto;
 }
 
@@ -354,8 +355,8 @@ nav li {
   height: 30px !important;
   width: 30px;
   border-radius: 100px !important;
-  bottom: 9px !important;
-  right: 2px !important;
+  bottom: 0px !important;
+  right: 5px !important;
   color: #1976d2 !important;
   background-color: #fff !important;
 }
@@ -588,6 +589,7 @@ select {
 .css-vj1n65-MuiGrid-root {
   background-color: ;
 }
+
 .css-1fhqxln-MuiButtonBase-root-MuiIconButton-root {
   color: white !important;
 }
@@ -626,7 +628,7 @@ ol li::before {
 }
 
 .css-16d8ppv {
-  max-width: 870px;
+  max-width: 850px;
   margin: 0 auto;
   padding: 0 24px 100px !important;
 }
@@ -640,6 +642,7 @@ ol li::before {
   width: 100%;
   bottom: 0;
   padding-bottom: 90px;
+  padding-top: 30px;
   overflow: hidden;
 }
 
@@ -674,12 +677,46 @@ ol li::before {
   width: 100%;
 }
 
+.MobileNavbar {
+  display: flex !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.TopCardContainer {
+  padding-top: 60px;
+  padding-bottom: 100px;
+}
+
+.TopCardContainer .GenericCard {
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.TopCardContainer .GenericCard {
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.TopCardContainer .css-xsq9oz-MuiSvgIcon-root {
+  color: #4d4d4d !important;
+}
+
+.css-1l4ezco-MuiButtonBase-root-MuiTab-root {
+  max-width: 100% !important;
+}
+
 @media (max-width: 799px) {
   .DesktopHero {
     display: none;
   }
   .FooterColumn {
     margin-bottom: 20px;
+  }
+  .DesktopNavbar {
+    display: none !important;
+  }
+  .css-8atqhb {
+    padding-top: 0;
   }
 }
 
@@ -700,6 +737,20 @@ ol li::before {
     text-align: center;
     padding-left: 50px;
   }
+  .HomeCardContainer {
+    max-width: 850px !important;
+    margin: 0 auto;
+  }
+  .css-16d8ppv {
+    max-width: 850px !important;
+    padding: 0px 24px 100px !important;
+  }
+
+  .HomeCardContainer .GenericCard {
+    width: 98% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+  }
 }
 
 @media (min-width: 800px) {
@@ -710,7 +761,6 @@ ol li::before {
     flex-direction: row;
     justify-content: space-evenly;
   }
-
   .FooterColumn {
     max-width: 23%;
   }
@@ -732,10 +782,11 @@ ol li::before {
     display: none;
   }
   .RecipePage {
+    margin-top: 100px;
     padding-bottom: 100px;
   }
   .RecipeBody {
-    max-width: 850px;
+    max-width: 810px;
     margin: 0 auto;
     margin-top: 50px;
     text-align: left;
@@ -756,6 +807,21 @@ ol li::before {
     display: inline-flex;
     flex-direction: column;
   }
+  .css-8atqhb {
+    padding-top: 56px;
+  }
+
+  .HomeCardContainer {
+    max-width: 850px !important;
+    margin: 0 auto;
+  }
+
+  .HomeCardContainer .GenericCard {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-bottom: 20px;
+  }
+
   .CardTitle {
     font-size: 1.25rem;
     font-weight: 700;
@@ -778,8 +844,42 @@ ol li::before {
   .MuiCardMedia-root {
     border-radius: 3px;
   }
-  .css-18be2q5 {
-    display: none;
+  .MobileNavbar {
+    display: none !important;
+  }
+  .DesktopNavbar {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    flex-direction: row !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  .Footer {
+    padding-bottom: 50px;
+  }
+  .css-16d8ppv {
+    padding: 0px 36px 100px 24px !important;
+  }
+}
+
+@media (max-width: 890px) {
+  /* .css-16d8ppv{
+    padding: 0 17px 100px 4px !important
+  } */
+}
+
+@media (max-width: 80px) {
+  .css-16d8ppv {
+    padding: 0 24px 100px !important;
+  }
+}
+
+@media (min-width: 890px) {
+  .css-16d8ppv {
+    padding: 0 12px 100px 0 !important;
   }
 }
 

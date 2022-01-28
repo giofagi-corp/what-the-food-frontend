@@ -5,32 +5,38 @@ import axios from 'axios'
 import TopListIngredients from '../components/TopListIngredients'
 import GenericPageTitle from '../components/GenericPageTitle'
 import BackButton from '../components/BackButton'
+import Footer from "../components/Footer";
 
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
 export default function TopIngredientsPage() {
-	const storedToken = localStorage.getItem('authToken')
-	const [recipes, setRecipes] = useState([])
+  const storedToken = localStorage.getItem("authToken");
+  const [recipes, setRecipes] = useState([]);
 
-	const getAllRecipes = () => {
-		axios.get(`${REACT_APP_API_URI}/api/top-ingredients`, {
-			headers: { Authorization: `Bearer ${storedToken}` },
-		})
-			.then(response => setRecipes(response.data))
-			.catch(error => console.log(error))
-	}
+  const getAllRecipes = () => {
+    axios
+      .get(`${REACT_APP_API_URI}/api/top-ingredients`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => setRecipes(response.data))
+      .catch((error) => console.log(error));
+  };
 
-	useEffect(() => {
-		getAllRecipes()
-	}, [])
+  useEffect(() => {
+    getAllRecipes();
+  }, []);
 
-	return (
-		<div className='NotificationsPage'>
-			<Link to='/'>
-				<BackButton />
-			</Link>
-			<GenericPageTitle text='Top Ingredients' />
+  return (
+    <>
+    <div className="HomeCardContainer">
+    <div className="TopCardContainer">
+      <Link to="/"><BackButton/></Link>
+      <GenericPageTitle text='Top Ingredients' />
 			<TopListIngredients recipes={recipes} />
-		</div>
-	)
+    </div>
+    </div>
+    <Footer />
+    </>
+    
+  );
 }

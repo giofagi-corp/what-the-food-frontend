@@ -40,30 +40,18 @@ export default function ContentTabs() {
 		setValue(newValue)
 	}
 
-	return (
-		<Box sx={{ width: '100%', typography: 'body1' }}>
-			<TabContext value={value}>
-				<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-					<TabList centered onChange={handleChange}>
-						<Tab
-							sx={{ width: '50%' }}
-							label='My Recipes'
-							value='1'
-						/>
-						<Tab
-							sx={{ width: '50%' }}
-							label='Saved'
-							value='2'
-						/>
-					</TabList>
-				</Box>
-				<TabPanel sx={{ p: '0 24px' }} value='1'>
-					<RecipesList recipes={myRecipes} />
-				</TabPanel>
-				<TabPanel sx={{ p: '0 24px' }} value='2'>
-					<RecipesList recipes={savedRecipes} />
-				</TabPanel>
-			</TabContext>
-		</Box>
-	)
+    return (
+        <Box sx={{ width: '100%', typography: 'body1' }}>
+            <TabContext value={value}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <TabList centered onChange={handleChange}>
+                    <Tab sx={{ width: '100%'}} label="My Recipes" value="1" />
+                </TabList>
+                </Box>
+                <TabPanel sx={{ p: '0 24px' }} value="1">
+                    <RecipesList recipes={myRecipes}/>
+                </TabPanel>
+            </TabContext>
+        </Box>
+    );
 }
