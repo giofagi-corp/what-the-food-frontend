@@ -58,7 +58,7 @@ export default function HomeSearchbar(props) {
     };
 
     return (
-        <Box sx={{ width: '100%', typography: 'body1' }}>
+        <Box className='' sx={{ width: '100%', typography: 'body1', backgroundColor: 'white' }}>
         <TabContext value={value}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList  centered onChange={handleChange} aria-label="Home menu">

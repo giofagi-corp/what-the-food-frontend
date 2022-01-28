@@ -10,7 +10,7 @@ const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 export default function HomePage() {
 	const feedTops = [
 		{
-			name: 'Top Recipes',
+			name: 'Latest Recipes',
 			link: '/top-recipes',
 			imageUrl:
 				'https://mir-s3-cdn-cf.behance.net/project_modules/fs/36b45454981539.59714c1191971.png',

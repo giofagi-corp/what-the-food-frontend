@@ -5,6 +5,7 @@ import axios from 'axios'
 import TopListRecipes from '../components/TopListRecipes'
 import GenericPageTitle from '../components/GenericPageTitle'
 import BackButton from '../components/BackButton'
+import Footer from "../components/Footer";
 
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
@@ -25,12 +26,17 @@ export default function TopRecipesPage() {
 	}, [])
 
 	return (
-		<div className='NotificationsPage'>
+    <>
+    <div className="HomeCardContainer">
+    <div className="TopCardContainer">
 			<Link to='/'>
 				<BackButton />
 			</Link>
 			<GenericPageTitle text='Top recipes' />
 			<TopListRecipes recipes={recipes} />
-		</div>
+      </div>
+    </div>
+    <Footer />
+    </>
 	)
 }
