@@ -11,7 +11,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 
 export default function Navbar() {
 	const [value, setValue] = React.useState(0)
-  
+
 	return (
 		<Box
 			sx={{
@@ -52,7 +52,7 @@ export default function Navbar() {
 				/>
 				{/* <BottomNavigationAction
 					component={Link}
-					to='/edit-recipe/61e7ef85df99a70fe308284d'
+					to='/edit-recipe/61ba65286b568f204d55da47'
 					label='Edit'
 					value='edit'
 					icon={<AccountCircleOutlinedIcon />}

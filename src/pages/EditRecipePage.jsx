@@ -9,7 +9,7 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { styled } from '@mui/material/styles'
 import { Box } from '@mui/system'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useHistory } from 'react-router-dom'
 import GenericPagesSubtitle from '../components/GenericPageSubtitle'
 import axios from 'axios'
 
@@ -40,6 +40,7 @@ export default function EditRecipePage() {
 	const [image, setImage] = useState('')
 	const [updateRecipe, setUpdateRecipe] = useState({})
 	const [recipeReady, setRecipeReady] = useState(false)
+	const history = useHistory()
 
 	const handleImageInput = e => setImage(e.target.files)
 	const handleNameInput = e => setName(e.target.value)
@@ -118,24 +119,11 @@ export default function EditRecipePage() {
 	useEffect(() => {
 		setLoading(false)
 
-		/* console.log('image', image)
-
-		const formData = new FormData()
-		formData.append('file', image)
-		formData.append('upload_preset', 'images') */
-
-    
-		
-
 		console.log("deleteImage",deleteImage);
 		if (!deleteImage) {
 			const formData = new FormData()
 			formData.append('file', image[0])
 			formData.append('upload_preset', 'images')
-
-			for (var key of formData.entries()) {
-        		console.log(key);
-    		}
 
 			if (image !== currentRecipe.imageUrl) {
 				axios.post(
@@ -158,7 +146,6 @@ export default function EditRecipePage() {
 
 	const submit = () => {
 		setUpdateRecipe({
-			// LA IMAGEN NO ESTÁ ACTUALIZADA <--------
 			imageUrl: image,
 			name: name,
 			ingredients: ingredientsId,
@@ -167,6 +154,7 @@ export default function EditRecipePage() {
 			cuisine: cuisine,
 		})
 		setRecipeReady(true)
+		
 	}
 
 	useEffect(() => {
@@ -176,6 +164,7 @@ export default function EditRecipePage() {
                 headers: { Authorization: `Bearer ${storedToken}` },
             }).then((res) => {
                 console.log(res.data);
+				history.push(`/recipe-user/${res.data._id}`)
             })
         )
 	}, [recipeReady])
@@ -351,9 +340,6 @@ export default function EditRecipePage() {
 			</div>
 		</div>
 	)
-
-	//console.log("loading",loading);
-	//("image",image);
 
 	return (
 		<div>
