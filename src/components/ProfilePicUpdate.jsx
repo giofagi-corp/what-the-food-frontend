@@ -39,13 +39,14 @@ export default function ProfilePicUpdate() {
         <div>
             <div>
                 <Image className='avatar' cloudName="dtu7oski7" publicId="https://res.cloudinary.com/dtu7oski7/image/upload/v1639653273/avatar_xzu7es.png"/>
-                <BottomNavigationAction
+                {/* <BottomNavigationAction
                 component={Link}
                 showLabels
                 to="/edit-profile"
                 label="Add"
-                value="add-recipe"/>
-                <Button onClick={logOutUser} sx={{ width: '100%', height: '36px' }} type="submit" variant="contained">Edit profile</Button>
+                value="add-recipe"/> */}
+                <Button component={Link} to="/edit-profile" sx={{ width: '100%', height: '36px' }} variant="contained">Edit profile</Button>
+                <Button onClick={logOutUser} sx={{ width: '100%', height: '36px' }} type="submit" variant="text">Logout</Button>
             </div>
         </div>
     )

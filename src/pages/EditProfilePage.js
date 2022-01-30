@@ -6,6 +6,7 @@ import Button from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField'
+import { Link } from "react-router-dom";
 import axios from 'axios'
 import '../index.css'
 
@@ -54,8 +55,8 @@ export default function EditProfilePage() {
 			<div className='EditProfileContent'>
 				<h1>Harold</h1>
 				<p>harold@gmail.com</p>
-				<h5>FAV INGREDIENTS</h5>
-				<Autocomplete
+				{/* <h5>FAV INGREDIENTS</h5> */}
+				{/* <Autocomplete
 					multiple
 					id='tags-outlined'
 					options={availableIngredients}
@@ -68,15 +69,24 @@ export default function EditProfilePage() {
 							placeholder='Select Ingredients'
 						/>
 					)}
-				/>
+				/> */}
 			</div>
-			<Button
+			<Button 
+				component={Link} 
+				to="/edit-profile"
+				variant='contained'
+				onClick={logOutUser}
+				sx={{ width: '100%', height: '56px', marginTop: '20px' }}
+				type='submit'>
+				Accept
+			</Button>
+			{/* <Button 
 				onClick={logOutUser}
 				sx={{ width: '100%', height: '56px', marginTop: '20px' }}
 				type='submit'
-				variant='contained'>
+				variant='text'>
 				Log Out
-			</Button>
+			</Button> */}
 		</div>
 	)
 }
