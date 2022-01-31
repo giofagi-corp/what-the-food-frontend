@@ -23,8 +23,8 @@ import RecipeListPage from "./pages/RecipeListPage";
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <DesktopNavbar/>
+      <PrivateRoute component={Navbar} />
+      <PrivateRoute component={DesktopNavbar}/>
       <Switch>
         <PrivateRoute exact path="/" component={HomePage} />
         <PrivateRoute exact path="/recipes-list/:id" component={RecipeListPage} />
