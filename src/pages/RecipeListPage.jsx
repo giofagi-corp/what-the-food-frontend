@@ -32,7 +32,7 @@ export default function RecipeListPage(props) {
 		)
 			.then(response => {
 				setRecipesCuisine(response.data)
-				setCuisineName(response.data[0].cuisine)
+				setCuisineName((response.data[0].cuisine)[0].toUpperCase()+(response.data[0].cuisine).substring(1))
 			})
 			.catch(error => console.log(error))
 
@@ -43,7 +43,7 @@ export default function RecipeListPage(props) {
 			}
 		)
 			.then(response => {
-				setIngredientName(response.data.name)
+				setIngredientName(response.data.name[0].toUpperCase()+response.data.name.substring(1))
 			})
 			.catch(error => console.log(error))
 	}, [])
