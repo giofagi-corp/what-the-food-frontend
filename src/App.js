@@ -5,6 +5,7 @@ import DesktopNavbar from "./components/DesktopNavbar";
 import HomePage from "./pages/HomePage";
 import EditProfilePage from "./pages/EditProfilePage";
 import ProfilePage from "./pages/ProfilePage";
+import EditProfile from "./pages/EditProfilePage";
 import RecipePage from "./pages/RecipePage";
 import EditRecipePage from "./pages/EditRecipePage";
 import SignupPage from "./pages/SignupPage";
@@ -32,7 +33,7 @@ function App() {
         <PrivateRoute exact path="/top-ingredients" component={TopIngredientsPage} />
         <PrivateRoute exact path="/notifications" component={NotificationsPage} />
         <PrivateRoute exact path="/profile" component={ProfilePage} />
-        <PrivateRoute exact path="/add-recipe" component={AddRecipe} />
+        <PrivateRoute exact path="/add-recipe" component={NewRecipe} />
         <PrivateRoute exact path="/search" component={HomePage} />
         <PrivateRoute exact path="/recipe/:id" component={RecipePage} /> 
         <PrivateRoute exact path="/edit-profile" component={EditProfile} /> 

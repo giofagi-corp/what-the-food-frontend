@@ -7,6 +7,9 @@ import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { Button } from '@mui/material';
 import { useContext } from 'react';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import { Link } from "react-router-dom";
+
 import { AuthContext } from './../context/auth.context'
 
 const Input = styled('input')({

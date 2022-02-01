@@ -5,6 +5,7 @@ import { Image } from 'cloudinary-react'
 import EditButton from './EditButton'
 import ProfilePicUpdate from './ProfilePicUpdate'
 
+const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
 export default function ProfileHeader(props) {
 
