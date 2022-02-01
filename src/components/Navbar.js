@@ -1,15 +1,13 @@
-import React from 'react';
-import { Link } from "react-router-dom";
-import { useContext } from "react";                       // <== IMPORT 
-import { AuthContext } from "../context/auth.context";  // <== IMPORT
-import Box from '@mui/material/Box';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { useContext } from 'react' // <== IMPORT
+import { AuthContext } from '../context/auth.context' // <== IMPORT
+import Box from '@mui/material/Box'
+import BottomNavigation from '@mui/material/BottomNavigation'
+import BottomNavigationAction from '@mui/material/BottomNavigationAction'
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined'
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
 
 export default function Navbar() {
   // Subscribe to the AuthContext to gain access to
@@ -18,7 +16,7 @@ export default function Navbar() {
   // const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   return (
     <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1000 }}>
-      <BottomNavigation className='BottomNavigation' showLabels value={value} onChange={(event, newValue) => {setValue(newValue);}}>
+      <BottomNavigation className='MobileNavbar' showLabels value={value} onChange={(event, newValue) => {setValue(newValue);}}>
         <BottomNavigationAction
           component={Link}
           to="/"
@@ -36,18 +34,18 @@ export default function Navbar() {
       />
       <BottomNavigationAction
           component={Link}
-          to="/notifications"
-          label="Notifications"
-          value="notifications"
-          icon={<NotificationsNoneOutlinedIcon />}
-      />
-      <BottomNavigationAction
-          component={Link}
           to="/profile"
           label="Profile"
           value="profile"
           icon={<AccountCircleOutlinedIcon />}
       />
+	  {/* <BottomNavigationAction
+					component={Link}
+					to='/edit-recipe/61ba65286b568f204d55da47'
+					label='Edit'
+					value='edit'
+					icon={<AccountCircleOutlinedIcon />}
+				/> */}
       </BottomNavigation>
     </Box>
   );

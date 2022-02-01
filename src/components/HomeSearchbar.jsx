@@ -1,36 +1,111 @@
 import * as React from 'react';
-import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
+import { useState, useEffect } from "react";
+import axios from 'axios';
 import Box from '@mui/material/Box';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import AddIcon from '@mui/icons-material/Add';
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+import Chip from '@mui/material/Chip';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
-export default function CustomizedInputBase(props) {
-    const {handleSubmit} = props
-    const {handleSearchInput} = props
-    const {inputSearch} = props
+const REACT_APP_API_URI = process.env.REACT_APP_API_URI
+
+export default function HomeSearchbar(props) {
+
+    const [inputSearch, setInputSearch] = useState("");
+    const [availableIngredients, setAvailableIngredients] = useState([]);
+    const [availableCuisines, setAvailableCuisines] = useState([]);
+    const [autocompleteValues, setAutocompleteValues] = useState();
+    const [value, setValue] = useState('1');
+    const [cuisine, setCuisine] = useState("");
+
+    const storedToken = localStorage.getItem("authToken");
+
+    // AVAILABLE INGREDIENTS
+    useEffect(() => {
+        axios
+        .get(`${REACT_APP_API_URI}/api/search-all-ing`, {
+            headers: { Authorization: `Bearer ${storedToken}` },
+        })
+        .then((res) => {
+            setAvailableIngredients(res.data);
+        });
+    }, []);
+
+    // AVAILABLE CUISINES
+    useEffect(() => {
+    axios
+      .get(`${REACT_APP_API_URI}/api/cuisine`, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((res) => {
+          setAvailableCuisines(res.data);
+      })
+    }, [])
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+        props.setIsHome(true)
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setInputSearch("");
+    };
+
     return (
-        <Box sx={{ p: '30px 24px 0 24px' }}>
-        <Paper
-        component="form"
-        sx={{ p: '2px 8px', display: 'flex', alignItems: 'center', height: 50}}
-        onSubmit={handleSubmit}
-        >
-        <InputBase
-            sx={{ ml: 1, flex: 1 }}
-            placeholder="Choose an ingredient"
-            inputProps={{ 'aria-label': 'search google maps' }}
-            value={inputSearch} 
-            onChange={handleSearchInput}
-        />
-        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-        <IconButton type="submit" color="primary" sx={{ p: '10px' }} aria-label="directions">
-            <AddIcon />
-        </IconButton>
-        </Paper>
+        <Box className='' sx={{ width: '100%', typography: 'body1', backgroundColor: 'white' }}>
+        <TabContext value={value}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <TabList  centered onChange={handleChange} aria-label="Home menu">
+                <Tab sx={{ width: '50%'}} label="Ingredients" value="1" />
+                <Tab sx={{ width: '50%'}} label="Cuisine" value="2" />
+            </TabList>
+            </Box>
+            <TabPanel value="1">
+            <Autocomplete
+                onChange={ (e, value)=> props.setNewSearch(value)}
+                multiple
+                value={autocompleteValues}
+                id="tags-outlined"
+                options={availableIngredients}
+                getOptionLabel={(option) => option.name}
+                filterSelectedOptions
+                renderInput={(params) => (
+                    <>
+                        <TextField
+                            {...params}
+                            value={inputSearch} 
+                            label="Select Ingredients"
+                            placeholder=""
+                            onChange={ (e, value) => setInputSearch(value), props.setIsCuisine(false) }
+                        />
+                    </>
+                )}
+            />
+            </TabPanel>
+            <TabPanel value="2">
+            <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={availableCuisines}
+                sx={{ width: "100%" }}
+                renderInput={(params) => (
+                    <>
+                        <TextField {...params} label="Select Cuisine" 
+                            onChange={ e => setInputSearch(e.target.value) }
+                        />
+                        {props.setIsCuisine(true)}
+                    </>
+                )}
+                onChange={ (e, value)=> props.setNewSearch(value)}
+            />
+            </TabPanel>
+        </TabContext>
         </Box>
     );
 }
