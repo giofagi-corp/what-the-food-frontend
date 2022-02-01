@@ -15,7 +15,7 @@
 
 body {
   margin: 0;
-  font-family: "Wallie", "Roboto", sans-serif !important;
+  font-family: "Roboto", sans-serif;
   color: #4d4d4d;
   background-color: #f4f5f7 !important;
 }
@@ -85,10 +85,6 @@ nav li {
   margin-left: 5px;
 }
 
-.error-message {
-  text-align: center !important;
-}
-
 .EditProjectPage,
 .AddProject,
 .AddTask,
@@ -147,11 +143,6 @@ nav li {
   padding: 0 20px 0 20px;
 }
 
-.Separator {
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
-  border-bottom: 0px;
-}
-
 .HeroHeader {
   height: 230px;
   display: flex;
@@ -190,29 +181,15 @@ nav li {
     0px 1px 3px 0px rgb(0 0 0 / 11%) !important;
 }
 
-.css-8atqhb {
-  background-color: white;
-}
-
-.RecipePage {
-  background-color: #f4f5f7;
-}
-
 .RecipeBody {
   text-align: left;
-  padding: 10px 20px 90px 20px;
-  background-color: #fff;
-  max-width: 980px;
-}
-.RecipeBody ul {
-  padding-left: 30px;
+  padding: 10px 20px 0 20px;
 }
 
 .RecipeBody ul li {
   text-transform: capitalize;
   line-height: 2;
 }
-
 .RecipeBody ol {
   padding-left: 35px;
 }
@@ -221,15 +198,6 @@ nav li {
   line-height: 1.4;
   margin-bottom: 20px;
   padding-right: 20px;
-}
-
-.RecipeBodyHeader {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.RecipeBodyHeader div {
-  margin-right: 50px;
 }
 
 .RecipeName {
@@ -249,18 +217,11 @@ nav li {
 }
 
 .NotificationsPage {
-  padding: 0 24px 0 24px;
-}
-
-.EditProfilePage {
-  padding: 0 24px 0 24px;
-  text-align: center;
+  padding: 0 20px 0 20px;
 }
 
 .GenericPageTitle {
   text-align: left;
-  padding-left: 40px;
-  margin-top: -50px;
 }
 .GenericPageTitle h2 {
   font-weight: 400;
@@ -278,14 +239,15 @@ nav li {
 .ProfileHeader {
   display: flex;
   flex-direction: row;
-  padding-top: 30px;
+  margin-top: 30px;
   padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .ProfileHeaderPic {
   width: 35%;
   text-align: center;
-  padding: 0 20px 0 30px;
+  padding: 0 20px 0 20px;
 }
 
 .ProfileHeaderInfo {
@@ -322,11 +284,6 @@ nav li {
   max-width: 140px;
 }
 
-.CardTitle {
-  font-size: 1.2rem;
-  font-weight: 700;
-}
-
 .MuiTypography-h5 {
   text-transform: capitalize !important;
   text-decoration: none;
@@ -361,13 +318,14 @@ nav li {
 }
 
 img {
-  filter: brightness(100%);
+  filter: brightness(80%);
 }
 
 select {
   color: #8a8a8a !important;
   text-transform: capitalize !important;
   padding: 10px 10px;
+  min-width: 50px;
   margin: 0 0 20px 0px;
   font-size: 18px;
   width: 100%;

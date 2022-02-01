@@ -34,6 +34,13 @@ export default function Navbar() {
       />
       <BottomNavigationAction
           component={Link}
+          to="/notifications"
+          label="Notifications"
+          value="notifications"
+          icon={<NotificationsNoneOutlinedIcon />}
+      />
+      <BottomNavigationAction
+          component={Link}
           to="/profile"
           label="Profile"
           value="profile"
