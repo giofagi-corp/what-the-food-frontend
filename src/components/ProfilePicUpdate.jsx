@@ -16,13 +16,13 @@ const Input = styled('input')({
     display: 'none',
 });
 
-export default function ProfilePicUpdate() {
+export default function ProfilePicUpdate(props) {
     const [imageSelected, setImageSelected] = useState('');
     const storedToken = localStorage.getItem("authToken");
 
     const {logOutUser} = useContext(AuthContext)
 
-    const uploadImage = () => {
+/*     const uploadImage = () => {
         const formData = new FormData()
         formData.append("file", imageSelected)
         formData.append("upload_preset", "rejs52lv")
@@ -33,19 +33,22 @@ export default function ProfilePicUpdate() {
         ).then((response)=>{
             console.log(response);
         });
-    };
+    }; */
+
+
 
     return (
         <div>
             <div>
-                <Image className='avatar' cloudName="dtu7oski7" publicId="https://res.cloudinary.com/dtu7oski7/image/upload/v1639653273/avatar_xzu7es.png"/>
-                <BottomNavigationAction
+                <Image className='avatar' cloudName="dtu7oski7" publicId={props.data.avatarUrl}/>
+                {/* <BottomNavigationAction
                 component={Link}
                 showLabels
                 to="/edit-profile"
                 label="Add"
-                value="add-recipe"/>
-                <Button onClick={logOutUser} sx={{ width: '100%', height: '36px' }} type="submit" variant="contained">Edit profile</Button>
+                value="add-recipe"/> */}
+                <Button component={Link} to="/edit-profile" sx={{ width: '100%', height: '36px' }} variant="contained">Edit profile</Button>
+                <Button onClick={logOutUser} sx={{ width: '100%', height: '36px' }} type="submit" variant="text">Logout</Button>
             </div>
         </div>
     )

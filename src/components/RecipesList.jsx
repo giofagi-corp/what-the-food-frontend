@@ -7,7 +7,7 @@ export default function RecipesList(props) {
 	return (
 		<div className='CardContainer'>
 			{recipes.map(recipe => (
-				<Link to={`/recipe/${recipe._id}`}>
+				<Link to={`/recipe-user/${recipe._id}`}>
 					<RecipeCard key={recipe._id} {...recipe} />
 				</Link>
 			))}
