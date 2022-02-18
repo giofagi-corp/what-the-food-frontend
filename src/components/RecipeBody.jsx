@@ -18,7 +18,8 @@ export default function RecipeBody(props) {
 					<h2>{recipe.name}</h2>
 					{props.editable && (
 						<div>
-							<Link to='/'>
+							<Link
+								to={`/edit-recipe/${props.recipe._id}`}>
 								<EditIcon
 									style={{ marginLeft: '10px' }}
 								/>

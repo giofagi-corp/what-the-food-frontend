@@ -38,7 +38,7 @@ export default function RecipePageUser() {
 	return (
 		<div>
 			<Hero recipe={recipe} editable={editable} />
-			<RecipeBody recipe={recipe} />
+			<RecipeBody recipe={recipe} editable={editable}/>
 			
 		</div>
 	)
