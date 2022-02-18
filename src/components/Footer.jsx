@@ -6,7 +6,7 @@ export default function Footer() {
 		<div className='Footer'>
 			<div className='FooterBody'>
 				<div className='FooterColumn'>
-					<img alt='logo' src='../images/logo.svg' />
+					{/* <img alt='logo' src='../../public/logo.svg' /> */}
 					<p>2022 What The Food ©</p>
 				</div>
 				<div className='FooterColumn'>
