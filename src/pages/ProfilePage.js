@@ -12,7 +12,6 @@ export default function ProfilePage() {
 	const [userData, setUserData] = useState({})
 	const { user } = useContext(AuthContext)
 
-	//console.log("user._id----->",user._id);
 
 	useEffect(()=>{
 		axios
@@ -20,7 +19,6 @@ export default function ProfilePage() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((res) => {
-		  //console.log("res user ------- ---- --->",res.data)
 		  setUserData(res.data)
 		})
       .catch((error) => console.log(error));
