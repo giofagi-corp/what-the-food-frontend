@@ -9,7 +9,7 @@ function AnonRoute(props) {
 	const { isLoggedIn, isLoading } = useContext(AuthContext)
 
 	// If the authentication is still loading ⏳
-	if (!isLoading) return <div className='loading'><LeapFrog size={50} color="#28C699" />Loading</div>
+	if (isLoading) return <div className='loading'><LeapFrog size={50} color="#28C699" />Loading</div>
 
 	// If the user is already logged in, redirect him to home page
 	if (isLoggedIn) return <Redirect to='/' />
