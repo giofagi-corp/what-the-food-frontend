@@ -3,7 +3,6 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { AuthContext } from './../context/auth.context'
 import LoginPageTitle from '../components/LoginPageTitle'
-import GenericPageSubtitle from '../components/GenericPageSubtitle'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
@@ -44,67 +43,69 @@ function LoginPage(props) {
 	}
 
 	return (
-		<div className='NotificationsPage'>
-			<LoginPageTitle text='Login' />
-			<Box
-				component='form'
-				sx={{ '& > :not(style)': { mb: 2, width: '100%' } }}
-				noValidate
-				autoComplete='off'>
-				<TextField
-					type='text'
-					name='email'
-					value={email}
-					onChange={handleEmail}
-					placeholder='Email'
-					id='outlined-basic'
-					label='Email'
-					variant='outlined'
-				/>
-				<TextField
-					type='password'
-					name='password'
-					value={password}
-					onChange={handlePassword}
-					placeholder='Password'
-					id='outlined-basic'
-					label='Password'
-					variant='outlined'
-				/>
-			</Box>
+		<>
+			<div className='NotificationsPage'>
+				<LoginPageTitle text='Login' />
+				<Box
+					component='form'
+					sx={{ '& > :not(style)': { mb: 2, width: '100%' } }}
+					noValidate
+					autoComplete='off'>
+					<TextField
+						type='text'
+						name='email'
+						value={email}
+						onChange={handleEmail}
+						placeholder='Email'
+						id='outlined-basic'
+						label='Email'
+						variant='outlined'
+					/>
+					<TextField
+						type='password'
+						name='password'
+						value={password}
+						onChange={handlePassword}
+						placeholder='Password'
+						id='outlined-basic'
+						label='Password'
+						variant='outlined'
+					/>
+				</Box>
 
-			<Button
-				onClick={handleLoginSubmit}
-				sx={{ width: '100%', height: '56px' }}
-				type='submit'
-				variant='contained'>
-				Login
-			</Button>
+				<Button
+					onClick={handleLoginSubmit}
+					sx={{ width: '100%', height: '56px' }}
+					type='submit'
+					variant='contained'>
+					Login
+				</Button>
 
-			<div className='TagLine'>
-				<p>
-					Don't have an account yet?{' '}
-					<Link to={'/signup'}> Sign Up</Link>
-				</p>
+				<div className='TagLine'>
+					<p>
+						Don't have an account yet?{' '}
+						<Link to={'/signup'}> Sign Up</Link>
+					</p>
+				</div>
+
+				{errorMessage && (
+					<Collapse in={open}>
+						<Fade in={errorMessage}>
+							<Alert
+								color='error'
+								severity='error'
+								sx={{
+									m: '20px',
+									display: 'flex',
+									justifyContent: 'center',
+								}}>
+								{errorMessage}
+							</Alert>
+						</Fade>
+					</Collapse>
+				)}
 			</div>
-
-			{errorMessage && (
-				<Collapse in={open}>
-					<Fade in={errorMessage}>
-						<Alert
-							color='error'
-							severity='error'
-							sx={{
-								m: '20px',
-								display: 'flex',
-								justifyContent: 'center',
-							}}>
-							{errorMessage}
-						</Alert>
-					</Fade>
-				</Collapse>
-			)}
-		</div>
+		</>
 	)
 }
 
