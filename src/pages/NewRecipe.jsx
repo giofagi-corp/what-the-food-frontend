@@ -137,10 +137,6 @@ export default function NewRecipe() {
 			formData.append('file', image[0])
 			formData.append('upload_preset', 'images')
 
-			for (var key of formData.entries()) {
-        		console.log(key);
-    		}
-
 			if (image !== '') {
 				axios.post(
 					`https://api.cloudinary.com/v1_1/${cloudinaryName}/upload`,
@@ -172,9 +168,10 @@ export default function NewRecipe() {
 	}, [ingredients])
 
 	return (
-		<div className='AddRecipePage'>
+		<div className='RecipePage'>
+		<div className='RecipeBody'>
 			<div className='AddRecipeText'>
-				<GenericPageTitle text='Add a new recipe' />
+				<h2>Add a new recipe</h2>
 			</div>
 			{formStep === 1 && (
 				<div>
@@ -203,11 +200,11 @@ export default function NewRecipe() {
 				<NewRecipeStep3 step={step} setStep={setStep} />
 			)}
 			<div className='RecipeInputs'>
-				<div>
+				<div style={{ width: '100%', display:'flex', justifyContent: 'center', marginBottom: '50px'}}>
 					{formStep > 1 && formStep < 4 && (
 						<Link>
 							<Button
-								sx={{ ml: 1, mr: 1 }}
+								sx={{  maxWidth: '850px', height: '56px', margin:'0 5px' }}
 								variant='contained'
 								size='large'
 								disableElevation
@@ -219,7 +216,7 @@ export default function NewRecipe() {
 					{formStep > 0 && formStep < 3 && (
 						<Link>
 							<Button
-								sx={{ ml: 1, mr: 1 }}
+								sx={{  maxWidth: '850px', height: '56px', margin:'0 5px' }}
 								variant='contained'
 								size='large'
 								disableElevation
@@ -231,7 +228,7 @@ export default function NewRecipe() {
 
 					{formStep === 3 && (
 						<Button
-							sx={{ ml: 1, mr: 1 }}
+							sx={{  maxWidth: '850px', height: '56px', margin:'0 5px'  }}
 							variant='contained'
 							size='large'
 							disableElevation
@@ -262,5 +259,7 @@ export default function NewRecipe() {
 				)}
 			</div>
 		</div>
+		</div>
+		
 	)
 }

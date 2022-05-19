@@ -33,8 +33,6 @@ function LoginPage(props) {
 			headers: { Authorization: `Bearer ${storedToken}` },
 		})
 			.then(response => {
-				console.log('JWT token', response.data.authToken)
-
 				const JWTToken = response.data.authToken
 				logInUser(JWTToken)
 				props.history.push('/')

@@ -26,7 +26,6 @@ export default function Navbar() {
       />
       <BottomNavigationAction
           component={Link}
-          showLabels
           to="/add-recipe"
           label="Add"
           value="add-recipe"
@@ -41,7 +40,7 @@ export default function Navbar() {
       />
 	  {/* <BottomNavigationAction
 					component={Link}
-					to='/edit-recipe/61ba65286b568f204d55da47'
+					to='/edit-recipe/61e7ef85df99a70fe308284d'
 					label='Edit'
 					value='edit'
 					icon={<AccountCircleOutlinedIcon />}

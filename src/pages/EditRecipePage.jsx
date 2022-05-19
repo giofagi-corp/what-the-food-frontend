@@ -9,7 +9,7 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { styled } from '@mui/material/styles'
 import { Box } from '@mui/system'
-import { Link, useParams, useHistory } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import GenericPagesSubtitle from '../components/GenericPageSubtitle'
 import axios from 'axios'
 
@@ -40,7 +40,6 @@ export default function EditRecipePage() {
 	const [image, setImage] = useState('')
 	const [updateRecipe, setUpdateRecipe] = useState({})
 	const [recipeReady, setRecipeReady] = useState(false)
-	const history = useHistory()
 
 	const handleImageInput = e => setImage(e.target.files)
 	const handleNameInput = e => setName(e.target.value)
@@ -55,10 +54,7 @@ export default function EditRecipePage() {
 		let arrId = []
 		ing.map(e => {
 			return axios
-				.post(
-					`${REACT_APP_API_URI}/api/search-ingredient/${e}`, {},
-					{ headers: { Authorization: `Bearer ${storedToken}` }, }
-				)
+				.post(`${REACT_APP_API_URI}/api/search-ingredient/${e}`, {}, { headers: { Authorization: `Bearer ${storedToken}` } })
 				.then(res => {
 					arrId.push(res.data[0]._id)
 				})
@@ -68,9 +64,10 @@ export default function EditRecipePage() {
 	}
 
 	useEffect(() => {
-		axios.get(`${REACT_APP_API_URI}/api/recipe/${id}`, {
-			headers: { Authorization: `Bearer ${storedToken}` },
-		})
+		axios
+			.get(`${REACT_APP_API_URI}/api/recipe/${id}`, {
+				headers: { Authorization: `Bearer ${storedToken}` },
+			})
 			.then(res => {
 				setCurrentRecipe(res.data)
 				setImage(res.data.imageUrl)
@@ -83,12 +80,13 @@ export default function EditRecipePage() {
 			})
 			.catch(error => console.log(error))
 
-		axios.get(`${REACT_APP_API_URI}/api/search-all-ing`, {
-			headers: { Authorization: `Bearer ${storedToken}` },
-		}).then(res => {
-			setAvailableIngredients(res.data)
-		})
-		
+		axios
+			.get(`${REACT_APP_API_URI}/api/search-all-ing`, {
+				headers: { Authorization: `Bearer ${storedToken}` },
+			})
+			.then(res => {
+				setAvailableIngredients(res.data)
+			})
 	}, [])
 
 	useEffect(() => {
@@ -100,15 +98,8 @@ export default function EditRecipePage() {
 	}, [deleteImage])
 
 	const imageUpdateForm = (
-		<label
-			htmlFor='icon-button-file'
-			className='RecipePicUpload'>
-			<Input
-				accept='image/*'
-				id='icon-button-file'
-				type='file'
-				onChange={handleImageInput}
-			/>
+		<label htmlFor='icon-button-file' className='RecipePicUpload'>
+			<Input accept='image/*' id='icon-button-file' type='file' onChange={handleImageInput} />
 			<div className='RecipePicUploadButtons'>
 				<PhotoCamera sx={{ mr: 0.5 }} />
 				<Div sx={{ ml: 0.5 }}>{'Upload Image*'}</Div>
@@ -119,19 +110,15 @@ export default function EditRecipePage() {
 	useEffect(() => {
 		setLoading(false)
 
-		console.log("deleteImage",deleteImage);
 		if (!deleteImage) {
 			const formData = new FormData()
 			formData.append('file', image[0])
 			formData.append('upload_preset', 'images')
 
 			if (image !== currentRecipe.imageUrl) {
-				axios.post(
-					`https://api.cloudinary.com/v1_1/${cloudinaryName}/upload`,
-					formData
-				)
+				axios
+					.post(`https://api.cloudinary.com/v1_1/${cloudinaryName}/upload`, formData)
 					.then(res => {
-						console.log("res.data.url------>",res.data.url)
 						setImage(res.data.url)
 						setLoading(true)
 					})
@@ -146,6 +133,7 @@ export default function EditRecipePage() {
 
 	const submit = () => {
 		setUpdateRecipe({
+			// LA IMAGEN NO ESTÁ ACTUALIZADA <--------
 			imageUrl: image,
 			name: name,
 			ingredients: ingredientsId,
@@ -154,21 +142,18 @@ export default function EditRecipePage() {
 			cuisine: cuisine,
 		})
 		setRecipeReady(true)
-		
 	}
 
 	useEffect(() => {
-
-		recipeReady && (
-            axios.put(`${REACT_APP_API_URI}/api/recipe/${id}`, updateRecipe, {
-                headers: { Authorization: `Bearer ${storedToken}` },
-            }).then((res) => {
-                console.log(res.data);
-				history.push(`/recipe-user/${res.data._id}`)
-            })
-        )
+		recipeReady &&
+			axios
+				.put(`${REACT_APP_API_URI}/api/recipe/${id}`, updateRecipe, {
+					headers: { Authorization: `Bearer ${storedToken}` },
+				})
+				.then(res => {
+					console.log(res.data)
+				})
 	}, [recipeReady])
-
 
 	const deleteStep = index => {
 		step.splice(index, 1)
@@ -186,10 +171,7 @@ export default function EditRecipePage() {
 				<div className='RecipeStepHeader'>
 					<h3 className='RecipeStepNumber'> {index + 1}</h3>
 					<IconButton aria-label='delete'>
-						<CloseIcon
-							key={index}
-							onClick={() => deleteStep(index)}
-						/>
+						<CloseIcon key={index} onClick={() => deleteStep(index)} />
 					</IconButton>
 				</div>
 				<p className='RecipeStepParagraph'>{currentStep}</p>
@@ -205,17 +187,12 @@ export default function EditRecipePage() {
 			</div>
 
 			<div className='RecipeInputs'>
-				{image === "" ? (
-					<div>
-						{imageUpdateForm}
-					</div>
+				{image === '' ? (
+					<div>{imageUpdateForm}</div>
 				) : (
 					<div className='RecipeImage'>
-						<IconButton aria-label="delete">
-							<CloseIcon
-								className="RecipeImageCloseIcon"
-								onClick={handleDeleteImage}
-							/>
+						<IconButton aria-label='delete'>
+							<CloseIcon className='RecipeImageCloseIcon' onClick={handleDeleteImage} />
 						</IconButton>
 						<img src={`${image}`} />
 					</div>
@@ -279,29 +256,13 @@ export default function EditRecipePage() {
 					<Autocomplete
 						multiple
 						id='tags-filled'
-						options={availableIngredients.map(
-							option => option.name
-						)}
+						options={availableIngredients.map(option => option.name)}
 						defaultValue={ingredients}
 						freeSolo
 						renderTags={(value, getTagProps) => (
-							setIngredients(value),
-							value.map((option, index) => (
-								<Chip
-									deleteIcon={<CloseIcon />}
-									label={option}
-									{...getTagProps({ index })}
-								/>
-							))
+							setIngredients(value), value.map((option, index) => <Chip deleteIcon={<CloseIcon />} label={option} {...getTagProps({ index })} />)
 						)}
-						renderInput={params => (
-							<TextField
-								{...params}
-								variant='outlined'
-								label='Add ingredients *'
-								placeholder='Add ingredient *'
-							/>
-						)}
+						renderInput={params => <TextField {...params} variant='outlined' label='Add ingredients *' placeholder='Add ingredient *' />}
 					/>
 				</Stack>
 			</div>
@@ -320,21 +281,12 @@ export default function EditRecipePage() {
 					onChange={handleChange}
 					value={value}
 				/>
-				<Button
-					sx={{ mb: 2 }}
-					variant='text'
-					startIcon={<AddCircleOutlineIcon />}
-					onClick={addStep}>
+				<Button sx={{ mb: 2 }} variant='text' startIcon={<AddCircleOutlineIcon />} onClick={addStep}>
 					Add new step
 				</Button>
 			</div>
 			<div className='RecipeInputs'>
-				<Button
-					sx={{ ml: 1, mr: 1 }}
-					variant='contained'
-					size='large'
-					disableElevation
-					onClick={submit}>
+				<Button sx={{ ml: 1, mr: 1 }} variant='contained' size='large' disableElevation onClick={submit}>
 					Submit
 				</Button>
 			</div>

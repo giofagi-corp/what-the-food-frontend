@@ -46,6 +46,7 @@ export default function NewRecipeStep2(props) {
 							props.setIngredients(value),
 							value.map((option, index) => (
 								<Chip
+									sx={{backgroundColor: '#28c69927'}}
 									deleteIcon={<CloseIcon />}
 									label={option}
 									{...getTagProps({ index })}

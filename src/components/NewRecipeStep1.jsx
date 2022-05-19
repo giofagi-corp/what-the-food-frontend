@@ -34,7 +34,7 @@ export default function NewRecipeStep1(props) {
 
 			<div className='RecipeInputs'>
 				{props.image !== '' ? (
-					<div>
+					<div className='RecipePicInput'>
 						{!props.loading ? (
 							<div className='RecipePicUpload'>
 								<Box

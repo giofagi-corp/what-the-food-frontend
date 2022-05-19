@@ -1,5 +1,5 @@
 import "./App.css";
-import { Switch, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import DesktopNavbar from "./components/DesktopNavbar";
 import HomePage from "./pages/HomePage";
@@ -23,8 +23,8 @@ import RecipeListPage from "./pages/RecipeListPage";
 function App() {
   return (
     <div className="App">
-      <PrivateRoute component={Navbar} />
-      <PrivateRoute component={DesktopNavbar}/>
+      <Navbar />
+      <DesktopNavbar/>
       <Switch>
         <PrivateRoute exact path="/" component={HomePage} />
         <PrivateRoute exact path="/recipes-list/:id" component={RecipeListPage} />

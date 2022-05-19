@@ -87,11 +87,6 @@ export default function EditProfilePage() {
 					alt=""
 				/>
 			</div>
-			<Button sx={{ p: 0, marginTop: '10px' }} 
-				variant='text'
-			>
-				Change Picture
-			</Button>
 			<div className='EditProfileContent'>
 				<div style={{display: "flex", flexDirection: "column"}}>
 					
@@ -125,7 +120,7 @@ export default function EditProfilePage() {
 				to="/edit-profile"
 				variant='contained'
 				onClick={updateUserData}
-				sx={{ width: '100%', height: '56px', marginTop: '20px' }}
+				sx={{  height: '56px', marginTop: '20px' }}
 				type='submit'>
 				Accept
 			</Button> 

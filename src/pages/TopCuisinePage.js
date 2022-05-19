@@ -38,28 +38,4 @@ export default function TopCuisinePage() {
     <Footer />
     </>
   );
-	// const storedToken = localStorage.getItem('authToken')
-	// const [recipes, setRecipes] = useState([])
-
-	// const getAllRecipes = () => {
-	// 	axios.get(`${REACT_APP_API_URI}/api/recipe/topCuisine`, {
-	// 		headers: { Authorization: `Bearer ${storedToken}` },
-	// 	})
-	// 		.then(response => setRecipes(response.data))
-	// 		.catch(error => console.log(error))
-	// }
-
-	// useEffect(() => {
-	// 	getAllRecipes()
-	// }, [])
-
-	// return (
-	// 	<div className='NotificationsPage'>
-	// 		<Link to='/'>
-	// 			<BackButton />
-	// 		</Link>
-	// 		<GenericPageTitle text='Top Cuisine' />
-	// 		<TopListCuisine recipes={recipes} />
-	// 	</div>
-	// )
 }

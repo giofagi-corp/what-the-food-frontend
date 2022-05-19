@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Hero from '../components/Hero'
 import RecipeBody from '../components/RecipeBody'
-import RelatedRecipes from '../components/RelatedRecipes'
+import Footer from '../components/Footer'
 import axios from 'axios'
 
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
@@ -30,10 +30,13 @@ export default function RecipePage() {
 	}, [])
 
 	return (
+		<>
 		<div className='RecipePage'>
 			<Hero recipe={recipe} />
 			<RecipeBody recipe={recipe} />
-			<RelatedRecipes />
 		</div>
+		<Footer />
+		</>
+		
 	)
 }

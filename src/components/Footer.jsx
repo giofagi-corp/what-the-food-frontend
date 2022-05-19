@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import logo from '../images/logo.svg'
 
 export default function Footer() {
 	return (
 		<div className='Footer'>
 			<div className='FooterBody'>
 				<div className='FooterColumn'>
-					{/* <img alt='logo' src='../../public/logo.svg' /> */}
+					<img class='Footer-logo' src={logo} alt="logo" />
 					<p>2022 What The Food ©</p>
 				</div>
 				<div className='FooterColumn'>

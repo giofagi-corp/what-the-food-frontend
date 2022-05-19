@@ -13,19 +13,22 @@ export default function HomePage() {
 			name: 'Latest Recipes',
 			link: '/top-recipes',
 			imageUrl:
-				'https://mir-s3-cdn-cf.behance.net/project_modules/fs/36b45454981539.59714c1191971.png',
-		},
-		{
-			name: 'Top Ingredients',
-			link: '/top-ingredients',
-			imageUrl:
-				'https://mir-s3-cdn-cf.behance.net/project_modules/fs/3a13e454981539.59714c1191e21.png',
+				// 'https://mir-s3-cdn-cf.behance.net/project_modules/fs/36b45454981539.59714c1191971.png',
+				'https://res.cloudinary.com/dtgwzogvc/image/upload/v1652952373/images/Last-Recipes_ecj2ti.png',
+			},
+			{
+				name: 'Top Ingredients',
+				link: '/top-ingredients',
+				imageUrl:
+				// 'https://mir-s3-cdn-cf.behance.net/project_modules/fs/3a13e454981539.59714c1191e21.png',
+				'https://res.cloudinary.com/dtgwzogvc/image/upload/v1652952328/images/Top-ingredienets_yj95gb.png',
 		},
 		{
 			name: 'Top Cuisine',
 			link: '/top-cuisine',
 			imageUrl:
-				'https://mir-s3-cdn-cf.behance.net/project_modules/fs/f712fd54981539.59714c1193342.png',
+				// 'https://mir-s3-cdn-cf.behance.net/project_modules/fs/f712fd54981539.59714c1193342.png',
+				'https://res.cloudinary.com/dtgwzogvc/image/upload/v1652952227/images/cuisine_n2hpnk.png',
 		},
 	]
 

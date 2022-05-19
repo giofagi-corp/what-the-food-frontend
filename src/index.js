@@ -5,18 +5,21 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProviderWrapper } from "./context/auth.context"; 
-import { ThemeProvider } from "@material-ui/core";
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
      primary: {
-        main: "#01df69" // This is an orange looking color
+        main: "#28C699", // 
+        contrastText: "#FFF"
                },
      secondary: {
-        main: "#ffcc80" //Another orange-ish color
+        main: "#ffcc80" //
                 }
-           },// as an aside, highly recommend importing roboto font for Material UI projects! Looks really nice
+           },
+      text: {
+        primary: "rgba(0,0,0,0.87)" // This is an orange looking color
+      },// as an aside, highly recommend importing roboto font for Material UI projects! Looks really nice
 });
 
 ReactDOM.render(

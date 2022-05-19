@@ -10,7 +10,6 @@ export default function Hero(props) {
 			className='MobileHero'
 			style={{ backgroundImage: `url(${recipe.imageUrl})` }}>
 			<BackButton />
-			<HeroHeader recipe={recipe} editable={props.editable} />
 		</div>
 	)
 }

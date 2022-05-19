@@ -7,7 +7,6 @@ import Select from '@mui/material/Select'
 
 export default function FormSearchIngredient(props) {
 	const { ingredients, onSelect } = props
-	console.log('ingredients form select ---------> ', ingredients)
 	return (
 		<div>
 			<select multiple onChange={onSelect}>
@@ -16,9 +15,7 @@ export default function FormSearchIngredient(props) {
 				</option>
 				{ingredients &&
 					ingredients.map(ingredient => (
-						<option
-							key={ingredient._id}
-							value={ingredient._id}>
+						<option key={ingredient._id} value={ingredient._id}>
 							{ingredient.name}
 						</option>
 					))}

@@ -32,7 +32,7 @@ export default function RecipeListPage(props) {
 		)
 			.then(response => {
 				setRecipesCuisine(response.data)
-				setCuisineName((response.data[0].cuisine)[0].toUpperCase()+(response.data[0].cuisine).substring(1))
+				setCuisineName(response.data[0].cuisine)
 			})
 			.catch(error => console.log(error))
 
@@ -43,29 +43,33 @@ export default function RecipeListPage(props) {
 			}
 		)
 			.then(response => {
-				setIngredientName(response.data.name[0].toUpperCase()+response.data.name.substring(1))
+				setIngredientName(response.data.name)
 			})
 			.catch(error => console.log(error))
 	}, [])
 
 	return (
-		<div className='NotificationsPage'>
+		<div className='TopCardContainer'>
 			<Link to='/'>
 				<BackButton />
 			</Link>
 			<GenericPageTitle text={ingredientName ? ingredientName : cuisineName }/>
-			{recipesIng &&
-				recipesIng.map(recipe => (
-					<Link to={`/recipe/${recipe._id}`}>
-						<RecipeCard key={recipe._id} {...recipe} />
-					</Link>
-				))}
-			{recipesCuisine &&
-				recipesCuisine.map(recipe => (
-					<Link to={`/recipe/${recipe._id}`}>
-						<RecipeCard key={recipe._id} {...recipe} />
-					</Link>
-				))}
+			<div 
+			>
+				{recipesIng &&
+					recipesIng.map(recipe => (
+						<Link to={`/recipe/${recipe._id}`}>
+							<RecipeCard key={recipe._id} {...recipe} />
+						</Link>
+					))}
+				{recipesCuisine &&
+					recipesCuisine.map(recipe => (
+						<Link to={`/recipe/${recipe._id}`}>
+							<RecipeCard key={recipe._id} {...recipe} />
+						</Link>
+					))}
+
+			</div>
 		</div>
 	)
 }

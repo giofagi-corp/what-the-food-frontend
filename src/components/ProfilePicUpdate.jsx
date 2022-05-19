@@ -22,31 +22,10 @@ export default function ProfilePicUpdate(props) {
 
     const {logOutUser} = useContext(AuthContext)
 
-/*     const uploadImage = () => {
-        const formData = new FormData()
-        formData.append("file", imageSelected)
-        formData.append("upload_preset", "rejs52lv")
-
-        axios.post("https://api.cloudinary.com/v1_1/dtu7oski7/image/upload",formData, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      }
-        ).then((response)=>{
-            console.log(response);
-        });
-    }; */
-
-
-
     return (
         <div>
             <div>
                 <Image className='avatar' cloudName="dtu7oski7" publicId={props.data.avatarUrl}/>
-                {/* <BottomNavigationAction
-                component={Link}
-                showLabels
-                to="/edit-profile"
-                label="Add"
-                value="add-recipe"/> */}
                 <Button component={Link} to="/edit-profile" sx={{ width: '100%', height: '36px' }} variant="contained">Edit profile</Button>
                 <Button onClick={logOutUser} sx={{ width: '100%', height: '36px' }} type="submit" variant="text">Logout</Button>
             </div>

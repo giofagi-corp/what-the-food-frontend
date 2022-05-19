@@ -9,8 +9,6 @@ const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
 export default function ProfileHeader(props) {
 
-	console.log("props userDATA------>",props.userData);
-
 	return (
 		<div className='css-8atqhb'>
 			<div className='ProfileHeader'>
