@@ -5,6 +5,7 @@ import LoginPageTitle from '../components/LoginPageTitle'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import mainLogo from '../images/logo.svg'
 
 const API_URI = process.env.REACT_APP_API_URI;
 
@@ -41,6 +42,9 @@ function SignupPage(props) {
   return (
     <>
     <div className="NotificationsPage">
+      <div className='MainLogo'>
+					<img src={mainLogo} alt="" />
+				</div>
       <LoginPageTitle text="Sign Up"/>
 
       <Box component="form" sx={{ '& > :not(style)': { mb: 2, width: '100%' },}} noValidate autoComplete="off">

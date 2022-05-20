@@ -9,6 +9,7 @@ import Button from '@mui/material/Button'
 import Alert from '@mui/material/Alert'
 import Collapse from '@mui/material/Collapse'
 import Fade from '@mui/material/Fade'
+import mainLogo from '../images/logo.svg'
 
 const API_URI = process.env.REACT_APP_API_URI
 
@@ -45,6 +46,9 @@ function LoginPage(props) {
 	return (
 		<>
 			<div className='NotificationsPage'>
+				<div className='MainLogo'>
+					<img src={mainLogo} alt="" />
+				</div>
 				<LoginPageTitle text='Login' />
 				<Box
 					component='form'
