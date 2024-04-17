@@ -1,4 +1,5 @@
-import React, {useEffect, useState, useContext} from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState, useContext } from 'react'
 import ProfileHeader from '../components/ProfileHeader'
 import ContentTabs from '../components/ContentTabs'
 import { AuthContext } from './../context/auth.context'
@@ -7,27 +8,26 @@ import axios from 'axios'
 const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
 export default function ProfilePage() {
-	const { logOutUser } = useContext(AuthContext)
 	const storedToken = localStorage.getItem('authToken')
 	const [userData, setUserData] = useState({})
 	const { user } = useContext(AuthContext)
 
 
-	useEffect(()=>{
+	useEffect(() => {
 		axios
-      .get(`${REACT_APP_API_URI}/api/user/${user._id}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((res) => {
-		  setUserData(res.data)
-		})
-      .catch((error) => console.log(error));
+			.get(`${REACT_APP_API_URI}/api/user/${user._id}`, {
+				headers: { Authorization: `Bearer ${storedToken}` },
+			})
+			.then((res) => {
+				setUserData(res.data)
+			})
+			.catch((error) => console.log(error));
 	}, [])
 
 	return (
 		<>
-			<ProfileHeader userData={userData}/>
-			<ContentTabs userData={userData}/>
+			<ProfileHeader userData={userData} />
+			<ContentTabs userData={userData} />
 		</>
 	)
 }

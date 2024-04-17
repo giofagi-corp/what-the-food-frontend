@@ -1,7 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useContext } from 'react' // <== IMPORT
-import { AuthContext } from '../context/auth.context' // <== IMPORT
 import Box from '@mui/material/Box'
 import BottomNavigation from '@mui/material/BottomNavigation'
 import BottomNavigationAction from '@mui/material/BottomNavigationAction'
@@ -13,7 +11,6 @@ export default function DesktopNavbar() {
 	// Subscribe to the AuthContext to gain access to
 	// the values from AuthContext.Provider `value` prop
 	const [value, setValue] = React.useState(0)
-	// const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 	return (
 		<Box>
 			<BottomNavigation

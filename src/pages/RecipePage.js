@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Hero from '../components/Hero'
@@ -31,12 +32,12 @@ export default function RecipePage() {
 
 	return (
 		<>
-		<div className='RecipePage'>
-			<Hero recipe={recipe} />
-			<RecipeBody recipe={recipe} />
-		</div>
-		<Footer />
+			<div className='RecipePage'>
+				<Hero recipe={recipe} />
+				<RecipeBody recipe={recipe} />
+			</div>
+			<Footer />
 		</>
-		
+
 	)
 }

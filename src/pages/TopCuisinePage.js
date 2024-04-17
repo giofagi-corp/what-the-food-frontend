@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
@@ -28,14 +29,14 @@ export default function TopCuisinePage() {
 
   return (
     <>
-    <div className="HomeCardContainer">
-    <div className="TopCardContainer">
-      <Link to="/"><BackButton className="BackButtonTops"/></Link>
-      <GenericPageTitle text="Top Cuisines" />
-      <TopListCuisine recipes={recipes} />
-    </div>
-    </div>
-    <Footer />
+      <div className="HomeCardContainer">
+        <div className="TopCardContainer">
+          <Link to="/"><BackButton className="BackButtonTops" /></Link>
+          <GenericPageTitle text="Top Cuisines" />
+          <TopListCuisine recipes={recipes} />
+        </div>
+      </div>
+      <Footer />
     </>
   );
 }

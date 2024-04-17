@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import GenericPageTitle from '../components/GenericPageTitle'
 import axios from 'axios'
 import Button from '@mui/material/Button'
 import NewRecipeStep3 from '../components/NewRecipeStep3'

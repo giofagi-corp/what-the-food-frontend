@@ -1,15 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import { useState, useEffect } from 'react'
 import GenericPageTitle from '../components/GenericPageTitle'
-import BackButton from '../components/BackButton'
-import FormInput from '../components/FormInput'
 import { CircularProgress, IconButton, TextField, Chip, Autocomplete, Stack, Button } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { styled } from '@mui/material/styles'
 import { Box } from '@mui/system'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import GenericPagesSubtitle from '../components/GenericPageSubtitle'
 import axios from 'axios'
 
@@ -194,7 +194,7 @@ export default function EditRecipePage() {
 						<IconButton aria-label='delete'>
 							<CloseIcon className='RecipeImageCloseIcon' onClick={handleDeleteImage} />
 						</IconButton>
-						<img src={`${image}`} />
+						<img src={`${image}`} alt='' />
 					</div>
 				)}
 			</div>

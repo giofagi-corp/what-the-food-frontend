@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import GenericPagesSubtitle from './GenericPageSubtitle'
 import FormInput from './FormInput'
-import Button from '@mui/material/Button'
+
 import { IconButton } from '@mui/material'
 import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import { styled } from '@mui/material/styles'
@@ -55,7 +55,7 @@ export default function NewRecipeStep1(props) {
 										onClick={handleDeleteImage}
 									/>
 								</IconButton>
-								<img src={`${props.image}`} />
+								<img src={`${props.image}`} alt='' />
 							</Link>
 						)}
 					</div>

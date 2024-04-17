@@ -1,8 +1,8 @@
 import React from 'react'
 import Grid from '@mui/material/Grid'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import { Link, useHistory } from 'react-router-dom'
-import { Button } from '@mui/material'
+import {  useHistory } from 'react-router-dom'
+
 import IconButton from '@mui/material/IconButton'
 
 export default function BackButton() {
@@ -14,7 +14,7 @@ export default function BackButton() {
 		<div className='BackButton'>
 			<Grid>
 				<IconButton
-					onClick={history.goBack}
+					onClick={handleClick}
 					color='primary'
 					aria-label='go back'
 					sx={{ minWidth: '1px'}}>

@@ -1,13 +1,12 @@
+/* eslint-disable no-sequences */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import BackButton from '../components/BackButton'
 import GenericPagesSubtitle from '../components/GenericPageSubtitle'
 import axios from 'axios'
 import TextField from '@mui/material/TextField'
 import CloseIcon from '@mui/icons-material/Close'
 
 import Autocomplete from '@mui/material/Autocomplete'
-import Button from '@mui/material/Button'
 import { Chip } from '@mui/material'
 import Stack from '@mui/material/Stack'
 import '../index.css'

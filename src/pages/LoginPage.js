@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useContext } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
@@ -18,7 +19,7 @@ function LoginPage(props) {
 	const [password, setPassword] = useState('')
 	const [errorMessage, setErrorMessage] = useState(undefined)
 	const [open, setOpen] = useState(true)
-  
+
 	const { logInUser } = useContext(AuthContext)
 
 	const handleEmail = e => setEmail(e.target.value)

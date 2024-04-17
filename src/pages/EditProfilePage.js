@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import { useContext } from 'react'
 import { AuthContext } from './../context/auth.context'
@@ -17,29 +18,29 @@ const REACT_APP_API_URI = process.env.REACT_APP_API_URI
 
 const theme = createTheme({
 	components: {
-	  MuiTextField: {
-		defaultProps: {
-		  variant: "outlined",
-		  fullWidth: true,
-		},
-		styleOverrides: {
-		  root: {
-			"&.subvariant-hovered": {
-			  "& fieldset": {
-				border: "none"
-			  },
-			  "& .MuiInputBase-input:hover + fieldset": {
-				border: "none"
-			  },
-			  "& .MuiInputBase-input:focus + fieldset": {
-				border: "none"
-			  }
+		MuiTextField: {
+			defaultProps: {
+				variant: "outlined",
+				fullWidth: true,
+			},
+			styleOverrides: {
+				root: {
+					"&.subvariant-hovered": {
+						"& fieldset": {
+							border: "none"
+						},
+						"& .MuiInputBase-input:hover + fieldset": {
+							border: "none"
+						},
+						"& .MuiInputBase-input:focus + fieldset": {
+							border: "none"
+						}
+					}
+				}
 			}
-		  }
 		}
-	  }
 	}
-  });
+});
 
 export default function EditProfilePage() {
 	const storedToken = localStorage.getItem('authToken')
@@ -49,7 +50,7 @@ export default function EditProfilePage() {
 	const [email, setEmail] = useState('')
 	const history = useHistory()
 
-	useEffect(()=>{
+	useEffect(() => {
 		axios
 			.get(`${REACT_APP_API_URI}/api/user/${user._id}`, {
 				headers: { Authorization: `Bearer ${storedToken}` },
@@ -58,7 +59,7 @@ export default function EditProfilePage() {
 				setUserData(res.data)
 				setName(res.data.name)
 				setEmail(res.data.email)
-				})
+			})
 			.catch((error) => console.log(error));
 	}, [])
 
@@ -82,48 +83,48 @@ export default function EditProfilePage() {
 	return (
 		<div className='EditProfilePage'>
 			<div className='EditProfilePic'>
-				<img className='EditProfilePicUpload' 
-					src={`${userData.avatarUrl}`} 
+				<img className='EditProfilePicUpload'
+					src={`${userData.avatarUrl}`}
 					alt=""
 				/>
 			</div>
 			<div className='EditProfileContent'>
-				<div style={{display: "flex", flexDirection: "column"}}>
-					
+				<div style={{ display: "flex", flexDirection: "column" }}>
+
 					<ThemeProvider theme={theme}>
 						<TextField
-							sx={{my: -3}}
+							sx={{ my: -3 }}
 							className="subvariant-hovered"
 							id="pseudo-variant-name"
 							hiddenLabel
-							defaultValue={name} 
+							defaultValue={name}
 							onChange={e => setName(e.target.value)}
 							value={name}
-							inputProps={{style: {fontSize: 32, textAlign: "center"}}}
+							inputProps={{ style: { fontSize: 32, textAlign: "center" } }}
 						/>
-						<TextField 
+						<TextField
 							className="subvariant-hovered"
 							id="pseudo-variant-email"
 							hiddenLabel
-							defaultValue={email} 
+							defaultValue={email}
 							onChange={e => setEmail(e.target.value)}
 							value={email}
-							inputProps={{style: {fontSize: 16, textAlign: "center"}}}
+							inputProps={{ style: { fontSize: 16, textAlign: "center" } }}
 						/>
 					</ThemeProvider>
 
 				</div>
-				
+
 			</div>
-			<Button 
-				component={Link} 
+			<Button
+				component={Link}
 				to="/edit-profile"
 				variant='contained'
 				onClick={updateUserData}
-				sx={{  height: '56px', marginTop: '20px' }}
+				sx={{ height: '56px', marginTop: '20px' }}
 				type='submit'>
 				Accept
-			</Button> 
+			</Button>
 		</div>
 	)
 }
